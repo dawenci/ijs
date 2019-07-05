@@ -822,8 +822,8 @@ typescript@2.4.1:
   resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.4.1.tgz#c3ccb16ddaa0b2314de031e7e6fee89e5ba346bc"
 
 typescript@^3.0.1:
-  version "3.0.1"
-  resolved "http://registry.npm.taobao.org/typescript/download/typescript-3.0.1.tgz#43738f29585d3a87575520a4b93ab6026ef11fdb"
+  version "3.5.2"
+  resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
 
 uglify-js@^2.6:
   version "2.8.29"

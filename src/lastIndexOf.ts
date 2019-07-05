@@ -2,12 +2,11 @@ import { curry2 } from './curry'
 
 export default curry2((item, list) => {
   if (typeof list === 'string' || Array.isArray(list)) {
-    return list.indexOf(item)
+    return list.lastIndexOf(item)
   }
   if (list && list.length) {
-    const len = list.length
-    let index = 0
-    while(index < len) {
+    let index = list.length
+    while(index--) {
       if (list[index] === item) return index
       index += 1
     }

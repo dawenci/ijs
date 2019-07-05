@@ -6,8 +6,8 @@ export default curry1(pairs => {
   return function() {
     while (index < count) {
       const [test, action] = pairs[index]
-      if (test(...arguments as any)) {
-        return action(...arguments as any)
+      if (test.apply(void 0, arguments)) {
+        return action.apply(void 0, arguments)
       }
       index += 1
     }

@@ -1,2 +1,5 @@
 import { curry2 } from './curry'
-export default curry2((a, b) => a || b)
+export default curry2((a, b) => {
+  if (a) return a
+  return b
+})

@@ -3,7 +3,6 @@ import { curry1, curryN } from './curry'
 const slice = Array.prototype.slice
 
 /**
- * @API
  * 交换 fn 的头两个参数
  * 返回柯里化后的新函数
  * 
@@ -12,7 +11,7 @@ const slice = Array.prototype.slice
  * Rf.flip((a, b) => a - b)(1, 2) // 1
  * 
  */
-export default curry1(fn => {
+function flip (fn: Function) {
   const n = fn.length
   if (n >= 2) {
     return curryN(n, function() {
@@ -23,5 +22,7 @@ export default curry1(fn => {
       return fn.apply(void 0, args)
     })
   }
-  return curry1(fn)
-})
+  return curry1(fn as (a: any)=>any)
+}
+
+export default curry1(flip)

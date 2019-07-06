@@ -1,2 +1,7 @@
 import { curry1 } from './curry'
-export default curry1(list => list[0])
+
+function first<E>(list: ArrayLike<E>): E {
+  return list[0]
+}
+
+export default curry1(first)

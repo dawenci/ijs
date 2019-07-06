@@ -1,34 +1,66 @@
+interface Curried1<A, R> {
+  (): Curried1<A, R>
+  (a: A | undefined): R
+}
+
+interface Curried2<A, B, R> {
+  (): Curried2<A, B, R>
+  (b: B | undefined): Curried1<B, R>
+  (a: A | undefined, b: B | undefined): R
+}
+
+interface Curried3<A, B, C, R> {
+  (): Curried3<A, B, C, R>
+  (c: C | undefined): Curried1<C, R>
+  (b: B | undefined, c: C | undefined): Curried2<B, C, R>
+  (a: A | undefined, b: B | undefined, c: C | undefined): R
+}
+
 // 1 个参数的函数柯里化
-export function curry1(fn: (a: any) => any) {
-  return function curried(a?) {
-    if (arguments.length) return fn(a)
+export function curry1<A, R>(fn: (a: A) => R): Curried1<A, R> {
+  function curried(): Curried1<A, R>
+  function curried(a: A | undefined): R
+  function curried(a?: A | undefined) {
+    if (arguments.length) {
+      return fn(a)
+    }
     return curried
   }
+  return curried
 }
 
 // 2 个参数的函数柯里化
-export function curry2(fn: (a: any, b: any) => any) {
-  return function curried(a?, b?) {
+export function curry2<A, B, R>(fn: (a: A, b: B) => R): Curried2<A, B, R> {
+  function curried(): Curried2<A, B, R>
+  function curried(b: B): Curried1<B, R>
+  function curried(a: A, b: B): R
+  function curried(a?: A | B, b?: B) {
     switch (arguments.length) {
-      case 1: return curry1(b => fn(a, b))
-      case 2: return fn(a, b)
+      case 1: return curry1<B, R>((b) => fn(a as A, b))
+      case 2: return fn(a as A, b)
       case 0: return curried
-      default: return fn(a, b)
+      default: return fn(a as A, b)
     }
   }
+  return curried
 }
 
 // 3 个参数的函数柯里化
-export function curry3(fn: (a: any, b: any, c: any) => any) {
-  return function curried(a?, b?, c?) {
+export function curry3<A, B, C, R>(fn: (a: A, b: B, c: C) => R): Curried3<A, B, C, R>  {
+  function curried(): Curried3<A, B, C, R>
+  function curried(c: C): Curried1<C, R>
+  function curried(b: B, c: C): Curried2<B, C, R>
+  function curried(a: A, b: B, c: C): R
+  function curried(a?: A|B|C, b?: B|C, c?: C) {
     switch(arguments.length) {
-      case 1: return curry2((b, c) => fn(a, b, c))
-      case 2: return curry1(c => fn(a, b, c))
-      case 3: return fn(a, b, c)
+      case 1: return curry2<B, C, R>((b, c) => fn(a as A, b, c))
+      case 2: return curry1<C, R>((c) => fn(a as A, b as B, c))
+      case 3: return fn(a as A, b as B, c as C)
       case 0: return curried
-      default: return fn(a, b, c)
+      default: return fn(a as A, b as B, c as C)
     }
   }
+  return curried
 }
 
 const slice = Array.prototype.slice

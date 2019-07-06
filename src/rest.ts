@@ -1,2 +1,6 @@
 import { curry1 } from './curry'
-export default curry1(list => list.slice(1))
+
+const slice = Array.prototype.slice
+export default curry1((list: any) => {
+  slice.call(list, 1)
+})

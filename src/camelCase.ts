@@ -1,6 +1,8 @@
 import { curry1 } from './curry'
 
 // TODO
-export default curry1(string => {
-  return string
-})
+function camelCase(str: string): string {
+  return str
+}
+
+export default curry1(camelCase)

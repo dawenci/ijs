@@ -1,2 +1,3 @@
 import { curry2 } from './curry'
-export default curry2((a: number | string, b: number | string) => (+a) + (+b))
+const add: {(a, b): number} = (a, b) => (+a) + (+b)
+export default curry2(add)

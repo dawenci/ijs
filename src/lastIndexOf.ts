@@ -1,6 +1,6 @@
 import { curry2 } from './curry'
 
-export default curry2((item, list) => {
+export default curry2(<E>(item: E, list: ArrayLike<E>): number => {
   if (typeof list === 'string' || Array.isArray(list)) {
     return list.lastIndexOf(item)
   }

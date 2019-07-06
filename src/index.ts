@@ -1,4 +1,4 @@
-export { default as curry } from './curry'
+export { default as curry, curry1, curry2, curry3 } from './curry'
 export { default as flip } from './flip'
 export { default as identity } from './identity'
 

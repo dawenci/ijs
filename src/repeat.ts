@@ -1,12 +1,12 @@
 import { curry2 } from './curry'
 
-export default curry2((string, n) => {
+export default curry2((str: string, n: number): string => {
   let result = ''
-  if (!string) return ''
+  if (!str) return ''
   do {
-    if (n % 2) result += string
+    if (n % 2) result += str
     n = Math.floor(n / 2)
-    if (n) string += string
+    if (n) str += str
   } while (n)
   return result
 })

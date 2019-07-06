@@ -1,2 +1,8 @@
 import { curry2 } from './curry'
-export default curry2((a, b) => a && b)
+
+function and<T, U>(a: T, b: U) {
+  if (!a) return a
+  return b
+}
+
+export default curry2(and)

@@ -1,6 +1,6 @@
 import { curry2 } from './curry'
 
-export default curry2((from, to) => {
+export default curry2((from: number, to: number): Array<number> => {
   const result = []
   let index = from
   while (index < to) {

@@ -1,6 +1,6 @@
 import { curry2 } from './curry'
 
-export default curry2((predicate: (e: any, i: number) => any, list: ArrayLike<any>) => {
+function filter<E>(predicate: (element: E, index: number) => any, list: ArrayLike<E>): Array<E> {
   const len = list.length || 0
   const results = []
   let index = -1
@@ -8,4 +8,6 @@ export default curry2((predicate: (e: any, i: number) => any, list: ArrayLike<an
     if (predicate(list[index], index)) results.push(list[index])
   }
   return results
-})
+}
+
+export default curry2(filter)

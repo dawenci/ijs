@@ -1,3 +1,7 @@
 import { curry2 } from './curry'
 
-export default curry2((substr, string) => string.substr(-substr.length) === substr)
+function endsWith(substr: string, str: string): boolean {
+  return str.substr(-substr.length) === substr
+}
+
+export default curry2(endsWith)

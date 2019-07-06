@@ -1,6 +1,6 @@
 import { curry2 } from './curry'
 
-export default curry2((predicate: (e: any, i: number) => any, list: ArrayLike<any>) => {
+function every<E>(predicate: (element: E, index: number) => any, list: ArrayLike<E>): boolean {
   const len = list.length
   let index = 0
   while (index < len) {
@@ -8,4 +8,6 @@ export default curry2((predicate: (e: any, i: number) => any, list: ArrayLike<an
     index += 1
   }
   return true
-})
+}
+
+export default curry2(every)

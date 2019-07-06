@@ -1,9 +1,11 @@
 import { curry1 } from './curry'
 
-export default curry1(string => {
-  string = ('' + string)
-  if (!string.length) return string
+function capitalize(str: string): string {
+  str = ('' + str)
+  if (!str.length) return str
 
   // TODO，处理可 upperCase 字符范围
-  return string.charAt(0).toUpperCase() + string.slice(1)
-})
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+export default curry1(capitalize)

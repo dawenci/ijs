@@ -1,6 +1,6 @@
 import { curry2 } from './curry'
 
-export default curry2((paths, obj) => {
+export default curry2((paths: any, obj: any) => {
   let value = obj
   let index = 0
   while (index < paths.length) {

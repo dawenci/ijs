@@ -1,6 +1,6 @@
 import { curry1 } from './curry'
 
-export default curry1(coll => {
+export default curry1(<E>(coll: ArrayLike<E>): boolean => {
   if (Array.isArray(coll) || typeof coll === 'string') {
     return coll.length === 0
   }

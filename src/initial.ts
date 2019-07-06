@@ -1,3 +1,4 @@
 import { curry1 } from './curry'
 
-export default curry1(coll => coll.slice(0, coll.length - 1))
+const slice = Array.prototype.slice
+export default curry1(<E>(coll: ArrayLike<E>): Array<E> => slice.call(coll, 0, coll.length - 1))

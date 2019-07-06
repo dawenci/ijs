@@ -1,6 +1,6 @@
 import { curry1 } from './curry'
 
-export default curry1(pairs => {
+function cond(pairs: Array<[Function, Function]> = []): any {
   const count = pairs.length
   let index = 0
   return function() {
@@ -12,4 +12,6 @@ export default curry1(pairs => {
       index += 1
     }
   }
-})
+}
+
+export default curry1(cond)

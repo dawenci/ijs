@@ -31,7 +31,7 @@ Promise.resolve()
   .then(buildCJS)
   .then(buildUMDDev)
   .then(buildUMDProd)
-  .then(generateDeclarations)
+  // .then(generateDeclarations)
   .then(clean)
   .catch(logError)
 
@@ -86,6 +86,7 @@ function generateDeclarations() {
     downlevelIteration: true,
     declaration: true, // Auto-Generate typings
     declarationDir: 'types',
+    emitDeclarationOnly: true,
     outDir: 'types/_temp',
     listEmittedFiles: true,
   })

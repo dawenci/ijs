@@ -14,13 +14,13 @@ const slice = Array.prototype.slice
 function flip (fn: Function) {
   const n = fn.length
   if (n >= 2) {
-    return curryN(n, function() {
+    return curryN(function() {
       const args = slice.call(arguments)
       const firstArg = args[0]
       args[0] = args[1]
       args[1] = firstArg
       return fn.apply(void 0, args)
-    })
+    }, n)
   }
   return curry1(fn as (a: any)=>any)
 }

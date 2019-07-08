@@ -27,10 +27,10 @@ function tsBaseConfig() {
 }
 
 Promise.resolve()
-  .then(buildESM)
+  // .then(buildESM)
   .then(buildCJS)
   .then(buildUMDDev)
-  .then(buildUMDProd)
+  // .then(buildUMDProd)
   // .then(generateDeclarations)
   .then(clean)
   .catch(logError)

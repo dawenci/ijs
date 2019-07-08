@@ -1,11 +1,4 @@
 import { curry2 } from './curry'
+import reject from './internal/_reject'
 
-export default curry2((predicate: (e: any, i: number) => any, list: ArrayLike<any>) => {
-  const len = list.length || 0
-  const results = []
-  let index = -1
-  while (++index < len) {
-    if (!predicate(list[index], index)) results.push(list[index])
-  }
-  return results
-})
+export default curry2(reject)

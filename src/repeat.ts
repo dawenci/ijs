@@ -1,12 +1,4 @@
 import { curry2 } from './curry'
+import repeat from './internal/_repeat'
 
-export default curry2((str: string, n: number): string => {
-  let result = ''
-  if (!str) return ''
-  do {
-    if (n % 2) result += str
-    n = Math.floor(n / 2)
-    if (n) str += str
-  } while (n)
-  return result
-})
+export default curry2(repeat)

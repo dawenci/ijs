@@ -48,7 +48,7 @@ export type TCurryN<T extends any[], R> =
 
 const slice = Array.prototype.slice
 
-const symbolFlag = Symbol('curried')
+const symbolFlag = typeof Symbol === 'function' ? Symbol('curried') : '_curried_'
 
 /**
  * 1 个参数的函数柯里化

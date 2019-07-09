@@ -1,4 +1,4 @@
-export default <E>(iteratee: (element: E) => any, list: ArrayLike<E>): Array<E> => {
+export default <E, R>(iteratee: (element: E) => R, list: ArrayLike<E>): Array<R> => {
   list = list || []
   const len = list.length || 0
   const results = Array(len)

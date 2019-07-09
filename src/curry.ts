@@ -1,48 +1,44 @@
-import {
-  Cast,
-  Drop,
-  Length,
-} from './_typeUtils'
+import { Cast, Drop, Length } from './_typeUtils'
 
-export interface ICurry1<A, R> {
-  (): ICurry1<A, R>
+interface Curry1<A, R> {
+  (): Curry1<A, R>
   (a: A | undefined): R
 }
 
-interface ICurry2<A, B, R> {
-  (): ICurry2<A, B, R>
-  (a: A | undefined): ICurry1<B, R>
+interface Curry2<A, B, R> {
+  (): Curry2<A, B, R>
+  (a: A | undefined): Curry1<B, R>
   (a: A | undefined, b: B | undefined): R
 }
 
-interface ICurry3<A, B, C, R> {
-  (): ICurry3<A, B, C, R>
-  (a: A | undefined): ICurry2<B, C, R>
-  (a: A | undefined, b: B | undefined): ICurry1<C, R>
+interface Curry3<A, B, C, R> {
+  (): Curry3<A, B, C, R>
+  (a: A | undefined): Curry2<B, C, R>
+  (a: A | undefined, b: B | undefined): Curry1<C, R>
   (a: A | undefined, b: B | undefined, c: C | undefined): R
 }
 
-interface ICurry4<A, B, C, D, R> {
-  (): ICurry4<A, B, C, D, R>
-  (a: A | undefined): ICurry3<B, C, D, R>
-  (a: A | undefined, b: B | undefined): ICurry2<C, D, R>
-  (a: A | undefined, b: B | undefined, c: C | undefined): ICurry1<D, R>
+interface Curry4<A, B, C, D, R> {
+  (): Curry4<A, B, C, D, R>
+  (a: A | undefined): Curry3<B, C, D, R>
+  (a: A | undefined, b: B | undefined): Curry2<C, D, R>
+  (a: A | undefined, b: B | undefined, c: C | undefined): Curry1<D, R>
   (a: A | undefined, b: B | undefined, c: C | undefined, d: D | undefined): R
 }
 
 // N 个参数的函数柯里化
-export type TCurryN<T extends any[], R> =
+export type Curry<T extends any[], R> =
   <P extends any[]>(...args: Cast<P, Partial<T>>) =>
     // A.1 剩余参数数量只有一个，则走 curry1
-    Drop<Length<P>, T> extends [infer A] ? ICurry1<Cast<A, any>, R>
+    Drop<Length<P>, T> extends [infer A] ? Curry1<Cast<A, any>, R>
     // A.2 剩余参数如果有两个，走 curry2
-    : Drop<Length<P>, T> extends [infer A, infer B] ? ICurry2<Cast<A, any>, Cast<B, any>, R>
+    : Drop<Length<P>, T> extends [infer A, infer B] ? Curry2<Cast<A, any>, Cast<B, any>, R>
       // A.3 剩余参数如果编译 3个，走 curry3
-      : Drop<Length<P>, T> extends [infer A, infer B, infer C] ? ICurry3<Cast<A, any>, Cast<B, any>, Cast<C, any>, R>
+      : Drop<Length<P>, T> extends [infer A, infer B, infer C] ? Curry3<Cast<A, any>, Cast<B, any>, Cast<C, any>, R>
         // A.3 剩余参数如果编译 4个，走 curry4
-        : Drop<Length<P>, T> extends [infer A, infer B, infer C, infer D] ? ICurry4<Cast<A, any>, Cast<B, any>, Cast<C, any>, Cast<D, any>, R>
+        : Drop<Length<P>, T> extends [infer A, infer B, infer C, infer D] ? Curry4<Cast<A, any>, Cast<B, any>, Cast<C, any>, Cast<D, any>, R>
           // 剩余更多参数，走 curryN
-          : Drop<Length<P>, T> extends [any, ...any[]] ? TCurryN<Drop<Length<P>, T> extends infer DT ? Cast<DT, any[]> : never, R>
+          : Drop<Length<P>, T> extends [any, ...any[]] ? Curry<Drop<Length<P>, T> extends infer DT ? Cast<DT, any[]> : never, R>
     // B. 没有剩余参数可消耗，则返回最终结果
     : R
 
@@ -53,7 +49,7 @@ const symbolFlag = typeof Symbol === 'function' ? Symbol('curried') : '_curried_
 /**
  * 1 个参数的函数柯里化
  */
-export function curry1<A, R>(fn: (a: A) => R): ICurry1<A, R> {
+export function curry1<A, R>(fn: (a: A) => R): Curry1<A, R> {
   function curried(a?: A | undefined) {
     switch (arguments.length) {
       case 1: return fn(a)
@@ -62,6 +58,7 @@ export function curry1<A, R>(fn: (a: A) => R): ICurry1<A, R> {
       default: return fn.apply(void 0, arguments)
     }
   }
+  curried[symbolFlag] = true
   return curried
 }
 // const curry1Test1 = curry1((a: number) => a)
@@ -71,7 +68,7 @@ export function curry1<A, R>(fn: (a: A) => R): ICurry1<A, R> {
 /**
  * 2 个参数的函数柯里化
  */
-export function curry2<A, B, R>(fn: (a: A, b: B) => R): ICurry2<A, B, R> {
+export function curry2<A, B, R>(fn: (a: A, b: B) => R): Curry2<A, B, R> {
   function curried(a?: A | B | undefined, b?: B | undefined) {
     switch (arguments.length) {
       case 1: return curry1<B, R>(function(b) {
@@ -87,7 +84,7 @@ export function curry2<A, B, R>(fn: (a: A, b: B) => R): ICurry2<A, B, R> {
       default: return fn.apply(void 0, arguments)
     }
   }
-
+  curried[symbolFlag] = true
   return curried
 }
 
@@ -99,7 +96,7 @@ export function curry2<A, B, R>(fn: (a: A, b: B) => R): ICurry2<A, B, R> {
 /**
  * 3 个参数的函数柯里化
  */
-export function curry3<A, B, C, R>(fn: (a: A, b: B, c: C) => R): ICurry3<A, B, C, R>  {
+export function curry3<A, B, C, R>(fn: (a: A, b: B, c: C) => R): Curry3<A, B, C, R>  {
   function curried(a?: A | B | C | undefined, b?: B | C | undefined, c?: C | undefined) {
     switch(arguments.length) {
       case 1: return curry2<B, C, R>(function(b, c) {
@@ -123,7 +120,7 @@ export function curry3<A, B, C, R>(fn: (a: A, b: B, c: C) => R): ICurry3<A, B, C
       default: return fn.apply(void 0, arguments)
     }
   }
-
+  curried[symbolFlag] = true
   return curried
 }
 
@@ -136,7 +133,7 @@ export function curry3<A, B, C, R>(fn: (a: A, b: B, c: C) => R): ICurry3<A, B, C
 /**
  * 4 个参数的函数柯里化
  */
-export function curry4<A, B, C, D, R>(fn: (a: A, b: B, c: C, d: D) => R): ICurry4<A, B, C, D, R>  {
+export function curry4<A, B, C, D, R>(fn: (a: A, b: B, c: C, d: D) => R): Curry4<A, B, C, D, R>  {
   function curried(a?: A | B | C | undefined, b?: B | C | undefined, c?: C | undefined, d?) {
     switch(arguments.length) {
       case 1: return curry3<B, C, D, R>(function(b, c, d) {
@@ -162,15 +159,18 @@ export function curry4<A, B, C, D, R>(fn: (a: A, b: B, c: C, d: D) => R): ICurry
       default: return fn.apply(void 0, arguments)
     }
   }
-
+  curried[symbolFlag] = true
   return curried
 }
 
-export function curryN<P extends any[], R>(fn: (...args: P) => R, n?: number): TCurryN<P, R> {
+/**
+ * N 个参数的函数柯里化
+ */
+export function curryN<P extends any[], R>(fn: (...args: P) => R, n?: number): Curry<P, R> {
   // 首次调用可以使用 fn 获取参数数量
   if (n === undefined) n = fn.length
   
-  return function() {
+  function curried() {
     const consumedN = arguments.length
     const restN = n - consumedN
 
@@ -218,6 +218,9 @@ export function curryN<P extends any[], R>(fn: (...args: P) => R, n?: number): T
       return fn.apply(void 0, consumedArgs)
     }, restN)
   }
+
+  curried[symbolFlag] = true
+  return curried
 }
 
 // const curryNTest1 = curryN((a: number) => a)
@@ -239,47 +242,41 @@ export function curryN<P extends any[], R>(fn: (...args: P) => R, n?: number): T
 // const curryNTest12 = curryNTest11(1)(2)(3,4)(5)
 
 /**
- * 柯里化
+ * 柯里化对外 API
  */
 export function curry<P extends any[], R>(fn: (() => R)): typeof fn
-export function curry<P extends any[], R>(fn: ((a: P[0]) => R)): ICurry1<P[0], R>
-export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1]) => R)): ICurry2<P[0], P[1], R>
-export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1], c: P[2]) => R)): ICurry3<P[0], P[1], P[2], R>
-export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1], c: P[2], d: P[3]) => R)): ICurry4<P[0], P[1], P[2], P[3], R>
-export function curry<P extends any[], R>(fn: ((...args: P) => R)): TCurryN<P, R>
+export function curry<P extends any[], R>(fn: ((a: P[0]) => R)): Curry1<P[0], R>
+export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1]) => R)): Curry2<P[0], P[1], R>
+export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1], c: P[2]) => R)): Curry3<P[0], P[1], P[2], R>
+export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1], c: P[2], d: P[3]) => R)): Curry4<P[0], P[1], P[2], P[3], R>
+export function curry<P extends any[], R>(fn: ((...args: P) => R)): Curry<P, R>
 
 export function curry(fn) {
+
+  // 柯里化已经柯里化的函数，直接返回，
+  // 作为唯一的对外出口，在此处检查即可
   if (fn[symbolFlag]) return fn
+
   const length = fn.length
   switch(length) {
     // 将可能匹配的参数数量按照经验的概率排列
     case 2: {
-      const curried = curry2(fn)
-      curried[symbolFlag] = true
-      return curried
+      return curry2(fn)
     }
     case 1: {
-      const curried = curry1(fn)
-      curried[symbolFlag] = true
-      return curried
+      return curry1(fn)
     }
     case 3: {
-      const curried = curry3(fn)
-      curried[symbolFlag] = true
-      return curried
+      return curry3(fn)
     }
     case 4: {
-      const curried = curry4(fn)
-      curried[symbolFlag] = true
-      return curried
+      return curry4(fn)
     }
     case 0: {
       return fn
     }
     default: {
-      const curried = curryN(fn)
-      curried[symbolFlag] = true
-      return curried
+      return curryN(fn)
     }
   }
 }

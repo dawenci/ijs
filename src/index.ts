@@ -1,10 +1,17 @@
 // function
-export { default as curry, curry1, curry2, curry3, curryN } from './curry'
+export { default as curry } from './curry'
 export { default as flip } from './flip'
 export { default as memoize } from './memoize'
 
+// control flow
+export { default as when } from './when'
+export { default as unless } from './unless'
+export { default as until } from './until'
+
 // combinator
 export { default as identity } from './identity'
+export { default as t } from './t'
+export { default as f } from './f'
 
 // tools
 export { default as type } from './type'
@@ -13,6 +20,8 @@ export { default as type } from './type'
 export { default as path } from './path'
 export { default as keys } from './keys'
 export { default as keysIn } from './keysIn'
+export { default as values } from './values'
+export { default as valuesIn } from './valuesIn'
 export { default as has } from './has'
 export { default as hasIn } from './hasIn'
 
@@ -52,6 +61,10 @@ export { default as lastIndexOf } from './lastIndexOf'
 export { default as lastIndexOfFrom } from './lastIndexOfFrom'
 export { default as length } from './length'
 export { default as reverse } from './reverse'
+
+export { default as uniq } from './uniq'
+export { default as uniqBy } from './uniqBy'
+export { default as uniqWith } from './uniqWith'
 
 export { default as range } from './range'
 

@@ -43,11 +43,10 @@ export type Reverse<T extends any[], R extends any[] = [], I extends any[] = []>
   1: R
 }[Pos<I> extends Length<T> ? 1 : 0]
 
+export type Params<F extends (...args: any[]) => any> = 
+  F extends ((...args: infer A) => any) ? A : never
 
 export type Flip<T extends any[]> = 
   T extends [infer A, infer B] ? [B, A] :
   T extends [any, any, ...any[]] ? [T[1], T[0], ...Drop<2, T>]
-  : T
-
-export type Params<F extends (...args: any[]) => any> = 
-  F extends ((...args: infer A) => any) ? A : never
+  : T  

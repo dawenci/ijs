@@ -29,6 +29,7 @@ fs.readdirSync('./benchmark').forEach(function(file) {
     Object.keys(test.tests).forEach(function(k) {
       suite.add(k, test.tests[k], {
         onComplete: function(vo) {
+          console.log(String(vo.target))
           table.push([
             vo.target.name,
             prettyHz(vo.target.hz),

@@ -26,7 +26,7 @@ describe('curry', function() {
     eq(g(3, 6)(2), 15);
   });
 
-  it('forwards extra arguments', function() {
+  it('no extra arguments', function() {
     var f = function(a, b, c) {
       void c;
       return Array.prototype.slice.call(arguments);
@@ -34,9 +34,9 @@ describe('curry', function() {
     var g = Rf.curry(f);
 
     eq(g(1, 2, 3), [1, 2, 3]);
-    eq(g(1, 2, 3, 4), [1, 2, 3, 4]);
-    eq(g(1, 2)(3, 4), [1, 2, 3, 4]);
-    eq(g(1)(2, 3, 4), [1, 2, 3, 4]);
-    eq(g(1)(2)(3, 4), [1, 2, 3, 4]);
+    eq(g(1, 2, 3, 4), [1, 2, 3]);
+    eq(g(1, 2)(3, 4), [1, 2, 3]);
+    eq(g(1)(2, 3, 4), [1, 2, 3]);
+    eq(g(1)(2)(3, 4), [1, 2, 3]);
   });
 });

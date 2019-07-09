@@ -48,6 +48,8 @@ export type TCurryN<T extends any[], R> =
 
 const slice = Array.prototype.slice
 
+const symbolFlag = Symbol('curried')
+
 /**
  * 1 个参数的函数柯里化
  */
@@ -247,15 +249,38 @@ export function curry<P extends any[], R>(fn: ((a: P[0], b: P[1], c: P[2], d: P[
 export function curry<P extends any[], R>(fn: ((...args: P) => R)): TCurryN<P, R>
 
 export function curry(fn) {
+  if (fn[symbolFlag]) return fn
   const length = fn.length
   switch(length) {
     // 将可能匹配的参数数量按照经验的概率排列
-    case 2: return curry2(fn)
-    case 1: return curry1(fn)
-    case 3: return curry3(fn)
-    case 4: return curry4(fn)
-    case 0: return fn
-    default: return curryN(fn)
+    case 2: {
+      const curried = curry2(fn)
+      curried[symbolFlag] = true
+      return curried
+    }
+    case 1: {
+      const curried = curry1(fn)
+      curried[symbolFlag] = true
+      return curried
+    }
+    case 3: {
+      const curried = curry3(fn)
+      curried[symbolFlag] = true
+      return curried
+    }
+    case 4: {
+      const curried = curry4(fn)
+      curried[symbolFlag] = true
+      return curried
+    }
+    case 0: {
+      return fn
+    }
+    default: {
+      const curried = curryN(fn)
+      curried[symbolFlag] = true
+      return curried
+    }
   }
 }
 // const T_C_1 = curry((a: number) => a)

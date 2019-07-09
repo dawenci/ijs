@@ -15,15 +15,25 @@ export { default as f } from './f'
 
 // tools
 export { default as type } from './type'
+export { default as isNil } from './isNil'
+export { default as isEmpty } from './isEmpty'
 
 // objects
+export { default as property } from './property'
 export { default as path } from './path'
+export { default as paths } from './paths'
 export { default as keys } from './keys'
 export { default as keysIn } from './keysIn'
 export { default as values } from './values'
 export { default as valuesIn } from './valuesIn'
 export { default as has } from './has'
 export { default as hasIn } from './hasIn'
+export { default as pick } from './pick'
+export { default as pickBy } from './pickBy'
+export { default as omit } from './omit'
+export { default as omitBy } from './omitBy'
+
+export { default as where } from './where'
 
 // numbers
 export { default as add } from './add'
@@ -61,21 +71,17 @@ export { default as lastIndexOf } from './lastIndexOf'
 export { default as lastIndexOfFrom } from './lastIndexOfFrom'
 export { default as length } from './length'
 export { default as reverse } from './reverse'
-
 export { default as uniq } from './uniq'
 export { default as uniqBy } from './uniqBy'
 export { default as uniqWith } from './uniqWith'
-
 export { default as range } from './range'
-
 export { default as includes } from './includes'
 export { default as first } from './first'
 export { default as rest } from './rest'
 export { default as last } from './last'
 export { default as initial } from './initial'
 export { default as nth } from './nth'
-
-export { default as isEmpty } from './isEmpty'
+export { default as size } from './size'
 
 export { default as none } from './none'
 export { default as every } from './every'

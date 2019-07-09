@@ -44,7 +44,7 @@ export type Curry<T extends any[], R> =
 
 const slice = Array.prototype.slice
 
-const symbolFlag = typeof Symbol === 'function' ? Symbol('curried') : '_curried_'
+export const CURRY_STATUS = typeof Symbol === 'function' ? Symbol('curried') : '_curried_'
 
 /**
  * 1 个参数的函数柯里化
@@ -58,7 +58,7 @@ export function curry1<A, R>(fn: (a: A) => R): Curry1<A, R> {
       default: return fn.apply(void 0, arguments)
     }
   }
-  curried[symbolFlag] = true
+  curried[CURRY_STATUS] = 1
   return curried
 }
 // const curry1Test1 = curry1((a: number) => a)
@@ -84,7 +84,7 @@ export function curry2<A, B, R>(fn: (a: A, b: B) => R): Curry2<A, B, R> {
       default: return fn.apply(void 0, arguments)
     }
   }
-  curried[symbolFlag] = true
+  curried[CURRY_STATUS] = 2
   return curried
 }
 
@@ -120,7 +120,7 @@ export function curry3<A, B, C, R>(fn: (a: A, b: B, c: C) => R): Curry3<A, B, C,
       default: return fn.apply(void 0, arguments)
     }
   }
-  curried[symbolFlag] = true
+  curried[CURRY_STATUS] = 3
   return curried
 }
 
@@ -159,7 +159,7 @@ export function curry4<A, B, C, D, R>(fn: (a: A, b: B, c: C, d: D) => R): Curry4
       default: return fn.apply(void 0, arguments)
     }
   }
-  curried[symbolFlag] = true
+  curried[CURRY_STATUS] = 4
   return curried
 }
 
@@ -219,7 +219,7 @@ export function curryN<P extends any[], R>(fn: (...args: P) => R, n?: number): C
     }, restN)
   }
 
-  curried[symbolFlag] = true
+  curried[CURRY_STATUS] = n
   return curried
 }
 
@@ -253,11 +253,10 @@ export function curry<P extends any[], R>(fn: ((...args: P) => R)): Curry<P, R>
 
 export function curry(fn) {
 
-  // 柯里化已经柯里化的函数，直接返回，
+  // 柯里化已经柯里化的函数，特殊处理
   // 作为唯一的对外出口，在此处检查即可
-  if (fn[symbolFlag]) return fn
+  const length = fn[CURRY_STATUS] || fn.length
 
-  const length = fn.length
   switch(length) {
     // 将可能匹配的参数数量按照经验的概率排列
     case 2: {

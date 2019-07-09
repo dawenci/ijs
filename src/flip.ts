@@ -1,4 +1,4 @@
-import curry, { curryN, Curry } from './curry'
+import curry, { curryN, Curry, CURRY_STATUS } from './curry'
 
 const slice = Array.prototype.slice
 
@@ -19,19 +19,17 @@ function flip <P extends any[], R>(fn?)  {
   if (arguments.length == 0) {
     return flip
   }
-  const n = fn.length
+
+  const n = fn[CURRY_STATUS] || fn.length
   if (n === 0) return fn
   if (n === 1) return curry(fn)
 
   return curryN<P, R>(function() {
-    if (n >= 2) {
-      const args = slice.call(arguments)
-      const firstArg = args[0]
-      args[0] = args[1]
-      args[1] = firstArg
-      return fn.apply(void 0, args)
-    }
-    return fn.apply(void 0, arguments)
+    const args = slice.call(arguments)
+    const firstArg = args[0]
+    args[0] = args[1]
+    args[1] = firstArg
+    return fn.apply(void 0, args)
   }, n)
 }
 
@@ -43,8 +41,15 @@ const t1111 = t111()
 const t222 = flip((a: number) => a)
 const t2222 = t222(1)
 
-const t333 = flip((a: number, b: string) => a + b)
-const t3333 = t333(1)
-const t33333 = t3333('2')
+const fn = (a: number, b: string) => a + b
+const t333 = flip(fn)
+const t3333 = t333(1, '2')
+const t33333 = t333(1)('2')
+
+const t444 = flip(flip(fn))
+const t4444 = t444()
+const t44444 = t4444(1, '2')
+
+
 
 export default flip

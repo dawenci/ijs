@@ -1,6 +1,6 @@
 import { curry3 } from './curry'
 
-export default curry3((fn: (acc, item) => any, acc, list: any) => {
+function reduce(fn: (acc: any, item: any) => any, acc: any, list: any) {
   const len = list.length
   let index = 0
   while (index < len) {
@@ -8,4 +8,6 @@ export default curry3((fn: (acc, item) => any, acc, list: any) => {
     index += 1
   }
   return acc
-})
+}
+
+export default curry3(reduce)

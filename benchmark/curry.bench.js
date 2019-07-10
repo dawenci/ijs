@@ -1,20 +1,21 @@
-const Rf = require('../dist/cjs')
+const I = require('../dist/cjs')
 const R = require('ramda')
-function RambdaCurry(fn, args = []){
-  return (..._args) =>
-    (rest => rest.length >= fn.length ? fn(...rest) : RambdaCurry(fn, rest))([
-      ...args,
-      ..._args,
-    ])
-}
+const Rambda = require('rambda')
+const _ = require('lodash')
+
 
 function mult(x, y) { return x * y; }
 
-var mult4 = I.curry(mult)(4)
+var I_mult = I.curry(mult)
+var R_mult = R.curry(mult)
+var Rambda_mult = Rambda.curry(mult)
+var _mult = _.curry(mult)
 
-var ramda_mult4 = R.curry(mult)(4)
 
-var rambda_mult4 = RambdaCurry(mult)(4)
+var I_mult4 = I.curry(mult)(4)
+var R_mult4 = R.curry(mult)(4)
+var Rambda_mult4 = Rambda.curry(mult)(4)
+var _mult4 = _.curry(mult)(4)
 
 function manmult(x) {
   return function(y) {
@@ -24,28 +25,39 @@ function manmult(x) {
 var manual = manmult(4);
 
 
-
-
 module.exports = {
   name: 'curry',
   tests: {
-    'Rf:mult4(100)': function() {
-      mult4(100);
+    'I:mult(4)(100)': function() {
+      I_mult(4)(100);
     },
-  
-    'Ramda:mult4(100)': function() {
-      ramda_mult4(100);
+    'R:mult(4)(100)': function() {
+      R_mult(4)(100);
+    },
+    'Rambda:mult(4)(100)': function() {
+      Rambda_mult(4)(100);
+    },
+    '_:mult(4)(100)': function() {
+      _mult(4)(100);
     },
 
-    'Rambda:mult4(100)': function() {
-      rambda_mult4(100);
+    'I:mult4(100)': function() {
+      I_mult4(100);
     },
-  
-    'manual(100)': function() {
+    'R:mult4(100)': function() {
+      R_mult4(100);
+    },
+    'Rambda:mult4(100)': function() {
+      Rambda_mult4(100);
+    },
+    '_:mult4(100)': function() {
+      _mult4(100);
+    },
+    'manual:mult4(100)': function() {
       manual(100);
     },
 
-    'Rf': function() {
+    'I': function() {
       const test1 = (I.curry((a) => a))
       const test2 = (I.curry((a, b) => a + b))
       const test3 = (I.curry((a, b, c) => a + b + c))
@@ -75,7 +87,7 @@ module.exports = {
       test5(1)(2)(3)(4)(5)
     },
 
-    'Ramda': function() {
+    'R': function() {
       const test1 = (R.curry((a) => a))
       const test2 = (R.curry((a, b) => a + b))
       const test3 = (R.curry((a, b, c) => a + b + c))
@@ -106,11 +118,41 @@ module.exports = {
     },
 
     'Rambda': function() {
-      const test1 = (RambdaCurry((a) => a))
-      const test2 = (RambdaCurry((a, b) => a + b))
-      const test3 = (RambdaCurry((a, b, c) => a + b + c))
-      const test4 = (RambdaCurry((a, b, c, d) => a + b + c + d))
-      const test5 = (RambdaCurry((a, b, c, d, e) => a + b + c + d + e))
+      const test1 = (Rambda.curry((a) => a))
+      const test2 = (Rambda.curry((a, b) => a + b))
+      const test3 = (Rambda.curry((a, b, c) => a + b + c))
+      const test4 = (Rambda.curry((a, b, c, d) => a + b + c + d))
+      const test5 = (Rambda.curry((a, b, c, d, e) => a + b + c + d + e))
+      test1(1)
+      test2(1, 2)
+      test2(1)(2)
+      test3(1, 2, 3)
+      test3(1, 2)(3)
+      test3(1)(2, 3)
+      test3(1)(2)(3)
+      test4(1, 2, 3, 4)
+      test4(1, 2, 3)(4)
+      test4(1, 2)(3, 4)
+      test4(1)(2, 3, 4)
+      test4(1)(2)(3, 4)
+      test4(1, 2)(3)(4)
+      test4(1)(2)(3)(4)
+      test5(1, 2, 3, 4, 5)
+      test5(1, 2, 3, 4)(5)
+      test5(1, 2, 3)(4, 5)
+      test5(1, 2)(3, 4, 5)
+      test5(1)(2, 3, 4, 5)
+      test5(1, 2)(3)(4)(5)
+      test5(1, 2)(3, 4)(5)
+      test5(1)(2)(3)(4)(5)
+    },
+
+    '_': function() {
+      const test1 = (_.curry((a) => a))
+      const test2 = (_.curry((a, b) => a + b))
+      const test3 = (_.curry((a, b, c) => a + b + c))
+      const test4 = (_.curry((a, b, c, d) => a + b + c + d))
+      const test5 = (_.curry((a, b, c, d, e) => a + b + c + d + e))
       test1(1)
       test2(1, 2)
       test2(1)(2)

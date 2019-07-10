@@ -43,6 +43,7 @@ export { default as inc } from './inc'
 export { default as dec } from './dec'
 export { default as max } from './max'
 export { default as min } from './min'
+export { default as sumBy } from './sumBy'
 export { default as sum } from './sum'
 
 // logical

@@ -152,7 +152,7 @@ function buildUMDDev() {
       return bundle.generate({
         format: 'iife',
         banner: banner,
-        name: 'Rf'
+        name: 'I'
       })
     })
     .then(({ code }) => {
@@ -181,7 +181,7 @@ function buildUMDProd() {
     .then(function(bundle) {
       return bundle.generate({
         format: 'iife',
-        name: 'Rf',
+        name: 'I',
         banner: banner
       })
     })

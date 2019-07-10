@@ -1,10 +1,10 @@
 {
-  "name": "r-functional",
+  "name": "i",
   "version": "1.0.0",
   "description": "",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/r-functional.js",
+  "browser": "dist/i.js",
   "types": "types/index.d.ts",
   "scripts": {
     "dev": "rollup -c rollup.config.js -w",

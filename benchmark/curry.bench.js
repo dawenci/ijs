@@ -10,7 +10,7 @@ function RambdaCurry(fn, args = []){
 
 function mult(x, y) { return x * y; }
 
-var mult4 = Rf.curry(mult)(4)
+var mult4 = I.curry(mult)(4)
 
 var ramda_mult4 = R.curry(mult)(4)
 
@@ -46,11 +46,11 @@ module.exports = {
     },
 
     'Rf': function() {
-      const test1 = (Rf.curry((a) => a))
-      const test2 = (Rf.curry((a, b) => a + b))
-      const test3 = (Rf.curry((a, b, c) => a + b + c))
-      const test4 = (Rf.curry((a, b, c, d) => a + b + c + d))
-      const test5 = (Rf.curry((a, b, c, d, e) => a + b + c + d + e))
+      const test1 = (I.curry((a) => a))
+      const test2 = (I.curry((a, b) => a + b))
+      const test3 = (I.curry((a, b, c) => a + b + c))
+      const test4 = (I.curry((a, b, c, d) => a + b + c + d))
+      const test5 = (I.curry((a, b, c, d, e) => a + b + c + d + e))
       test1(1)
       test2(1, 2)
       test2(1)(2)

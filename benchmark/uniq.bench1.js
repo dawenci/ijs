@@ -6,24 +6,24 @@ var nums = [8, 2, 85, 2, 34, 3, 23, 247, 57, 8, 0, 6, 5, 46, 54, 643];
 module.exports = {
   name: 'map',
   tests: {
-    'Rf.uniq()': function() {
-      Rf.uniq(nums);
+    'I.uniq()': function() {
+      I.uniq(nums);
     },
   
     'Ramda.uniq()': function() {
       Ramda.uniq(nums);
     },
 
-    'Rf.uniqBy()': function() {
-      Rf.uniqBy(i=>i, nums);
+    'I.uniqBy()': function() {
+      I.uniqBy(i=>i, nums);
     },
   
     'Ramda.uniqBy()': function() {
       Ramda.uniqBy(i=>i, nums);
     },
 
-    'Rf.uniqWith()': function() {
-      Rf.uniqWith((a,b)=>a==b, nums);
+    'I.uniqWith()': function() {
+      I.uniqWith((a,b)=>a==b, nums);
     },
   
     'Ramda.uniqWith()': function() {

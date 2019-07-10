@@ -12,13 +12,13 @@ export default {
     {
       file: pkg.browser,
       format: 'iife',
-      name: 'Rf',
+      name: 'I',
       sourcemap: false
     },
     {
       file: pkg.browser.replace('.js', '.min.js'),
       format: 'iife',
-      name: 'Rf',
+      name: 'I',
       sourcemap: false
     }
   ],

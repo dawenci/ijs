@@ -9,7 +9,7 @@ import arity from './curry/arity'
 
 const slice = Array.prototype.slice
 
-const _FLIP_ = '_FLIP_'
+export const _FLIP_ = typeof Symbol === 'function' ? Symbol('_FLIP_') : '_FLIP_'
 
 /**
  * 交换 fn 的头两个参数
@@ -18,8 +18,8 @@ const _FLIP_ = '_FLIP_'
  * ! 注意，flip(flip(fn)) 这样多重 flip 不支持超过 10 个的参数，超出会出现类型丢失问题
  * 
  * 对比：
- * Rf.curry((a, b) => a - b)(1, 2) // -1
- * Rf.flip((a, b) => a - b)(1, 2) // 1
+ * I.curry((a, b) => a - b)(1, 2) // -1
+ * I.flip((a, b) => a - b)(1, 2) // 1
  * 
  */
 function flip<P extends any[], R>(): typeof flip

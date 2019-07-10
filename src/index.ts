@@ -1,5 +1,7 @@
 // function
 export { default as curry } from './curry'
+export { default as arity } from './curry/arity'
+
 export { default as flip } from './flip'
 export { default as memoize } from './memoize'
 

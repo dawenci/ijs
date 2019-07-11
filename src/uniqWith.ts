@@ -5,13 +5,14 @@ import _some from './internal/_some'
 
 function uniqWith(compare: (a, b) => boolean, list) {
   const result = []
-
-  _forEach(a => {
+  const size = list.length
+  let index = -1
+  while(++index < size) {
+    const a = list[index]
     if (!_some(b => compare(a, b), result)) {
       result.push(a)
     }
-  }, list)
-
+  }
   return result
 }
 

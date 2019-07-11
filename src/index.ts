@@ -12,6 +12,8 @@ export { default as until } from './until'
 
 // combinator
 export { default as identity } from './identity'
+export { default as tap } from './tap'
+
 export { default as t } from './t'
 export { default as f } from './f'
 
@@ -30,6 +32,7 @@ export { default as values } from './values'
 export { default as valuesIn } from './valuesIn'
 export { default as has } from './has'
 export { default as hasIn } from './hasIn'
+export { default as clone } from './clone'
 export { default as pick } from './pick'
 export { default as pickBy } from './pickBy'
 export { default as omit } from './omit'
@@ -85,6 +88,7 @@ export { default as last } from './last'
 export { default as initial } from './initial'
 export { default as nth } from './nth'
 export { default as size } from './size'
+export { default as drop } from './drop'
 
 export { default as none } from './none'
 export { default as every } from './every'

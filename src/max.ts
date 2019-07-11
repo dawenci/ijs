@@ -1,2 +1,3 @@
-import { curry2 } from './curry'
-export default curry2((a: number, b: number): number => a > b ? a : b)
+import { curry1 } from './curry'
+
+export default curry1((numbers: number[]): number => Math.max.apply(Math, numbers))

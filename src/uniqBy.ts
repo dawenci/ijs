@@ -5,7 +5,7 @@ function uniqBy(fn, list) {
   const result = []
   const numbers = {}
   const strings = {}
-  const size = list.length >> 0
+  const size = list.length >>> 0
   let index = -1
 
   let _undefined = false

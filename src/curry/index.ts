@@ -3,7 +3,7 @@ import {
   Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Curried
 } from './types'
 
-import _arity from './arity'
+import _arity from '../internal/_arity'
 
 const slice = Array.prototype.slice
 

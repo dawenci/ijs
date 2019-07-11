@@ -5,7 +5,7 @@ import {
 import curry, { _CURRY_ } from './curry'
 import { Flip } from './_typeUtils'
 
-import arity from './curry/arity'
+import arity from './internal/_arity'
 
 const slice = Array.prototype.slice
 
@@ -42,10 +42,10 @@ function flip<P extends any[], R>(fn?)  {
 
   // 已经反转过的，使用翻转前的函数 curry 化即可
   if (fn[_FLIP_]) {
-    let flipFn = fn[_FLIP_]
-    if (!flipFn[_CURRY_]) flipFn = curry(flipFn)
-    flipFn[_FLIP_] = fn
-    return flipFn
+    let flipped = fn[_FLIP_]
+    if (!flipped[_CURRY_]) flipped = curry(flipped)
+    flipped[_FLIP_] = fn
+    return flipped
   }
 
   if (n === 0) return fn
@@ -72,14 +72,14 @@ function flip<P extends any[], R>(fn?)  {
   }
 
   // 大于 4 个参数，则重新包装一次函数，以确保维持 length
-  const wrappedFn = arity<P, R>(n, function() {
+  const wrapper = arity<P, R>(n, function() {
     const args = slice.call(arguments)
     const firstArg = args[0]
     args[0] = args[1]
     args[1] = firstArg
     return fn.apply(void 0, args)
   })
-  const cN = curry(wrappedFn)
+  const cN = curry(wrapper)
   cN[_FLIP_] = fn
 
   return cN

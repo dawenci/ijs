@@ -1,6 +1,7 @@
 // function
 export { default as curry } from './curry'
-export { default as arity } from './curry/arity'
+export { default as arity } from './internal/_arity'
+export { default as unary } from './unary'
 
 export { default as flip } from './flip'
 export { default as memoize } from './memoize'
@@ -40,14 +41,23 @@ export { default as omitBy } from './omitBy'
 
 export { default as where } from './where'
 
-// numbers
+// Math
 export { default as add } from './add'
+export { default as subtract } from './subtract'
+export { default as multiply } from './multiply'
+export { default as divide } from './divide'
 export { default as inc } from './inc'
 export { default as dec } from './dec'
+export { default as floor } from './floor'
+export { default as ceil } from './ceil'
+export { default as round } from './round'
 export { default as max } from './max'
 export { default as min } from './min'
 export { default as sumBy } from './sumBy'
 export { default as sum } from './sum'
+
+export { default as eq } from './eq'
+
 
 // logical
 export { default as and } from './and'

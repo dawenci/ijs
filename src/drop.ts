@@ -4,7 +4,8 @@ const slice = Array.prototype.slice
 function drop(n: number, list: string): string
 function drop<E>(n: number, list: ArrayLike<E>): Array<E>
 function drop(n: number, list) {
-  n = n >> 0
+  if (n < 0) n = 0
+  n = n >>> 0
   if (typeof list === 'string') {
     return slice.call(list, n).join('')
   }

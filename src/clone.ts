@@ -55,8 +55,16 @@ function cloneDeep(obj) {
     return new Date(obj.getTime())
   }
 
+  if (typeof Map === 'function' && obj instanceof Map) {
+    return new Map(obj.entries())
+  }
+
+  if (typeof Set === 'function' && obj instanceof Set) {
+    return new Set(obj.values())
+  }
+
   // TODO
-  // File, FileList, ArrayBuffer, ArrayBufferView, ImageData, Map, Set
+  // DOM Node, File, FileList, ArrayBuffer, ArrayBufferView, ImageData
 
   // 普通对象
   const result: any = {}

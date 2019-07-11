@@ -1,5 +1,4 @@
 import { Arity1, Arity2, Arity3, Arity4, Arity5, Arity6, Arity7, Arity8, Arity9, Arity10, ArityN } from '../curry/types'
-import { Cast, Length } from '../_typeUtils'
 
 type ArityType<P extends any[], R> = (...args: P) => 
   P extends [infer A] ? Arity1<A, R>

@@ -1,21 +1,19 @@
-// function
+// Function
 export { default as curry } from './curry'
 export { default as arity } from './internal/_arity'
 export { default as unary } from './unary'
+export { default as flip } from './flip'
+export { default as memoize } from './memoize'
 export { default as compose } from './compose'
 export { default as pipe } from './pipe'
 
-export { default as flip } from './flip'
-export { default as memoize } from './memoize'
+export { default as identity } from './identity'
+export { default as tap } from './tap'
+export { default as always } from './always'
 
-// control flow
 export { default as when } from './when'
 export { default as unless } from './unless'
 export { default as until } from './until'
-
-// combinator
-export { default as identity } from './identity'
-export { default as tap } from './tap'
 
 export { default as t } from './t'
 export { default as f } from './f'
@@ -49,6 +47,7 @@ export { default as add } from './add'
 export { default as subtract } from './subtract'
 export { default as multiply } from './multiply'
 export { default as divide } from './divide'
+export { default as modulo } from './modulo'
 export { default as inc } from './inc'
 export { default as dec } from './dec'
 export { default as floor } from './floor'
@@ -92,7 +91,7 @@ export { default as lastIndexOfFrom } from './lastIndexOfFrom'
 export { default as length } from './length'
 export { default as reverse } from './reverse'
 export { default as uniq } from './uniq'
-export { default as uniqBy } from './uniqBy'
+export { default as _uniqBy } from './uniqBy'
 export { default as uniqWith } from './uniqWith'
 export { default as range } from './range'
 export { default as includes } from './includes'
@@ -104,6 +103,7 @@ export { default as nth } from './nth'
 export { default as size } from './size'
 export { default as drop } from './drop'
 export { default as pluck } from './pluck'
+export { default as intersection } from './intersection'
 
 export { default as none } from './none'
 export { default as every } from './every'

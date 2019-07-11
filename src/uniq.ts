@@ -1,4 +1,3 @@
-import { curry1 } from './curry'
-import uniqBy from './uniqBy'
+import _uniqBy from './uniqBy'
 
-export default uniqBy(i => i)
+export default _uniqBy(i => i)

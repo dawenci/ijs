@@ -1,9 +1,8 @@
 import { curry2 } from './curry'
 
-// K 组合子（但参数顺序相反）
-function tap(y, x) {
-  if (typeof y === 'function') y()
-  return x
+function tap(fn, value) {
+  if (typeof fn === 'function') fn()
+  return value
 }
 
 export default curry2(tap)

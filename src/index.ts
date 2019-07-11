@@ -2,6 +2,8 @@
 export { default as curry } from './curry'
 export { default as arity } from './internal/_arity'
 export { default as unary } from './unary'
+export { default as compose } from './compose'
+export { default as pipe } from './pipe'
 
 export { default as flip } from './flip'
 export { default as memoize } from './memoize'
@@ -17,6 +19,7 @@ export { default as tap } from './tap'
 
 export { default as t } from './t'
 export { default as f } from './f'
+export { default as is } from './is'
 
 // tools
 export { default as type } from './type'
@@ -56,7 +59,13 @@ export { default as min } from './min'
 export { default as sumBy } from './sumBy'
 export { default as sum } from './sum'
 
+// compare
+export { default as gt } from './gt'
+export { default as gte } from './gte'
+export { default as lt } from './lt'
+export { default as lte } from './lte'
 export { default as eq } from './eq'
+export { default as equals } from './equals'
 
 
 // logical
@@ -65,11 +74,6 @@ export { default as or } from './or'
 export { default as not } from './not'
 export { default as cond } from './cond'
 
-// compare
-export { default as gt } from './gt'
-export { default as gte } from './gte'
-export { default as lt } from './lt'
-export { default as lte } from './lte'
 
 // collection
 export { default as map } from './map'
@@ -99,6 +103,7 @@ export { default as initial } from './initial'
 export { default as nth } from './nth'
 export { default as size } from './size'
 export { default as drop } from './drop'
+export { default as pluck } from './pluck'
 
 export { default as none } from './none'
 export { default as every } from './every'

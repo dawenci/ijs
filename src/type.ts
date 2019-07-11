@@ -1,9 +1,4 @@
-import curry, { curry1 } from './curry'
+import { curry1 } from './curry'
+import _type from './internal/_type'
 
-const toString = Object.prototype.toString
-
-export default curry1((test: any): string => {
-  if (test === undefined) return 'Undefined'
-  if (test === null)return 'Null'
-  return toString.call(test).slice(8, -1)
-})
+export default curry1(_type)

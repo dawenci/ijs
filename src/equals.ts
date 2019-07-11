@@ -1,6 +1,4 @@
 import { curry2 } from './curry'
+import _equals from './internal/_equals'
 
-// TODO
-export default curry2((a, b): boolean => {
-  return true
-})
+export default curry2(_equals)

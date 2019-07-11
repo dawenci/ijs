@@ -4,59 +4,41 @@ export default function uniqBy(fn, array) {
   const result = []
   const size = array.length >>> 0
 
-  const values = []
-  const numbers = {}
-  const strings = {}
-
-  let _undefined = false
-  let _null = false
+  // 空间换时间加速
+  // 1. 字符串 fn 结果缓存
+  const stringCache = {}
+  // 2. 字符串外其他原始类型的 fn 结果缓存
+  const otherCache = {}
+  // 3. 非原始类型的 fn 结果缓存
+  const valueCache = []
 
   for (let index = 0; index < size; index += 1) {
     const item = array[index]
     const value = fn(item)
-    // 空间换时间加速比较
-    switch (typeof value) {
-      case 'string': {
-        if (strings[value]) continue
-        values.push(value)
-        result.push(item)
-        strings[value] = 1
-        break
-      }
 
-      // 含 (+-)Infinity, NaN
-      case 'number': {
-        if (numbers[value]) continue
-        values.push(value)
-        result.push(item)
-        numbers[value] = 1
-        break
-      }
+    const type = typeof value
 
-      case 'undefined': {
-        if (_undefined) continue
-        _undefined = true
-        result.push(item)
-        break
-      }
+    if (type === 'string') {
+      if (stringCache[value]) continue
 
-      case 'object': {
-        if (value === null) {
-          if (_null) continue
-          _null = true
-          result.push(item)
-          break
-        }
-      }
+      result.push(item)
+      stringCache[value] = 1
+      continue
+    }
 
-      default: {
-        // 无需处理 NaN（已经在 numbers 中处理）
-        if (values.indexOf(value) === -1) {
-          values.push(value)
-          result.push(item)
-        }
-      }
+    // number（含 +-Infinity, NaN）、null（含 undefined）同个缓存、symbol
+    if (type === 'number' || value == null || type === 'symbol') {
+      if (otherCache[value]) continue
 
+      result.push(item)
+      otherCache[value] = 1
+      continue
+    }
+
+    // 非原始类型，从数组缓存检查
+    if (valueCache.indexOf(value) === -1) {
+      valueCache.push(value)
+      result.push(item)
     }
   }
 

@@ -14,8 +14,7 @@ function equals(a, b): boolean {
     case 'Array': {
       const size = a.length
       if (size !== b.length) return false
-      let index = -1
-      while (++index < size) {
+      for (let index = 0;index < size; index += 1) {
         if (!equals(a[index], b[index])) return false
       }
       return true
@@ -37,8 +36,7 @@ function equals(a, b): boolean {
       const keys = _keys(a)
       if (!equals(keys, _keys(b))) return false;
       const size = keys.length
-      let index = -1
-      while (++index < size) {
+      for (let index = 0; index < size; index += 1) {
         const key = keys[index]
         if (!equals(a[key], b[key])) return false
       }

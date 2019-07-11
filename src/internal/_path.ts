@@ -17,12 +17,12 @@ export default (path: Path, obj: any) => {
   if (!parsedPath.length) return undefined
 
   let value = obj
-  let index = 0
-  while (index < parsedPath.length) {
+  
+  for (let index = 0; index < parsedPath.length; index += 1) {
     if (value === null || value === undefined) return
     const prop = parsedPath[index]
     value = value[prop]
-    index += 1
   }
+
   return value
 }

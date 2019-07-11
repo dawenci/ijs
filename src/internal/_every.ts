@@ -3,14 +3,10 @@ function every<E>(predicate: (element: E) => any, list: ArrayLike<E>): boolean
 
 function every(predicate, list) {
   if (!list || !list.length) return true
-
   const len = list.length
-  let index = 0
-  while (index < len) {
+  for (let index = 0; index < len; index += 1) {
     if (!predicate(list[index])) return false
-    index += 1
   }
-
   return true
 }
 

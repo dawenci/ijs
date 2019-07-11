@@ -31,9 +31,8 @@ function cloneDeep(obj) {
   if (Array.isArray(obj)) {
     const arrayCopy = []
     const size = obj.length
-    let index = 0
     // 递归拷贝数组的每一项
-    while (++index < size) {
+    for (let index = 0; index < size; index += 1) {
       const item = obj[index]
       // 循环引用
       if (item === obj) {

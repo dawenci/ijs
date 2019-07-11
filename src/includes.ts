@@ -1,14 +1,19 @@
 import { curry2 } from './curry'
+import _indexOf from './internal/_indexOf'
+import _keys from './internal/_keys'
+import _sameValueZero from './internal/_sameValueZero'
 
-export default curry2((item: any, list: ArrayLike<any>): boolean => {
+export default curry2((item: any, list: any): boolean => {
   if (typeof list === 'string' || Array.isArray(list)) {
-    return list.indexOf(item) !== -1
+    return _indexOf(0, item, list) !== -1;
   }
+
   if (typeof list === 'object' && list !== null || typeof list === 'function') {
-    const keys = Object.keys(list)
+    const keys = _keys(list)
     let len = keys.length
     while (len--) {
-      if (list[keys[len]] === item) return true
+      const value = list[keys[len]]
+      if (_sameValueZero(value, item)) return true
     }
   }
   return false

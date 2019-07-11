@@ -6,8 +6,7 @@ import _some from './internal/_some'
 function uniqWith(compare: (a, b) => boolean, list) {
   const result = []
   const size = list.length
-  let index = -1
-  while(++index < size) {
+  for(let index = 0; index < size; index += 1) {
     const a = list[index]
     if (!_some(b => compare(a, b), result)) {
       result.push(a)

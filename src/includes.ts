@@ -13,6 +13,7 @@ export default curry2((item: any, list: any): boolean => {
     let len = keys.length
     while (len--) {
       const value = list[keys[len]]
+      // 兼容 NaN
       if (_sameValueZero(value, item)) return true
     }
   }

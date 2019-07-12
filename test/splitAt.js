@@ -1,0 +1,26 @@
+const assert = require('assert')
+const I = require('../dist/cjs')
+
+describe('splitAt', function() {
+  it('splitAt', function() {
+    assert.deepEqual(I.splitAt(-4, '012'), ['', '012'])
+    assert.deepEqual(I.splitAt(-3, '012'), ['', '012'])
+    assert.deepEqual(I.splitAt(-2, '012'), ['0', '12'])
+    assert.deepEqual(I.splitAt(-1, '012'), ['01', '2'])
+    assert.deepEqual(I.splitAt(0, '012'), ['', '012'])
+    assert.deepEqual(I.splitAt(1, '012'), ['0', '12'])
+    assert.deepEqual(I.splitAt(2, '012'), ['01', '2'])
+    assert.deepEqual(I.splitAt(3, '012'), ['012', ''])
+    assert.deepEqual(I.splitAt(4, '012'), ['012', ''])
+    
+    assert.deepEqual(I.splitAt(-4, [0,1,2]), [[], [0,1,2]])
+    assert.deepEqual(I.splitAt(-3, [0,1,2]), [[], [0,1,2]])
+    assert.deepEqual(I.splitAt(-2, [0,1,2]), [[0], [1,2]])
+    assert.deepEqual(I.splitAt(-1, [0,1,2]), [[0,1], [2]])
+    assert.deepEqual(I.splitAt(0, [0,1,2]), [[], [0,1,2]])
+    assert.deepEqual(I.splitAt(1, [0,1,2]), [[0], [1,2]])
+    assert.deepEqual(I.splitAt(2, [0,1,2]), [[0,1], [2]])
+    assert.deepEqual(I.splitAt(3, [0,1,2]), [[0,1,2], []])
+    assert.deepEqual(I.splitAt(4, [0,1,2]), [[0,1,2], []])
+  })
+})

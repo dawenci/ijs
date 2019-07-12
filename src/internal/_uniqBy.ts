@@ -1,5 +1,3 @@
-import _indexOf from './_indexOf'
-
 export default function uniqBy(fn, array) {
   const result = []
   const size = array.length >>> 0

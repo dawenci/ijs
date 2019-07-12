@@ -1,2 +1,4 @@
 import { curry1 } from './curry'
-export default curry1((obj: Object): Array<string> => Object.keys(obj))
+import _keys from './internal/_keys'
+
+export default curry1(_keys)

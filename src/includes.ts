@@ -4,10 +4,12 @@ import _keys from './internal/_keys'
 import _sameValueZero from './internal/_sameValueZero'
 
 export default curry2((item: any, list: any): boolean => {
-  if (typeof list === 'string' || Array.isArray(list)) {
+  if (typeof list === 'string') {
+    return list.indexOf(item) !== -1
+  }
+  if (Array.isArray(list)) {
     return _indexOf(0, item, list) !== -1;
   }
-
   if (typeof list === 'object' && list !== null || typeof list === 'function') {
     const keys = _keys(list)
     let len = keys.length

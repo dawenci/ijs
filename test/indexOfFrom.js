@@ -1,0 +1,26 @@
+const assert = require('assert')
+const I = require('../dist/cjs')
+
+describe('indexOfFrom', function() {
+  it('indexOfFrom', function() {
+    assert.equal(I.indexOfFrom(0, 8, [1,8,8,3]), 1)
+    assert.equal(I.indexOfFrom(1, 8, [1,8,8,3]), 1)
+    assert.equal(I.indexOfFrom(2, 8, [1,8,8,3]), 2)
+    assert.equal(I.indexOfFrom(3, 8, [1,8,8,3]), -1)
+    assert.equal(I.indexOfFrom(-1, 8, [1,8,8,3]), -1)
+    assert.equal(I.indexOfFrom(-2, 8, [1,8,8,3]), 2)
+    assert.equal(I.indexOfFrom(-3, 8, [1,8,8,3]), 1)
+    assert.equal(I.indexOfFrom(-4, 8, [1,8,8,3]), 1)
+    assert.equal(I.indexOfFrom(-5, 8, [1,8,8,3]), 1)
+
+    assert.equal(I.indexOfFrom(0, NaN, [1,NaN,NaN,3]), 1)
+    assert.equal(I.indexOfFrom(1, NaN, [1,NaN,NaN,3]), 1)
+    assert.equal(I.indexOfFrom(2, NaN, [1,NaN,NaN,3]), 2)
+    assert.equal(I.indexOfFrom(3, NaN, [1,NaN,NaN,3]), -1)
+    assert.equal(I.indexOfFrom(-1, NaN, [1,NaN,NaN,3]), -1)
+    assert.equal(I.indexOfFrom(-2, NaN, [1,NaN,NaN,3]), 2)
+    assert.equal(I.indexOfFrom(-3, NaN, [1,NaN,NaN,3]), 1)
+    assert.equal(I.indexOfFrom(-4, NaN, [1,NaN,NaN,3]), 1)
+    assert.equal(I.indexOfFrom(-5, NaN, [1,NaN,NaN,3]), 1)
+  })
+})

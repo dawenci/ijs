@@ -164,3 +164,5 @@ ff10('23',1,2,'3',4,5,6,7,8,9)
 
 flip((a:number,b:string,c:string,d:string,e,f,g,h,i,j,k) => a)('1',2,3,4,5,6,7,8,9,10,11)
 flip(flip((a:number,b:string,c:string,d:string,e,f,g,h,i,j,k) => a)('1',2,3,4,5,6,7,8,9,10,11))
+
+// const fnWithArity = curry((a: number, b = 2, ...c) => a + b + Math.max.apply(Math, c), 2)

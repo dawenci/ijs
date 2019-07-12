@@ -58,13 +58,23 @@ function makeDefaultCache(): ICache {
   }
 }
 
-// 默认的 cache key 生成方法
+// 默认的 cache key 生成方法，只支持单一参数（原始类型值）作为 key
 function defaultResolver(args) {
-  if (args.length === 0) {
-    const arg = args[0]
-    if (arg === null || typeof arg === 'number' || typeof arg === 'boolean' || typeof arg === 'string') {
-      return arg
-    }
+  if (args.length !== 1) throw new Error('仅支持单一参数作为 key')
+  const arg = args[0]
+  if (isPrimitive(arg)) {
+    return arg
+  } else {
+    throw new Error('不支持使用非原始类型作为缓存 key')
   }
-  return JSON.stringify(args);
+}
+
+function isPrimitive(value) {
+  const type = typeof value
+  return type === 'string'
+    || type === 'number'
+    || type === 'boolean'
+    || type === 'symbol'
+    || value === null
+    || value === undefined
 }

@@ -20,5 +20,13 @@ require('./not')
 require('./when')
 require('./unless')
 require('./until')
+require('./cond')
+
+require('./all')
+require('./any')
+require('./none')
+require('./passAll')
+require('./passAny')
+require('./passNone')
 
 require('./intersection')

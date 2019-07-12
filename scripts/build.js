@@ -27,7 +27,7 @@ function tsBaseConfig() {
 }
 
 Promise.resolve()
-  // .then(buildESM)
+  .then(buildESM)
   .then(buildCJS)
   .then(buildUMDDev)
   // .then(buildUMDProd)

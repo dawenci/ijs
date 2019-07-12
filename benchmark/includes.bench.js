@@ -11,7 +11,7 @@ data1[5000] = NaN
 data1[5001] = 'NaN'
 
 module.exports = {
-  name: 'curry',
+  name: 'includes',
   tests: {
     'I * 10': function() {
       I.includes(NaN, data0)

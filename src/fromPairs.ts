@@ -1,6 +1,7 @@
 import { curry1 } from './curry'
+import { Pair } from './pair'
 
-export default curry1((pairs: Array<[any, any]>): Object => {
+function fromPairs (pairs: Array<Pair>): Object {
   const result = {}
   const len = pairs.length
   for (let index = 0; index < len; index += 1) {
@@ -8,4 +9,6 @@ export default curry1((pairs: Array<[any, any]>): Object => {
     result[key] = value
   }
   return result
-})
+}
+
+export default curry1(fromPairs)

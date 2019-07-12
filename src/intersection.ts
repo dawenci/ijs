@@ -1,7 +1,13 @@
 import { curry2 } from './curry'
 import _uniqBy from './internal/_uniqBy'
 
-// 取两个数组交集（结果 uniq）
+/**
+ * 取两个数组交集（结果 uniq）
+ * 使用 SameValueZero 比较元素
+ * 
+ * @param {Array} array1
+ * @param {Array} array2
+ */
 function intersection(array1, array2) {
   let longList
   let shortList

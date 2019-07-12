@@ -1,0 +1,12 @@
+import { curry2 } from './curry'
+
+function passAny(tests: Array<(input: any) => boolean>, input: any): boolean {
+  const size = tests.length >>> 0
+  if (!size) throw new Error('至少需要一个测试条件')
+  for (let index = 0; index < size; index += 1) {
+    if (tests[index](input)) return true
+  }
+  return false
+}
+
+export default curry2(passAny)

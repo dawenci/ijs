@@ -1,45 +1,56 @@
-// Function
+// 函数
 export { default as curry } from './curry'
-export { default as arity } from './internal/_arity'
-export { default as unary } from './unary'
-export { default as flip } from './flip'
-export { default as memoize } from './memoize'
 export { default as compose } from './compose'
 export { default as pipe } from './pipe'
+export { default as flip } from './flip'
+export { default as unary } from './unary'
+export { default as memoize } from './memoize'
+export { default as addIndex } from './addIndex'
 
+// 常用组合子
 export { default as identity } from './identity'
 export { default as tap } from './tap'
 export { default as always } from './always'
+export { default as t } from './t'
+export { default as f } from './f'
 
+// 逻辑控制
+export { default as and } from './and'
+export { default as or } from './or'
+export { default as not } from './not'
 export { default as when } from './when'
 export { default as unless } from './unless'
 export { default as until } from './until'
+export { default as cond } from './cond'
 
-export { default as t } from './t'
-export { default as f } from './f'
-export { default as is } from './is'
+export { default as all } from './all'
+export { default as passAll } from './passAll'
+export { default as any } from './any'
+export { default as passAny } from './passAny'
+export { default as none } from './none'
+export { default as passNone } from './passNone'
 
 // tools
 export { default as type } from './type'
 export { default as isNil } from './isNil'
 export { default as isEmpty } from './isEmpty'
+export { default as is } from './is'
 
 // objects
-export { default as property } from './property'
 export { default as path } from './path'
 export { default as paths } from './paths'
+export { default as property } from './property'
 export { default as keys } from './keys'
 export { default as keysIn } from './keysIn'
 export { default as values } from './values'
 export { default as valuesIn } from './valuesIn'
-export { default as has } from './has'
-export { default as hasIn } from './hasIn'
 export { default as clone } from './clone'
 export { default as pick } from './pick'
 export { default as pickBy } from './pickBy'
 export { default as omit } from './omit'
 export { default as omitBy } from './omitBy'
-
+export { default as has } from './has'
+export { default as hasIn } from './hasIn'
 export { default as where } from './where'
 
 // Math
@@ -65,13 +76,6 @@ export { default as lt } from './lt'
 export { default as lte } from './lte'
 export { default as eq } from './eq'
 export { default as equals } from './equals'
-
-
-// logical
-export { default as and } from './and'
-export { default as or } from './or'
-export { default as not } from './not'
-export { default as cond } from './cond'
 
 
 // collection
@@ -103,10 +107,6 @@ export { default as size } from './size'
 export { default as drop } from './drop'
 export { default as pluck } from './pluck'
 export { default as intersection } from './intersection'
-
-export { default as none } from './none'
-export { default as every } from './every'
-export { default as some } from './some'
 
 export { default as pair } from './pair'
 export { default as fromPairs } from './fromPairs'

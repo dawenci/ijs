@@ -1,7 +1,7 @@
 import {
   Arity1, Arity2, Arity3, Arity4, Arity5, Arity6,
   Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Curried
-} from './types'
+} from './_types'
 
 import _arity from '../internal/_arity'
 

@@ -1,6 +1,6 @@
 import {
   Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Curried,
-} from './curry/types'
+} from './curry/_types'
 
 import curry, { _CURRY_ } from './curry'
 import { Flip } from './_typeUtils'

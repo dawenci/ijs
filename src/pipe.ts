@@ -1,8 +1,18 @@
 import _arity from './internal/_arity'
+import curry1 from './curry'
 
 const chaineTwo = (f, g) => (v) => g(f(v))
 
-function pipe(...fns) {
+// TODO, result type
+
+/**
+ * 创建一个函数管道，参数列表中第一个函数为入口，
+ * 入口可以接受多个参数，其他函数接受一个函数（接受前一个函数的返回值）
+ * 
+ * @param {Array<(...args: any[]) => any>} fns 函数列表
+ * @see I.compose
+ */
+function pipe(fns: Array<(...args: any[]) => any>) {
   const size = fns.length
   if (!size) throw new Error('pipe 需要至少一个参数')
 
@@ -23,4 +33,4 @@ function pipe(...fns) {
   }
 }
 
-export default pipe
+export default curry1(pipe)

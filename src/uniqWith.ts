@@ -1,7 +1,7 @@
 import { curry2 } from './curry'
 import _indexOf from "./internal/_indexOf";
 import _forEach from './internal/_forEach'
-import _some from './internal/_some'
+import _some from './internal/_any'
 
 function uniqWith(compare: (a, b) => boolean, list) {
   const result = []

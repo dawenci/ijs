@@ -5,4 +5,7 @@ require('./flip')
 require('./unary')
 require('./memoize')
 require('./addIndex')
+
+require('./identity')
+
 require('./intersection')

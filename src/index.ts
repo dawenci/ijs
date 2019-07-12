@@ -6,6 +6,7 @@ export { default as flip } from './flip'
 export { default as unary } from './unary'
 export { default as memoize } from './memoize'
 export { default as addIndex } from './addIndex'
+export { default as apply } from './apply'
 
 // 常用组合子
 export { default as identity } from './identity'
@@ -33,6 +34,7 @@ export { default as passNone } from './passNone'
 // tools
 export { default as type } from './type'
 export { default as isNil } from './isNil'
+export { default as isNaN } from './isNaN'
 export { default as isEmpty } from './isEmpty'
 export { default as is } from './is'
 
@@ -84,6 +86,7 @@ export { default as reduce } from './reduce'
 export { default as filter } from './filter'
 export { default as reject } from './reject'
 export { default as find } from './find'
+export { default as findIndex } from './findIndex'
 export { default as forEach } from './forEach'
 export { default as forOwn } from './forOwn'
 export { default as forIn } from './forIn'

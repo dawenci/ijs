@@ -29,4 +29,12 @@ require('./passAll')
 require('./passAny')
 require('./passNone')
 
+require('./type')
+require('./isNil')
+require('./isNaN')
+require('./isEmpty')
+require('./is')
+
+require('./path')
+
 require('./intersection')

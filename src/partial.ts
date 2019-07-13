@@ -11,8 +11,11 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
 
   // 使用部分应用的参数替换对应位置的占位符
   const partialCount = partialArgs.length
+  let placeholderCount = 0
   for (let index = 0; index < partialCount; index += 1) {
-    appliedArgs[index] = partialArgs[index]
+    const arg = partialArgs[index]
+    if (arg === __) placeholderCount += 1
+    appliedArgs[index] = arg
   }
 
   const partialFn = function() {
@@ -35,7 +38,7 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
     return fn.apply(void 0, appliedArgs)
   }
 
-  const rest = arity - partialCount
+  const rest = arity - (partialCount - placeholderCount)
   if (rest <= 0) return partialFn
 
   return _arity(rest, partialFn)

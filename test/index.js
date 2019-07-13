@@ -10,6 +10,7 @@ require('./partial')
 require('./__')
 require('./invoker')
 require('./nthArg')
+require('./once')
 
 require('./identity')
 require('./tap')

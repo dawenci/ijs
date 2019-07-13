@@ -8,6 +8,8 @@ require('./addIndex')
 require('./apply')
 require('./partial')
 require('./__')
+require('./invoker')
+require('./nthArg')
 
 require('./identity')
 require('./tap')

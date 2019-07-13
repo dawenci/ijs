@@ -9,6 +9,9 @@ export { default as addIndex } from './addIndex'
 export { default as apply } from './apply'
 export { default as partial } from './partial'
 export { default as __ } from './__'
+export { default as invoker } from './invoker'
+export { default as nthArg } from './nthArg'
+
 
 // 常用组合子
 export { default as identity } from './identity'

@@ -5,6 +5,8 @@ import _arity from './internal/_arity'
 
 const slice = Array.prototype.slice
 
+// TODO, 性能
+
 function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
   const arity = fn.length
   // 按照元数填充满占位符
@@ -22,21 +24,22 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
   const partialFn = function() {
     const args = slice.call(arguments, 0)
     const size = args.length
+    const allArgs = appliedArgs.slice()
 
     for (let index = 0; index < size; index += 1) {
       // 使用传入的参数，逐个替换掉占位符
-      const holderIndex = appliedArgs.indexOf(__)
+      const holderIndex = allArgs.indexOf(__)
       if (holderIndex !== -1) {
-        appliedArgs[holderIndex] = args[index]
+        allArgs[holderIndex] = args[index]
         continue
       }
 
       // 填满占位符了，直接将传入的剩余参数，push 到末尾
-      appliedArgs.push.apply(appliedArgs, args.slice(index))
+      allArgs.push.apply(allArgs, args.slice(index))
       break
     }
 
-    return fn.apply(void 0, appliedArgs)
+    return fn.apply(void 0, allArgs)
   }
 
   const rest = arity - (partialCount - placeholderCount)

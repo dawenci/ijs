@@ -1,7 +1,7 @@
 var Benchmark = require('benchmark')
 var Table = require('cli-table')
 var fs = require('fs')
-var isBench = /\.bench\.js$/
+var isBench = /\.benchx\.js$/
 
 function getTable(name) {
   return new Table({

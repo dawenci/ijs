@@ -1,6 +1,5 @@
 const I = require('../dist/cjs')
 const R = require('ramda')
-const Rambda = require('rambda')
 const _ = require('lodash')
 
 const TEST_TIME = 10000

@@ -1,6 +1,5 @@
 const I = require('../dist/cjs')
 const R = require('ramda')
-const Rambda = require('rambda')
 const _ = require('lodash')
 
 const data1 = Array(10000).fill(0).map((n,i) => i)
@@ -17,9 +16,6 @@ module.exports = {
     },
     'R.uniq()': function() {
       R.uniq(data);
-    },
-    'Rambda.uniq()': function() {
-      Rambda.uniq(data);
     },
     '_.uniq()': function() {
       _.uniq(data);
@@ -41,9 +37,6 @@ module.exports = {
     },
     'R.uniqWith()': function() {
       R.uniqWith((a,b)=>a==b, data);
-    },
-    'Rambda.uniqWith()': function() {
-      Rambda.uniqWith((a,b)=>a==b, data);
     },
     '_.uniqWith()': function() {
       _.uniqWith(data, (a,b)=>a==b);

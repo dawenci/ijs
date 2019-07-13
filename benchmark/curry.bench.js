@@ -1,20 +1,16 @@
 const I = require('../dist/cjs')
 const R = require('ramda')
-const Rambda = require('rambda')
 const _ = require('lodash')
-
 
 function mult(x, y) { return x * y; }
 
 var I_mult = I.curry(mult)
 var R_mult = R.curry(mult)
-var Rambda_mult = Rambda.curry(mult)
 var _mult = _.curry(mult)
 
 
 var I_mult4 = I.curry(mult)(4)
 var R_mult4 = R.curry(mult)(4)
-var Rambda_mult4 = Rambda.curry(mult)(4)
 var _mult4 = _.curry(mult)(4)
 
 function manmult(x) {
@@ -34,9 +30,6 @@ module.exports = {
     'R:mult(4)(100)': function() {
       R_mult(4)(100);
     },
-    'Rambda:mult(4)(100)': function() {
-      Rambda_mult(4)(100);
-    },
     '_:mult(4)(100)': function() {
       _mult(4)(100);
     },
@@ -46,9 +39,6 @@ module.exports = {
     },
     'R:mult4(100)': function() {
       R_mult4(100);
-    },
-    'Rambda:mult4(100)': function() {
-      Rambda_mult4(100);
     },
     '_:mult4(100)': function() {
       _mult4(100);
@@ -93,36 +83,6 @@ module.exports = {
       const test3 = (R.curry((a, b, c) => a + b + c))
       const test4 = (R.curry((a, b, c, d) => a + b + c + d))
       const test5 = (R.curry((a, b, c, d, e) => a + b + c + d + e))
-      test1(1)
-      test2(1, 2)
-      test2(1)(2)
-      test3(1, 2, 3)
-      test3(1, 2)(3)
-      test3(1)(2, 3)
-      test3(1)(2)(3)
-      test4(1, 2, 3, 4)
-      test4(1, 2, 3)(4)
-      test4(1, 2)(3, 4)
-      test4(1)(2, 3, 4)
-      test4(1)(2)(3, 4)
-      test4(1, 2)(3)(4)
-      test4(1)(2)(3)(4)
-      test5(1, 2, 3, 4, 5)
-      test5(1, 2, 3, 4)(5)
-      test5(1, 2, 3)(4, 5)
-      test5(1, 2)(3, 4, 5)
-      test5(1)(2, 3, 4, 5)
-      test5(1, 2)(3)(4)(5)
-      test5(1, 2)(3, 4)(5)
-      test5(1)(2)(3)(4)(5)
-    },
-
-    'Rambda': function() {
-      const test1 = (Rambda.curry((a) => a))
-      const test2 = (Rambda.curry((a, b) => a + b))
-      const test3 = (Rambda.curry((a, b, c) => a + b + c))
-      const test4 = (Rambda.curry((a, b, c, d) => a + b + c + d))
-      const test5 = (Rambda.curry((a, b, c, d, e) => a + b + c + d + e))
       test1(1)
       test2(1, 2)
       test2(1)(2)

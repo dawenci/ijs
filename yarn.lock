@@ -384,10 +384,6 @@ progress@^2.0.0:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/progress/download/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
 
-rambda@^2.11.2:
-  version "2.11.2"
-  resolved "https://registry.npm.taobao.org/rambda/download/rambda-2.11.2.tgz#10f49a117c3509b91ab9cce8defa0d76dcc0fd2e"
-
 ramda@^0.26.1:
   version "0.26.1"
   resolved "https://registry.npm.taobao.org/ramda/download/ramda-0.26.1.tgz#8d41351eb8111c55353617fc3bbffad8e4d35d06"

@@ -1,6 +1,5 @@
 const I = require('../dist/cjs')
 const R = require('ramda')
-const Rambda = require('rambda')
 const _ = require('lodash')
 
 
@@ -9,7 +8,6 @@ function square(x) { return x * x; }
 
 var I_mapSq = I.map(square);
 var R_mapSQ = R.map(square);
-var Rambda_mapSQ = Rambda.map(square);
 
 module.exports = {
   name: 'map',
@@ -38,19 +36,6 @@ module.exports = {
     'R:mapSq(nums)': function() {
       R_mapSQ(nums);
     },
-
-    'Rambda.map(sq, nums)': function() {
-      Rambda.map(square, nums);
-    },
-  
-    'Rambda.map(sq)(nums)': function() {
-      Rambda.map(square)(nums);
-    },
-  
-    'Rambda:mapSq(nums)': function() {
-      Rambda_mapSQ(nums);
-    },
-  
   
     'native map': function() {
       nums.map(square);

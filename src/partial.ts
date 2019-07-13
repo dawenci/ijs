@@ -15,7 +15,7 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
     appliedArgs[index] = partialArgs[index]
   }
 
-  return _arity(arity, function() {
+  const partialFn = function() {
     const args = slice.call(arguments, 0)
     const size = args.length
 
@@ -33,7 +33,12 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
     }
 
     return fn.apply(void 0, appliedArgs)
-  })
+  }
+
+  const rest = arity - partialCount
+  if (rest <= 0) return partialFn
+
+  return _arity(rest, partialFn)
 }
 
 export default partial

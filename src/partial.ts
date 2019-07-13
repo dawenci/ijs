@@ -1,3 +1,4 @@
+import { curry2 } from './curry'
 import __ from './__'
 import _fill from './internal/_fill'
 import _arity from './internal/_arity'
@@ -44,4 +45,4 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
   return _arity(rest, partialFn)
 }
 
-export default partial
+export default curry2(partial)

@@ -14,4 +14,8 @@ describe('compose', function() {
   it('入口多参数', function() {
     assert.deepEqual(I.compose([(a,b) => a + b])(1,2), 3)
   })
+
+  it('入口柯里化', function() {
+    assert.deepEqual(I.compose([(a,b) => a + b])(1)(2), 3)
+  })
 })

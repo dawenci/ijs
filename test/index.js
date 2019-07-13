@@ -1,6 +1,8 @@
 require('./curry')
 require('./compose')
+require('./composeWith')
 require('./pipe')
+require('./pipeWith')
 require('./flip')
 require('./unary')
 require('./memoize')

@@ -14,4 +14,8 @@ describe('pipe', function() {
   it('入口多参数', function() {
     assert.deepEqual(I.pipe([(a,b) => a + b])(1,2), 3)
   })
+
+  it('入口柯里化', function() {
+    assert.deepEqual(I.pipe([(a,b) => a + b])(1)(2), 3)
+  })
 })

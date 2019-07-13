@@ -6,9 +6,8 @@ import _arity, { ArityType } from '../internal/_arity'
 
 const slice = Array.prototype.slice
 
-export const _CURRY_ = /*typeof Symbol === 'function' ? Symbol('_CURRY_') :*/ '_CURRY_'
-export const _WRAPPER_ = /*typeof Symbol === 'function' ? Symbol('_CURRY_') :*/ '_WRAPPER_'
-
+export const _CURRY_ = typeof Symbol === 'function' ? Symbol('_CURRY_') : '_CURRY_'
+export const _WRAPPER_ = typeof Symbol === 'function' ? Symbol('_WRAPPER_') : '_WRAPPER_'
 
 // 1 - 5 个参数，特殊处理，提高性能
 export function curry1<A, R>(fn: Arity1<A, R>) {

@@ -1,5 +1,5 @@
 import { curry1 } from './curry'
-import _pipeWith from './internal/_pipeWith'
+import _pipe from './internal/_pipe'
 
 /**
  * 创建一个函数组合，参数列表中最后一个函数为入口，
@@ -9,8 +9,7 @@ import _pipeWith from './internal/_pipeWith'
  * @see I.pipe
  */
 function compose(fnList: Array<(...args: any[]) => any>) {
-  const list = fnList.slice().reverse()
-  return _pipeWith((nextFn, value) => nextFn(value), list)
+  return _pipe(fnList.slice().reverse())
 }
 
 export default curry1(compose)

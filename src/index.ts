@@ -16,7 +16,6 @@ export { default as nthArg } from './nthArg'
 export { default as once } from './once'
 export { default as thunkify } from './thunkify'
 
-
 // 常用组合子
 export { default as identity } from './identity'
 export { default as tap } from './tap'

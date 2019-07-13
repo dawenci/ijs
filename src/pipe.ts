@@ -1,5 +1,5 @@
-import { curry2 } from './curry'
-import _pipeWith from './internal/_pipeWith'
+import { curry1 } from './curry'
+import _pipe from './internal/_pipe'
 
 /**
  * 创建一个函数管道，参数列表中第一个函数为入口，
@@ -9,4 +9,4 @@ import _pipeWith from './internal/_pipeWith'
  * @see I.compose
  */
 
-export default curry2(_pipeWith)((nextFn, value) => nextFn(value))
+export default curry1(_pipe)

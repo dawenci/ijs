@@ -2,10 +2,7 @@ import { curry } from '../curry'
 import _reduce from './_reduce'
 
 // TODO, result type
-function pipeWith(
-  withFn: (fn: (value: any) => any, value: any) => any,
-  fnList: Array<(...args: any[]) => any>
-) {
+function pipe(fnList: Array<(...args: any[]) => any>) {
   const size = fnList.length
   if (!size) throw new Error('pipe 需要至少一个参数')
 
@@ -18,10 +15,10 @@ function pipeWith(
   return curry(function() {
     let value = first.apply(void 0, arguments)
     for (let index = 0; index < tailSize; index += 1) {
-      value = withFn(tail[index], value)
+      value = tail[index](value)
     }
     return value
   }, first.length)
 }
 
-export default pipeWith
+export default pipe

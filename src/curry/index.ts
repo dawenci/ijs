@@ -178,17 +178,19 @@ function curryN<P extends any[], R>(fn: (...args: P) => R, arity: number): Curri
  * 柯里化对外 API
  */
 export function curry<P extends any[], R>(fn: (() => R)): typeof fn
-export function curry<A,R>(fn: ((a: A) => R), arity?: number): Curry1<A,R>
-export function curry<A,B,R>(fn: ((a:A,b:B) => R), arity?: number): Curry2<A,B,R>
-export function curry<A,B,C,R>(fn: ((a:A,b:B,c:C) => R), arity?: number): Curry3<A,B,C,R>
-export function curry<A,B,C,D,R>(fn: ((a:A,b:B,c:C,d:D) => R), arity?: number): Curry4<A,B,C,D,R>
-export function curry<A,B,C,D,E,R>(fn: ((a:A,b:B,c:C,d:D,e:E) => R), arity?: number): Curry5<A,B,C,D,E,R>
-export function curry<A,B,C,D,E,F,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F) => R), arity?: number): Curry6<A,B,C,D,E,F,R>
-export function curry<A,B,C,D,E,F,G,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G) => R), arity?: number): Curry7<A,B,C,D,E,F,G,R>
-export function curry<A,B,C,D,E,F,G,H,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G,h:H) => R), arity?: number): Curry8<A,B,C,D,E,F,G,H,R>
-export function curry<A,B,C,D,E,F,G,H,I,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G,h:H,i:I) => R), arity?: number): Curry9<A,B,C,D,E,F,G,H,I,R>
-export function curry<A,B,C,D,E,F,G,H,I,J,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G,h:H,i:I,j:J) => R), arity?: number): Curry10<A,B,C,D,E,F,G,H,I,J,R>
-export function curry<P extends any[], R>(fn: ((...args: P) => R), arity?: number): Curried<P, R>
+export function curry<A,R>(fn: ((a: A) => R)): Curry1<A,R>
+export function curry<A,B,R>(fn: ((a:A,b:B) => R)): Curry2<A,B,R>
+export function curry<A,B,C,R>(fn: ((a:A,b:B,c:C) => R)): Curry3<A,B,C,R>
+export function curry<A,B,C,D,R>(fn: ((a:A,b:B,c:C,d:D) => R)): Curry4<A,B,C,D,R>
+export function curry<A,B,C,D,E,R>(fn: ((a:A,b:B,c:C,d:D,e:E) => R)): Curry5<A,B,C,D,E,R>
+export function curry<A,B,C,D,E,F,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F) => R)): Curry6<A,B,C,D,E,F,R>
+export function curry<A,B,C,D,E,F,G,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G) => R)): Curry7<A,B,C,D,E,F,G,R>
+export function curry<A,B,C,D,E,F,G,H,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G,h:H) => R)): Curry8<A,B,C,D,E,F,G,H,R>
+export function curry<A,B,C,D,E,F,G,H,I,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G,h:H,i:I) => R)): Curry9<A,B,C,D,E,F,G,H,I,R>
+export function curry<A,B,C,D,E,F,G,H,I,J,R>(fn: ((a:A,b:B,c:C,d:D,e:E,f:F,g:G,h:H,i:I,j:J) => R)): Curry10<A,B,C,D,E,F,G,H,I,J,R>
+export function curry<P extends any[], R>(fn: ((...args: P) => R)): Curried<P, R>
+// 传入了 arity，则需要手动传入 P，不能使用 fn 的类型来推断，因为参数长度和手工指定的 arity 不一定一致
+export function curry<P extends any[], R>(fn: ((...args) => R), arity: number): Curried<P, R>
 
 // 可以传入 arity 指定元数，
 // 以支持默认值参数 & rest 参数（目前这么做会失去 TS 类型信息）

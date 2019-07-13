@@ -11,6 +11,7 @@ require('./__')
 require('./invoker')
 require('./nthArg')
 require('./once')
+require('./thunkify')
 
 require('./identity')
 require('./tap')

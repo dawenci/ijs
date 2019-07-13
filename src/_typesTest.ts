@@ -134,8 +134,9 @@ const curryTest2 = curryTest1(1)(2)(3,4)(5)
 const curryTest3 = curry((a: number, b: number, c: number, d: number, e: number, f: number, g: number) => a + b + c + d + e + f + g)
 curryTest3(1)(2)(3,4,5)(2, 7)
 
-
-
+// any
+const arity3 = curry<[number,string,number],string>((a: number, b: string) => a + b, 3)
+arity3(1,'1',2)
 
 // type test
 const t000 = flip()

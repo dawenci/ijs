@@ -12,6 +12,7 @@ export { default as __ } from './__'
 export { default as invoker } from './invoker'
 export { default as nthArg } from './nthArg'
 export { default as once } from './once'
+export { default as thunkify } from './thunkify'
 
 
 // 常用组合子

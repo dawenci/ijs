@@ -1,13 +1,15 @@
 import {
-  Arity1, Arity2, Arity3, Arity4, Arity5, Arity6,
+  Arity1, Arity2, Arity3, Arity4, Arity5,
   Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Curried
 } from './_types'
+import { ArityType } from '../internal/_arity'
 
 import _arity from '../internal/_arity'
 
 const slice = Array.prototype.slice
 
-export const _CURRY_ = typeof Symbol === 'function' ? Symbol('_CURRY_') : '_CURRY_'
+export const _CURRY_ = /*typeof Symbol === 'function' ? Symbol('_CURRY_') :*/ '_CURRY_'
+export const _WRAPPER_ = /*typeof Symbol === 'function' ? Symbol('_CURRY_') :*/ '_WRAPPER_'
 
 
 // 1 - 5 个参数，特殊处理，提高性能
@@ -21,7 +23,7 @@ export function curry1<A, R>(fn: Arity1<A, R>) {
     if (arguments.length) return fn(a)
     return curried
   }
-  curried[_CURRY_] = 1
+  curried[_CURRY_] = fn
   return curried
 }
 
@@ -40,7 +42,7 @@ export function curry2<A, B, R>(fn: Arity2<A, B, R>) {
       default: return fn(a as A, b)
     }
   }
-  curried[_CURRY_] = 2
+  curried[_CURRY_] = fn
   return curried
 }
 
@@ -61,7 +63,7 @@ export function curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
       default: return fn(a as A, b as B, c as C)
     }
   }
-  curried[_CURRY_] = 3
+  curried[_CURRY_] = fn
   return curried
 }
 
@@ -84,7 +86,7 @@ export function curry4<A, B, C, D, R>(fn: Arity4<A, B, C, D, R>) {
       default: return fn(a, b, c, d)
     }
   }
-  curried[_CURRY_] = 4
+  curried[_CURRY_] = fn
   return curried
 }
 
@@ -109,19 +111,23 @@ export function curry5<A, B, C, D, E, R>(fn: Arity5<A, B, C, D, E, R>) {
       default: return fn(a, b, c, d, e)
     }
   }
-  curried[_CURRY_] = 4
+  curried[_CURRY_] = fn
   return curried
 }
 
-/**
+/*
  * N 个参数的函数柯里化
+ * curry 函数内部使用
+ * @param {(...args: P) => R} fn 需要柯里化的原函数
+ * @param {number} arity 元数
  */
-export function curryN<P extends any[], R>(fn: (...args: P) => R, arity?: number): Curried<P, R> {
-  // 首次调用可以使用 fn 获取参数数量
-  if (arity === undefined) arity = fn.length
-  
+function curryN<P extends any[], R>(fn: (...args: P) => R, arity: number): Curried<P, R> | ArityType<P, R> {
   function curried() {
     const consumed = arguments.length
+
+    // 传入 0 个参数，重新返回 wrapper 自身
+    if (consumed === 0) return curried[_WRAPPER_]
+
     const rest = arity - consumed
     if (rest <= 0) {
       // 不支持超出声明的参数，不传递整个 arguments，切下合法部分
@@ -152,15 +158,23 @@ export function curryN<P extends any[], R>(fn: (...args: P) => R, arity?: number
       })
     }
 
-    return curry(_arity(rest, function() {
+    return curry(function() {
       // 不支持超出声明的参数，不传递整个 arguments，切下合法部分
       consumedArgs.push.apply(consumedArgs, slice.call(arguments, rest))
       return fn.apply(void 0, consumedArgs)
-    }))
+    }, rest)
   }
 
-  curried[_CURRY_] = arity
-  return curried
+  // 使用 wrapper 包裹，以确保 length 正确
+  const wrapper = _arity<P, R>(arity, curried)
+  curried[_CURRY_] = fn
+  // 把 wrapper 当 curried 使用
+  wrapper[_CURRY_] = fn
+
+  // 反向引用，以在 wrapper 0 参数调用时，可以不用重新柯里化，直接返回 wrapper
+  curried[_WRAPPER_] = wrapper
+  
+  return wrapper
 }
 
 /**
@@ -183,25 +197,22 @@ export function curry<P extends any[], R>(fn: ((...args: P) => R), arity?: numbe
 // 以支持默认值参数 & rest 参数（目前这么做会失去 TS 类型信息）
 // 另外，指定元数后，参数默认值不会被使用
 export function curry(fn, arity?: number) {
-  let originFn = fn
+  const length = arity || fn.length
 
-  if (arity > 1) {
-    originFn = _arity(arity, fn)
+  // 柯里化已经柯里化的函数，如果元数一致，直接返回
+  if (fn[_CURRY_] && fn.length === length) {
+    return fn
   }
-
-  // 柯里化已经柯里化的函数，特殊处理
-  // 作为唯一的对外出口，在此处检查即可
-  const length = originFn[_CURRY_] || originFn.length
 
   switch(length) {
     // 将可能匹配的参数数量按照经验的概率排列
-    case 2: return curry2(originFn)
-    case 3: return curry3(originFn)
-    case 1: return curry1(originFn)
-    case 4: return curry4(originFn)
-    case 5: return curry5(originFn)
+    case 2: return curry2(fn)
+    case 3: return curry3(fn)
+    case 1: return curry1(fn)
+    case 4: return curry4(fn)
+    case 5: return curry5(fn)
     case 0: return fn
-    default: return curryN(originFn, length)
+    default: return curryN(fn, length)
   }
 }
 

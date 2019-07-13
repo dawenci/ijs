@@ -8,10 +8,6 @@ const curry2Test1 = curry2((a: number, b: string) => a + b)
 const curry2Test2 = curry2Test1(3)
 const curry2Test3 = curry2Test2('4')
 
-const _curry2Test1 = curry((a: number, b: string) => a + b)
-const _curry2Test2 = _curry2Test1(3)
-const _curry2Test3 = _curry2Test2('4')
-
 const curry3Test1 = curry3((a: number, b: string, c: string) => a + b + c)
 const curry3Test2 = curry3Test1(3)
 const curry3Test3 = curry3Test2('4')
@@ -107,22 +103,27 @@ const curry12Test11 = curry12Test10('6')
 const curry12Test12 = curry12Test11('6')
 const curry12Test13 = curry12Test11('6')
 
-const curryNTest1 = curryN((a: number) => a)
+
+const _curry2Test1 = curry((a: number, b: string) => a + b)
+const _curry2Test2 = _curry2Test1(3)
+const _curry2Test3 = _curry2Test2('4')
+
+const curryNTest1 = curry((a: number) => a)
 const curryNTest2 = curryNTest1(1)
 
-const curryNTest3 = curryN((a: number, b: number) => a + b)
+const curryNTest3 = curry((a: number, b: number) => a + b)
 const curryNTest4 = curryNTest3(1)(2)
 
-const curryNTest5 = curryN((a: number, b: number, c: number) => a + b + c)
+const curryNTest5 = curry((a: number, b: number, c: number) => a + b + c)
 const curryNTest6 = curryNTest5(1)(2)(3)
 
-const curryNTest7 = curryN((a: number, b: number, c: number, d: number) => a + b + c + d)
+const curryNTest7 = curry((a: number, b: number, c: number, d: number) => a + b + c + d)
 const curryNTest8 = curryNTest7(1)(2)(3)(4)
 
-const curryNTest9 = curryN((a: number, b: number) => a + b)
+const curryNTest9 = curry((a: number, b: number) => a + b)
 const curryNTest10 = curryNTest9(1)(2)
 
-const curryNTest11 = curryN((a: number, b: number, c: number, d: number, e: number) => a + b + c + d + e)
+const curryNTest11 = curry((a: number, b: number, c: number, d: number, e: number) => a + b + c + d + e)
 const curryNTest12 = curryNTest11(1)(2)(3,4)(5)
 
 

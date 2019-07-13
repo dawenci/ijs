@@ -4,19 +4,9 @@ import commonJSPlugin from 'rollup-plugin-commonjs'
 const pkg = require('./package.json')
 export default {
   input: './src/index.ts',
-  output: [{
-      file: pkg.module,
-      format: 'es',
-      sourcemap: false
-    },
+  output: [
     {
       file: pkg.browser,
-      format: 'iife',
-      name: 'I',
-      sourcemap: false
-    },
-    {
-      file: pkg.browser.replace('.js', '.min.js'),
       format: 'iife',
       name: 'I',
       sourcemap: false
@@ -31,14 +21,9 @@ export default {
           allowSyntheticDefaultImports: true,
           experimentalDecorators: true,
           downlevelIteration: true,
-          lib: [
-            "dom",
-            "scripthost",
-            "es5",
-            "es2015.promise",
-          ]
+          lib: [ 'dom', 'scripthost', 'es5', 'es2015.promise' ]
         }
       }
-    }),
+    })
   ]
 }

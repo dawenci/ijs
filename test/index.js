@@ -6,6 +6,8 @@ require('./unary')
 require('./memoize')
 require('./addIndex')
 require('./apply')
+require('./partial')
+require('./__')
 
 require('./identity')
 require('./tap')

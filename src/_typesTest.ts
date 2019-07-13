@@ -1,4 +1,4 @@
-import { curry1, curry2, curry3, curry4, curry5, curryN, curry } from './curry'
+import { curry1, curry2, curry3, curry4, curry5, curry } from './curry'
 import flip from './flip'
 
 const curry1Test1 = curry1((a: number) => a)

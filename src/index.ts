@@ -7,6 +7,8 @@ export { default as unary } from './unary'
 export { default as memoize } from './memoize'
 export { default as addIndex } from './addIndex'
 export { default as apply } from './apply'
+export { default as partial } from './partial'
+export { default as __ } from './__'
 
 // 常用组合子
 export { default as identity } from './identity'

@@ -12,7 +12,7 @@ module.exports = {
   name: 'pipe',
   tests: {
     'I:pipe': function() {
-      I.pipe([f1, f2])(1)
+      I.pipe(f1, f2)(1)
     },
     'R:pipe': function() {
       R.pipe(f1, f2)(1)
@@ -22,7 +22,7 @@ module.exports = {
     },
 
     'I.pipe * 50': function() {
-      d50.map(I.pipe([f1, f2]))
+      d50.map(I.pipe(f1, f2))
       d50.map(I.pipe([f1, f2, f1, f2]))
     },
 
@@ -42,7 +42,7 @@ module.exports = {
     },
 
     'I.pipe * 5000': function() {
-      d5000.map(I.pipe([f1, f2]))
+      d5000.map(I.pipe(f1, f2))
       d5000.map(I.pipe([f1, f2, f1, f2]))
     },
 
@@ -62,7 +62,7 @@ module.exports = {
     },
 
     'I.pipe * 50000': function() {
-      d50000.map(I.pipe([f1, f2]))
+      d50000.map(I.pipe(f1, f2))
       d50000.map(I.pipe([f1, f2, f1, f2]))
     },
 

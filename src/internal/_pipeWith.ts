@@ -7,7 +7,6 @@ function pipeWith(
   fnList: Array<(...args: any[]) => any>
 ) {
   const size = fnList.length
-  if (!size) throw new Error('pipe 需要至少一个参数')
 
   // 第一个函数为入口，如果只有一个函数，直接包装返回
   const first = fnList[0]
@@ -17,7 +16,13 @@ function pipeWith(
   const tailSize = tail.length
 
   return curry(function() {
-    let value = first.apply(void 0, arguments)
+    let value
+    switch(arguments.length) {
+      case 1: value = first(arguments[0]); break
+      case 2: value = first(arguments[0], arguments[1]); break
+      case 3: value = first(arguments[0], arguments[1], arguments[3]); break
+      default: value = first.apply(void 0, arguments)
+    }
 
     // 只有 5 个以内函数的，直接计算返回
     switch(tailSize) {

@@ -42,9 +42,11 @@ function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
     return fn.apply(void 0, allArgs)
   }
 
+  // 所有参数已经预先提供，则直接返回
   const rest = arity - (partialCount - placeholderCount)
   if (rest <= 0) return partialFn
 
+  // 否则包装返回一个剩余参数元数的新函数
   return _arity(rest, partialFn)
 }
 

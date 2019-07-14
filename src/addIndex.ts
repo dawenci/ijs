@@ -1,4 +1,6 @@
-import { curry1 } from './curry'
+import curry, { curry1, _CURRY_ } from './curry'
+
+const slice = Array.prototype.slice
 
 /**
  * 为列表迭代函数（map、reduce、forEach...等等）函数的回调额外额外附加一个 index 参数
@@ -12,24 +14,48 @@ import { curry1 } from './curry'
  *   //=> ['0-f', '1-o', '2-o', '3-b', '4-a', '5-r']
  * 
  */
-const addIndex = function addIndex(fn) {
-  // 第一个元素为作用于每个元素的函数，第二个第三个（如 reduce）为数据
-  return function(originFn) {
-    const args = Array.prototype.slice.call(arguments, 0)
+const addIndex = function addIndex(originFn) {
+  let newFn = function(orginIteratee) {
+    const args = slice.call(arguments, 0)
+
     let index = 0
 
-    // 使用新函数包裹原来作用于每个元素的旧函数
-    const newFn = function() {
-      const args = Array.prototype.slice.call(arguments, 0)
-      args.push(index)
-      const result = originFn.apply(void 0, args)
+    // 加一层包裹，额外传递 index 进去
+    const newIteratee = function(a, b, c) {
+      let result
+      switch(arguments.length) {
+        case 1: {
+          result = orginIteratee(a, index)
+          break;
+        } 
+        case 2: {
+          result = orginIteratee(a, b, index)
+          break;
+        } 
+        case 3: {
+          result = orginIteratee(a, b, c, index)
+          break;
+        }
+        default: {
+          const args = slice.call(arguments, 0)
+          args.push(index)
+          result = orginIteratee.apply(void 0, args)          
+        }
+      }
       index += 1
       return result
     }
 
-    args[0] = newFn
-    return fn.apply(void 0, args)
+    args[0] = newIteratee
+    return originFn.apply(void 0, args)
   }
+
+  // 传入的函数如果是柯里化后的，则也柯里化返回
+  if (originFn[_CURRY_]) {
+    newFn = curry(newFn, originFn.length)
+  }
+
+  return newFn
 }
 
 export default curry1(addIndex)

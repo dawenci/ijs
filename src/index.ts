@@ -16,12 +16,14 @@ export { default as nthArg } from './nthArg'
 export { default as once } from './once'
 export { default as thunkify } from './thunkify'
 
+
 // 常用组合子
 export { default as identity } from './identity'
 export { default as tap } from './tap'
 export { default as always } from './always'
 export { default as t } from './t'
 export { default as f } from './f'
+
 
 // 逻辑控制
 export { default as and } from './and'
@@ -39,6 +41,7 @@ export { default as passAny } from './passAny'
 export { default as none } from './none'
 export { default as passNone } from './passNone'
 
+
 // tools
 export { default as type } from './type'
 export { default as isNil } from './isNil'
@@ -46,21 +49,29 @@ export { default as isNaN } from './isNaN'
 export { default as isEmpty } from './isEmpty'
 export { default as is } from './is'
 
+
 // objects
-export { default as path } from './path'
-export { default as property } from './property'
-export { default as keys } from './keys'
-export { default as keysIn } from './keysIn'
-export { default as values } from './values'
-export { default as valuesIn } from './valuesIn'
 export { default as clone } from './clone'
 export { default as pick } from './pick'
 export { default as pickBy } from './pickBy'
 export { default as omit } from './omit'
 export { default as omitBy } from './omitBy'
+
+export { default as path } from './path'
+export { default as property } from './property'
+
 export { default as has } from './has'
+export { default as keys } from './keys'
+export { default as values } from './values'
+export { default as forOwn } from './forOwn'
+
 export { default as hasIn } from './hasIn'
+export { default as keysIn } from './keysIn'
+export { default as valuesIn } from './valuesIn'
+export { default as forIn } from './forIn'
+
 export { default as where } from './where'
+
 
 // Math
 export { default as add } from './add'
@@ -77,6 +88,7 @@ export { default as max } from './max'
 export { default as min } from './min'
 export { default as sum } from './sum'
 export { default as sumBy } from './sumBy'
+
 
 // compare
 export { default as gt } from './gt'
@@ -95,8 +107,6 @@ export { default as reject } from './reject'
 export { default as find } from './find'
 export { default as findIndex } from './findIndex'
 export { default as forEach } from './forEach'
-export { default as forOwn } from './forOwn'
-export { default as forIn } from './forIn'
 export { default as times } from './times'
 export { default as indexOf } from './indexOf'
 export { default as indexOfFrom } from './indexOfFrom'

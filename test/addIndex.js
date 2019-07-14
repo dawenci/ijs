@@ -12,4 +12,10 @@ describe('addIndex', function() {
     const r2 = reduceIndexed((acc, value, index) => acc + (value + index), 0, [0,1,2])
     assert.equal(r2, 6)
   })
+
+  it('新函数保持柯里化', function() {
+    const reduceIndexed = I.addIndex(I.reduce)
+    const r2 = reduceIndexed((acc, value, index) => acc + (value + index))(0)([0,1,2])
+    assert.equal(r2, 6)
+  })
 })

@@ -6,7 +6,7 @@ var isBench = /\.bench\.js$/
 function getTable(name) {
   return new Table({
     head: [ name, 'Hertz', 'Margin of Error' ],
-    colWidths: [ 24, 24, 24 ]
+    colWidths: [ 30, 24, 24 ]
   })
 }
 

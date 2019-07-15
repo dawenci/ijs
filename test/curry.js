@@ -37,10 +37,10 @@ describe('curry', function() {
     }
     const curried = I.curry(fn)
     assert.deepEqual(curried(1, 2, 3), [ 1, 2, 3 ])
-    assert.deepEqual(curried(1, 2, 3, 4), [ 1, 2, 3 ])
-    assert.deepEqual(curried(1, 2)(3, 4), [ 1, 2, 3 ])
-    assert.deepEqual(curried(1)(2, 3, 4), [ 1, 2, 3 ])
-    assert.deepEqual(curried(1)(2)(3, 4), [ 1, 2, 3 ])
+    assert.deepEqual(curried(1, 2, 3, 4), [ 1, 2, 3, 4 ])
+    assert.deepEqual(curried(1, 2)(3, 4), [ 1, 2, 3, 4 ])
+    assert.deepEqual(curried(1)(2, 3, 4), [ 1, 2, 3, 4 ])
+    assert.deepEqual(curried(1)(2)(3, 4), [ 1, 2, 3, 4 ])
   })
 
   it('指定元数以支持默认值参数和 rest 参数', function() {

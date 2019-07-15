@@ -1,4 +1,4 @@
-import { curry1, curry2, curry3, curry4, curry5, curry } from './curry'
+import { curry1, curry2, curry3, curry } from './curry'
 import flip from './flip'
 
 const curry1Test1 = curry1((a: number) => a)
@@ -13,13 +13,13 @@ const curry3Test2 = curry3Test1(3)
 const curry3Test3 = curry3Test2('4')
 const curry3Test4 = curry3Test3('5')
 
-const curry4Test1 = curry4((a: number, b: string, c: string, d: string) => a + b + c + d)
+const curry4Test1 = curry((a: number, b: string, c: string, d: string) => a + b + c + d)
 const curry4Test2 = curry4Test1(3)
 const curry4Test3 = curry4Test2('4')
 const curry4Test4 = curry4Test3('5')
 const curry4Test5 = curry4Test4('6')
 
-const curry5Test1 = curry5((a: number, b: string, c: string, d: string, e: string) => a)
+const curry5Test1 = curry((a: number, b: string, c: string, d: string, e: string) => a)
 const curry5Test2 = curry5Test1(3)
 const curry5Test3 = curry5Test2('4')
 const curry5Test4 = curry5Test3('5')

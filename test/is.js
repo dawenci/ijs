@@ -3,8 +3,14 @@ const I = require('../dist/cjs')
 
 describe('is', function() {
   it('is', () => {
+    // 原始类型都不是 Object
     assert.equal(I.is(Object, null), false)
     assert.equal(I.is(Object, undefined), false)
+    assert.equal(I.is(Object, 1), false)
+    assert.equal(I.is(Object, ''), false)
+    assert.equal(I.is(Object, Symbol()), false)
+    assert.equal(I.is(Object, true), false)
+    assert.equal(I.is(Object, false), false)
 
     assert.ok(I.is(Object, {}))
     assert.ok(I.is(Object, []))

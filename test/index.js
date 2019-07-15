@@ -40,6 +40,9 @@ require('./isNil')
 require('./isNaN')
 require('./isEmpty')
 require('./is')
+require('./isObject')
+require('./isPrimitive')
+
 
 require('./path')
 require('./property')

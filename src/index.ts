@@ -45,6 +45,8 @@ export { default as type } from './type'
 export { default as isNil } from './isNil'
 export { default as isNaN } from './isNaN'
 export { default as isEmpty } from './isEmpty'
+export { default as isPrimitive } from './isPrimitive'
+export { default as isObject } from './isObject'
 export { default as is } from './is'
 
 

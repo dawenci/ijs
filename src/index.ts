@@ -44,10 +44,10 @@ export { default as passNone } from './passNone'
 export { default as type } from './type'
 export { default as isNil } from './isNil'
 export { default as isNaN } from './isNaN'
-export { default as isEmpty } from './isEmpty'
 export { default as isPrimitive } from './isPrimitive'
 export { default as isObject } from './isObject'
 export { default as is } from './is'
+export { default as isEmpty } from './isEmpty'
 
 
 // objects
@@ -132,9 +132,13 @@ export { default as intersection } from './intersection'
 export { default as pair } from './pair'
 export { default as fromPairs } from './fromPairs'
 
+
+// String
 export { default as trim } from './trim'
 export { default as capitalize } from './capitalize'
 export { default as camelCase } from './camelCase'
+export { default as lowerCase } from './lowerCase'
+export { default as upperCase } from './upperCase'
 export { default as repeat } from './repeat'
 export { default as endsWith } from './endsWith'
 export { default as startsWith } from './startsWith'

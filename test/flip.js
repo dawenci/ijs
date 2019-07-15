@@ -19,4 +19,15 @@ describe('flip', function() {
     assert.deepEqual(I.flip(I.curry(function(a,b) { return [a,b] }))(1,2), [2,1])
     assert.deepEqual(I.flip(I.curry(function(a,b,c,d,e,f) { return [a,b,c] }))(1,2,3,4,5,6), [2,1,3])
   })
+
+  it('支持额外传入参数', function() {
+    const fn = I.flip(function(a,b,c) {
+      return Array.prototype.slice.call(arguments)
+    })
+    assert.deepEqual(fn(1,2,3), [2,1,3])
+    assert.deepEqual(fn(1,2,3,4), [2,1,3,4])
+    assert.deepEqual(fn(1)(2,3,4), [2,1,3,4])
+    assert.deepEqual(fn(1)(2)(3,4), [2,1,3,4])
+    assert.deepEqual(fn(1,2)(3,4), [2,1,3,4])
+  })
 })

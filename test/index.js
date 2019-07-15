@@ -56,6 +56,7 @@ require('./omitBy')
 require('./has')
 require('./hasIn')
 require('./where')
+require('./merge')
 
 require('./add')
 require('./subtract')

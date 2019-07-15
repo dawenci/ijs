@@ -70,6 +70,7 @@ export { default as forIn } from './forIn'
 
 export { default as where } from './where'
 
+export { default as merge } from './merge'
 
 // Math
 export { default as add } from './add'

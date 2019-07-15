@@ -1,9 +1,6 @@
 import { curry2 } from './curry'
+import _range from './internal/_range'
 
 export default curry2((from: number, to: number): Array<number> => {
-  const result = []
-  for (let index = from; index < to; index += 1) {
-    result.push(index)
-  }
-  return result
+  return _range(from, to)
 })

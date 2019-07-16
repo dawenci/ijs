@@ -31,18 +31,19 @@ export function curry1<A, R>(fn: Arity1<A, R>) {
   function curried(a: A, ...rest: any): R
   // 实现
   function curried(a?) {
-    switch (arguments.length) {
+    const args = arguments
+    switch (args.length) {
       case 1:
         return fn(a)
       case 0:
         return curried
 
       // 优化
-      case 2: return fn(a, arguments[1])
-      case 3: return fn(a, arguments[1], arguments[2])
+      case 2: return fn(a, args[1])
+      case 3: return fn(a, args[1], args[2])
 
       default:
-        return fn.apply(void 0, arguments)
+        return fn.apply(void 0, args)
     }
   }
   curried[_CURRY_] = fn
@@ -57,19 +58,21 @@ export function curry2<A, B, R>(fn: Arity2<A, B, R>) {
   function curried(a: A, b: B, ...rest: any): R
   // 实现
   function curried(a?, b?) {
-    switch (arguments.length) {
+    const args = arguments
+    switch (args.length) {
       case 1:
         return curry1<B, R>(function(b) {
-          const len = arguments.length
+          const args = arguments
+          const len = args.length
           if (len === 1) return fn(a as A, b)
 
           // 优化
-          if (len === 2) return fn(a as A, b as B, arguments[1])
-          if (len === 3) return fn(a as A, b as B, arguments[1], arguments[2])
+          if (len === 2) return fn(a as A, b as B, args[1])
+          if (len === 3) return fn(a as A, b as B, args[1], args[2])
 
-          const args = [ a as A ]
-          args.push.apply(args, arguments)
-          return fn.apply(void 0, args)
+          const combined = [ a as A ]
+          combined.push.apply(combined, args)
+          return fn.apply(void 0, combined)
         })
       case 2:
         return fn(a as A, b)
@@ -77,11 +80,11 @@ export function curry2<A, B, R>(fn: Arity2<A, B, R>) {
         return curried
 
       // 优化
-      case 3: return fn(a as A, b, arguments[2])
-      case 4: return fn(a as A, b, arguments[2], arguments[3])
+      case 3: return fn(a as A, b, args[2])
+      case 4: return fn(a as A, b, args[2], args[3])
 
       default:
-        return fn.apply(void 0, arguments)
+        return fn.apply(void 0, args)
     }
   }
   curried[_CURRY_] = fn
@@ -97,43 +100,46 @@ export function curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
   function curried(a: A, b: B, c: C, ...rest: any): R
   // 实现
   function curried(a?, b?, c?) {
-    switch (arguments.length) {
+    const args = arguments
+    switch (args.length) {
       case 1:
         return curry2<B, C, R>(function(b, c) {
-          const len = arguments.length
+          const args = arguments
+          const len = args.length
           if (len === 2) return fn(a as A, b, c)
 
           // 优化
-          if (len === 3) return fn(a as A, b as B, c, arguments[2])
-          if (len === 4) return fn(a as A, b as B, c, arguments[2], arguments[3])
+          if (len === 3) return fn(a as A, b as B, c, args[2])
+          if (len === 4) return fn(a as A, b as B, c, args[2], args[3])
 
-          const args = [ a as A ]
-          args.push.apply(args, arguments)
-          return fn.apply(void 0, args)
+          const combined = [ a as A ]
+          combined.push.apply(combined, args)
+          return fn.apply(void 0, combined)
         })
       case 2:
         return curry1<C, R>(function(c) {
-          const len = arguments.length
+          const args = arguments
+          const len = args.length
           if (len === 1) return fn(a as A, b as B, c)
 
           // 优化
-          if (len === 2) return fn(a as A, b as B, c, arguments[1])
-          if (len === 3) return fn(a as A, b as B, c, arguments[1], arguments[2])
+          if (len === 2) return fn(a as A, b as B, c, args[1])
+          if (len === 3) return fn(a as A, b as B, c, args[1], args[2])
 
-          const args = [ a as A, b as B ]
-          args.push.apply(args, arguments)
-          return fn.apply(void 0, args)
+          const combined = [ a as A, b as B ]
+          combined.push.apply(combined, args)
+          return fn.apply(void 0, combined)
         })
       case 3:
         return fn(a as A, b as B, c as C)
       case 0: return curried
 
       // 优化
-      case 4: return fn(a as A, b as B, c as C, arguments[3])
-      case 5: return fn(a as A, b as B, c as C, arguments[3], arguments[4])  
+      case 4: return fn(a as A, b as B, c as C, args[3])
+      case 5: return fn(a as A, b as B, c as C, args[3], args[4])  
 
       default:
-        return fn.apply(void 0, arguments)
+        return fn.apply(void 0, args)
     }
   }
   curried[_CURRY_] = fn
@@ -158,32 +164,36 @@ function curryN<P extends any[], R>(fn: (...args: P) => R, arity: number): Curri
       return fn.apply(void 0, arguments)
     }
     const consumedArgs = slice.call(arguments)
+
     switch (rest) {
       case 1:
         return curry1(function(a) {
-          const len = arguments.length
+          const args = arguments
+          const len = args.length
           if (len === 1) consumedArgs.push(a)
-          else if (len === 2) consumedArgs.push(a, arguments[1])
-          else if (len === 3) consumedArgs.push(a, arguments[1], arguments[2])
-          else consumedArgs.push.apply(consumedArgs, arguments)
+          else if (len === 2) consumedArgs.push(a, args[1])
+          else if (len === 3) consumedArgs.push(a, args[1], args[2])
+          else consumedArgs.push.apply(consumedArgs, args)
           return fn.apply(void 0, consumedArgs)
         })
       case 2:
         return curry2(function(a, b) {
-          const len = arguments.length
+          const args = arguments
+          const len = args.length
           if (len === 2) consumedArgs.push(a, b)
-          else if (len === 3) consumedArgs.push(a, b, arguments[2])
-          else if (len === 4) consumedArgs.push(a, b, arguments[2], arguments[3])
-          else consumedArgs.push.apply(consumedArgs, arguments)
+          else if (len === 3) consumedArgs.push(a, b, args[2])
+          else if (len === 4) consumedArgs.push(a, b, args[2], args[3])
+          else consumedArgs.push.apply(consumedArgs, args)
           return fn.apply(void 0, consumedArgs)
         })
       case 3:
         return curry3(function(a, b, c) {
-          const len = arguments.length
+          const args = arguments
+          const len = args.length
           if (len === 3) consumedArgs.push(a, b, c)
-          else if (len === 4) consumedArgs.push(a, b, arguments[3])
-          else if (len === 5) consumedArgs.push(a, b, arguments[3], arguments[4])
-          else consumedArgs.push.apply(consumedArgs, arguments)
+          else if (len === 4) consumedArgs.push(a, b, args[3])
+          else if (len === 5) consumedArgs.push(a, b, args[3], args[4])
+          else consumedArgs.push.apply(consumedArgs, args)
           return fn.apply(void 0, consumedArgs)
         })
       default: {

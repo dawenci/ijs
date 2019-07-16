@@ -34,6 +34,7 @@ require('./none')
 require('./passAll')
 require('./passAny')
 require('./passNone')
+require('./complement')
 
 require('./type')
 require('./isNil')
@@ -114,6 +115,7 @@ require('./drop')
 require('./pluck')
 
 require('./intersection')
+require('./flatten')
 
 require('./pair')
 require('./fromPairs')

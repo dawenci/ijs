@@ -39,6 +39,8 @@ export { default as passAny } from './passAny'
 export { default as none } from './none'
 export { default as passNone } from './passNone'
 
+export { default as complement } from './complement'
+
 
 // tools
 export { default as type } from './type'
@@ -128,6 +130,7 @@ export { default as size } from './size'
 export { default as drop } from './drop'
 export { default as pluck } from './pluck'
 export { default as intersection } from './intersection'
+export { default as flatten } from './flatten'
 
 export { default as pair } from './pair'
 export { default as fromPairs } from './fromPairs'

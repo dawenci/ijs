@@ -1,6 +1,6 @@
 const slice = Array.prototype.slice
 
-export default function <E, R>(iteratee: (element: E, ...rest) => R, coll: ArrayLike<E>): Array<R> {
+export default function <E, R>(iteratee: (element: E, ...rest) => R, coll: ArrayLike<E>, ...colls): Array<R> {
   coll = coll || []
   switch (arguments.length) {
     case 2: {      

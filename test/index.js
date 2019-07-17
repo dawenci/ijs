@@ -82,6 +82,7 @@ require('./gte')
 require('./lt')
 require('./lte')
 require('./eq')
+require('./eqBy')
 require('./equals')
 
 require('./map')

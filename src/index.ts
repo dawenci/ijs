@@ -99,6 +99,7 @@ export { default as gte } from './gte'
 export { default as lt } from './lt'
 export { default as lte } from './lte'
 export { default as eq } from './eq'
+export { default as eqBy } from './eqBy'
 export { default as equals } from './equals'
 
 

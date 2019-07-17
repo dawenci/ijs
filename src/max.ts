@@ -1,3 +1,7 @@
-import { curry1 } from './curry'
+import { curry2 } from './curry'
 
-export default curry1((numbers: number[]): number => Math.max.apply(Math, numbers))
+function max(a: number, b: number): number {
+  return Math.max(a, b)
+}
+
+export default curry2(max)

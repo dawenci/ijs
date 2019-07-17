@@ -1,3 +1,7 @@
-import { curry1 } from './curry'
+import { curry2 } from './curry'
 
-export default curry1((numbers: number[]): number => Math.min.apply(Math, numbers))
+function min(a: number, b: number): number {
+  return Math.min(a, b)
+}
+
+export default curry2(min)

@@ -1,9 +1,4 @@
 import { curry3 } from './curry'
+import _slice from './internal/_slice'
 
-const _slice = Array.prototype.slice
-const slice = (from, to, list) => {
-  if (!list) return []
-  return _slice.call(list, from, to)
-}
-
-export default curry3(slice)
+export default curry3(_slice)

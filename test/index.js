@@ -118,6 +118,8 @@ require('./pluck')
 require('./intersection')
 require('./flatten')
 
+require('./take')
+
 require('./pair')
 require('./fromPairs')
 

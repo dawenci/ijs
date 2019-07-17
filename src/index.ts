@@ -132,6 +132,7 @@ export { default as drop } from './drop'
 export { default as pluck } from './pluck'
 export { default as intersection } from './intersection'
 export { default as flatten } from './flatten'
+export { default as take } from './take'
 
 export { default as pair } from './pair'
 export { default as fromPairs } from './fromPairs'

@@ -87,6 +87,16 @@ describe('transduce', function() {
     assert.deepEqual(result, [6])
   })
 
+  it('drop', function() {
+    const result = I.transduce(
+      I.drop(5),
+      (acc, val) => (acc.push(val), acc),
+      [],
+      data
+    )
+    assert.deepEqual(result, [5,6,7,8,9])
+  })
+
   it('take', function() {
     const result = I.transduce(
       I.take(2),

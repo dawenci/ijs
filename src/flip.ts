@@ -10,7 +10,7 @@ import {
   Curry9,
   Curry10,
   Curried
-} from './curry/_types'
+} from './types'
 
 import curry, { _CURRY_ } from './curry'
 import { Flip } from './_typeUtils'
@@ -24,13 +24,13 @@ export const _FLIP_ = typeof Symbol === 'function' ? Symbol('_FLIP_') : '_FLIP_'
 /**
  * 交换 fn 的头两个参数
  * 返回柯里化后的新函数
- * 
+ *
  * ! 注意，flip(flip(fn)) 这样多重 flip 不支持超过 10 个的参数，超出会出现类型丢失问题
- * 
+ *
  * 对比：
  * I.curry((a, b) => a - b)(1, 2) // -1
  * I.flip((a, b) => a - b)(1, 2) // 1
- * 
+ *
  */
 function flip<P extends any[], R>(): typeof flip
 function flip<P extends any[], R>(fn: (() => R)): typeof fn

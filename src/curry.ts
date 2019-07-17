@@ -13,8 +13,8 @@ import {
   Curry9,
   Curry10,
   Curried
-} from './_types'
-import _arity, { ArityType } from '../internal/_arity'
+} from './types'
+import _arity, { ArityType } from './internal/_arity'
 
 const slice = Array.prototype.slice
 
@@ -136,7 +136,7 @@ export function curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
 
       // 优化
       case 4: return fn(a as A, b as B, c as C, args[3])
-      case 5: return fn(a as A, b as B, c as C, args[3], args[4])  
+      case 5: return fn(a as A, b as B, c as C, args[3], args[4])
 
       default:
         return fn.apply(void 0, args)

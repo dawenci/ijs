@@ -105,6 +105,7 @@ export { default as equals } from './equals'
 // collection
 export { default as map } from './map'
 export { default as reduce } from './reduce'
+export { default as transduce } from './transduce'
 export { default as filter } from './filter'
 export { default as reject } from './reject'
 export { default as find } from './find'

@@ -5,7 +5,7 @@ import {
   Transformer
 } from './protocol'
 
-export default class BaseTranducer implements Transformer {
+export default class BaseTransformer implements Transformer {
   [INIT]() {
     throw new Error('init not implemented')
   }

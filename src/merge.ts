@@ -6,5 +6,5 @@ function merge(to, from) {
     ? _merge([], to, from)
     : _merge({}, to, from)
 }
- 
+
 export default curry2(merge)

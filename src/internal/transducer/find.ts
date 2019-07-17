@@ -1,13 +1,9 @@
-import {
-  STEP,
-  RESULT,
-  Transformer
-} from './protocol'
-import BaseTranducer from './base'
+import { STEP, RESULT, Transformer } from './protocol'
+import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../curry'
+import { curry2 } from '../../curry'
 
-class XFind extends BaseTranducer {
+class XFind extends BaseTransformer {
   private found: boolean
   constructor(private fn, private transformer) {
     super()
@@ -30,8 +26,8 @@ class XFind extends BaseTranducer {
   }
 }
 
-export default curry2(function (
-  fn: (value: any) => any, transformer: Transformer
-): Transformer {
+function transducer(fn: (value: any) => any, transformer: Transformer): Transformer {
   return new XFind(fn, transformer)
-})
+}
+
+export default curry2(transducer)

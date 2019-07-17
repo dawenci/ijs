@@ -1,17 +1,13 @@
-import {
-  RESULT,
-  STEP,
-  Transformer
-} from './protocol'
-import BaseTranducer from './base'
+import { RESULT, STEP, Transformer } from './protocol'
+import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../curry'
+import { curry2 } from '../../curry'
 
-class XAll extends BaseTranducer {
+class XAll extends BaseTransformer {
   private all: boolean
   constructor(private predicate, private transformer) {
     super()
-    this.all = false;
+    this.all = false
   }
 
   [RESULT](accumulator) {
@@ -23,16 +19,15 @@ class XAll extends BaseTranducer {
 
   [STEP](accumulator, currentValue) {
     if (!this.predicate(currentValue)) {
-      this.all = false;
+      this.all = false
       accumulator = _reduced(this.transformer[STEP](accumulator, false))
     }
     return accumulator
   }
 }
 
-export default curry2(function(
-  pred: (value: any) => boolean,
-  transformer: Transformer
-): Transformer {
+function transducer(pred: (value: any) => boolean, transformer: Transformer): Transformer {
   return new XAll(pred, transformer)
-})
+}
+
+export default curry2(transducer)

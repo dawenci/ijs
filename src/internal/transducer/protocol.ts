@@ -10,6 +10,11 @@ export interface Reducer {
   (accumulator, currentValue): any
 }
 
+export interface Reduced<T> {
+  [VALUE]: T
+  [REDUCED]: boolean
+}
+
 export interface Transformer {
   // 返回初始化值
   [INIT]: () => any

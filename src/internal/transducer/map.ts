@@ -3,7 +3,7 @@ import {
   Transformer
 } from './protocol'
 import BaseTranducer from './base'
-import { curry2 } from '../curry'
+import { curry2 } from '../../curry'
 
 class XMap extends BaseTranducer {
   constructor(private fn, private transformer) {

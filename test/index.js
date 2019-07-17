@@ -86,6 +86,7 @@ require('./equals')
 
 require('./map')
 require('./reduce')
+require('./transduce')
 require('./filter')
 require('./reject')
 require('./find')

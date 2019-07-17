@@ -10,7 +10,7 @@ function cloneRegExp(regexp) {
 // 深拷贝
 function cloneDeep(obj) {
   if (obj === undefined || obj === null) return obj
-  
+
   // 原始类型复制赋值，函数直接引用
   const type = typeof obj
   if (type === 'string'

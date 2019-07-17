@@ -6,11 +6,13 @@ import {
   STEP,
   REDUCED,
   VALUE,
+  ITER_SYMBOL,
+
   Reducer,
   Transducer,
   Transformer,
   _Iterator,
-} from './transducers/protocol'
+} from './transducer/protocol'
 
 
 // 将普通 reducer 包装成 transformer
@@ -73,10 +75,6 @@ function _methodReduce(tarnsformer, initialValue, object, methodName) {
     object[methodName](tarnsformer[STEP].bind(tarnsformer), accumulator)
   )
 }
-
-// function _reduced(x) {
-//   return x && x[REDUCED] ? x : { [VALUE]: x, [REDUCED]: true }
-// }
 
 function _reduce(
   tarnsformer: Transformer,

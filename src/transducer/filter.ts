@@ -1,17 +1,13 @@
 import {
-  INIT,
-  RESULT,
   STEP,
   Transformer
 } from './protocol'
+import BaseTranducer from './base'
+import { curry2 } from '../curry'
 
-class XFilter {
-  constructor(private predicate, private transformer) {} 
-  [INIT]() {
-    throw new Error('init not implemented')
-  }
-  [RESULT](accumulator) {
-    return accumulator
+class XFilter extends BaseTranducer {
+  constructor(private predicate, private transformer) {
+    super()
   }
   [STEP](accumulator, currentValue) {
     return this.predicate(currentValue)
@@ -20,9 +16,9 @@ class XFilter {
   }
 }
 
-export default function filteringTransducer(
+export default curry2(function filteringTransducer(
   pred: (value: any) => boolean,
   transformer: Transformer
 ): Transformer {
   return new XFilter(pred, transformer)
-}
+})

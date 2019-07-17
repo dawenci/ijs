@@ -125,6 +125,7 @@ require('./intersection')
 require('./union')
 require('./unionBy')
 require('./unionWith')
+require('./concat')
 
 require('./trim')
 require('./capitalize')

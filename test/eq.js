@@ -5,6 +5,7 @@ describe('eq', function() {
   it('eq', function() {
     assert.ok(I.eq(1, 1))
     assert.ok(I.eq(0, 0))
+    assert.ok(I.eq(0, -0))
     assert.ok(I.eq('0', '0'))
     assert.ok(I.eq(true, true))
     assert.ok(I.eq(false, false))

@@ -5,6 +5,7 @@ describe('eqBy', function() {
   it('eqBy', function() {
     assert.ok(I.eqBy(I.identity, 1, 1))
     assert.ok(I.eqBy(I.identity, 0, 0))
+    assert.ok(I.eqBy(I.identity, 0, -0))
     assert.ok(I.eqBy(I.identity, '0', '0'))
     assert.ok(I.eqBy(I.identity, true, true))
     assert.ok(I.eqBy(I.identity, false, false))

@@ -2,10 +2,10 @@ import {
   STEP,
   Transformer
 } from './protocol'
-import BaseTranducer from './base'
+import BaseTransformer from './base'
 import { curry2 } from '../../curry'
 
-class XMap extends BaseTranducer {
+class XMap extends BaseTransformer {
   constructor(private fn, private transformer) {
     super()
   }

@@ -2,11 +2,11 @@ import {
   STEP,
   Transformer
 } from './protocol'
-import BaseTranducer from './base'
+import BaseTransformer from './base'
 import _reduced from './reduced'
 import { curry2 } from '../../curry'
 
-class XTake extends BaseTranducer {
+class XTake extends BaseTransformer {
   private index: number
   constructor(private n, private transformer) {
     super()

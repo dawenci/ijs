@@ -5,13 +5,13 @@ import { curry2 } from '../../curry'
 class XDropWhile extends BaseTransformer {
   index: number
   stop: boolean
-  constructor(private fn, private transformer) {
+  constructor(private predicate: (value: any) => boolean, private transformer) {
     super()
     this.stop = false
     this.index = 0
   }
   [STEP](accumulator, currentValue) {
-    if (!this.stop && this.fn(currentValue)) {
+    if (!this.stop && this.predicate(currentValue)) {
       this.index += 1
       return accumulator
     }
@@ -20,8 +20,8 @@ class XDropWhile extends BaseTransformer {
   }
 }
 
-function transducer(fn, transformer: Transformer): Transformer {
-  return new XDropWhile(fn, transformer)
+function transducer(predicate: (value: any) => boolean, transformer: Transformer): Transformer {
+  return new XDropWhile(predicate, transformer)
 }
 
 export default curry2(transducer)

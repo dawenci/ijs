@@ -131,6 +131,7 @@ export { default as flatten } from './flatten'
 export { default as take } from './take'
 export { default as pair } from './pair'
 export { default as fromPairs } from './fromPairs'
+export { default as concat } from './concat'
 
 export { default as uniq } from './uniq'
 export { default as uniqBy } from './uniqBy'

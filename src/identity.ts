@@ -1,6 +1,4 @@
 import { curry1 } from './curry'
+import _identity from './internal/_identity'
 
-// I 组合子
-const I = x => x
-
-export default curry1(I)
+export default curry1(_identity)

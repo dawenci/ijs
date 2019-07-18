@@ -14,7 +14,7 @@ const slice = Array.prototype.slice
  *   //=> ['0-f', '1-o', '2-o', '3-b', '4-a', '5-r']
  *
  */
-const addIndex = function addIndex(originFn) {
+function addIndex(originFn) {
   let newFn = function(orginIteratee) {
     const args = slice.call(arguments, 0)
 

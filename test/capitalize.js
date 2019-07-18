@@ -3,7 +3,7 @@ const I = require('../dist/cjs')
 
 describe('capitalize', function() {
   it('capitalize', function() {
-    // TODO
-    // assert.deepEqual(I.capitalize(), '')
+    assert.equal(I.capitalize('abc'), 'Abc')
+    assert.equal(I.capitalize('  abc'), 'Abc')
   })
 })

@@ -1,2 +1,7 @@
 import { curry2 } from './curry'
-export default curry2((a: number, b: number) => (+a) + (+b))
+
+function add(a: number, b: number): number {
+  return (+a) + (+b)
+}
+
+export default curry2(add)

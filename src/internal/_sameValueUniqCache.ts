@@ -1,11 +1,11 @@
 export default class _SameValueUniqCache {
-  strings: any
-  others: any
-  list: any
+  _strings: any
+  _primitive: any
+  _set: any
   constructor(initList?) {
-    this.strings = {}
-    this.others = {}
-    this.list = []
+    this._strings = {}
+    this._primitive = {}
+    this._set = new Set()
     if (initList && initList.length) {
       const len = initList.length
       for (let index = 0; index < len; index += 1) {
@@ -17,55 +17,54 @@ export default class _SameValueUniqCache {
   has(item) {
     const type = typeof item
     if (type === 'string') {
-      return !!this.strings.hasOwnProperty(item)
+      return !!this._strings.hasOwnProperty(item)
     }
     // -0
     if (type === 'number' && 1 / item === -Infinity) {
-      return this.others.hasOwnProperty('-0')
+      return this._primitive.hasOwnProperty('-0')
     }
     if (type === 'number' || item == null || type === 'symbol') {
-      return !!this.others.hasOwnProperty(item)
+      return !!this._primitive.hasOwnProperty(item)
     }
     // 其他对象
-    return this.list.indexOf(item) !== -1
+    return this._set.has(item)
   }
 
   add(item) {
     const type = typeof item
     if (type === 'string') {
-      this.strings[item] = item
+      this._strings[item] = item
       return
     }
     // -0
     if (type === 'number' && 1 / item === -Infinity) {
-      this.others['-0'] = -0
+      this._primitive['-0'] = -0
       return
     }
     if (type === 'number' || item == null || type === 'symbol') {
-      this.others[item] = item
+      this._primitive[item] = item
       return
     }
     // 其他对象
-    if (this.list.indexOf(item) === -1) this.list.push(item)
+    this._set.add(item)
   }
 
   remove(item) {
     const type = typeof item
     if (type === 'string') {
-      delete this.strings[item]
+      delete this._strings[item]
       return
     }
     // -0
     if (type === 'number' && 1 / item === -Infinity) {
-      delete this.others['-0']
+      delete this._primitive['-0']
       return
     }
     if (type === 'number' || item == null || type === 'symbol') {
-      delete this.others[item]
+      delete this._primitive[item]
       return
     }
     // 其他对象
-    const index = this.list.indexOf(item)
-    this.list.splice(index, 1)
+    this._set.delete(item)
   }
 }

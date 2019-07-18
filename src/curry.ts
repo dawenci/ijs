@@ -33,17 +33,13 @@ export function curry1<A, R>(fn: Arity1<A, R>) {
   function curried(a?) {
     const args = arguments
     switch (args.length) {
-      case 1:
-        return fn(a)
-      case 0:
-        return curried
+      case 1: return fn(a)
+      case 0: return curried
 
-      // 优化
       case 2: return fn(a, args[1])
       case 3: return fn(a, args[1], args[2])
 
-      default:
-        return fn.apply(void 0, args)
+      default: return fn.apply(void 0, args)
     }
   }
   curried[_CURRY_] = fn
@@ -65,26 +61,19 @@ export function curry2<A, B, R>(fn: Arity2<A, B, R>) {
           const args = arguments
           const len = args.length
           if (len === 1) return fn(a as A, b)
-
-          // 优化
           if (len === 2) return fn(a as A, b as B, args[1])
           if (len === 3) return fn(a as A, b as B, args[1], args[2])
-
           const combined = [ a as A ]
           combined.push.apply(combined, args)
           return fn.apply(void 0, combined)
         })
-      case 2:
-        return fn(a as A, b)
-      case 0:
-        return curried
+      case 2: return fn(a as A, b)
+      case 0: return curried
 
-      // 优化
       case 3: return fn(a as A, b, args[2])
       case 4: return fn(a as A, b, args[2], args[3])
 
-      default:
-        return fn.apply(void 0, args)
+      default: return fn.apply(void 0, args)
     }
   }
   curried[_CURRY_] = fn
@@ -108,7 +97,6 @@ export function curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
           const len = args.length
           if (len === 2) return fn(a as A, b, c)
 
-          // 优化
           if (len === 3) return fn(a as A, b as B, c, args[2])
           if (len === 4) return fn(a as A, b as B, c, args[2], args[3])
 
@@ -122,7 +110,6 @@ export function curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
           const len = args.length
           if (len === 1) return fn(a as A, b as B, c)
 
-          // 优化
           if (len === 2) return fn(a as A, b as B, c, args[1])
           if (len === 3) return fn(a as A, b as B, c, args[1], args[2])
 
@@ -130,16 +117,13 @@ export function curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
           combined.push.apply(combined, args)
           return fn.apply(void 0, combined)
         })
-      case 3:
-        return fn(a as A, b as B, c as C)
+      case 3: return fn(a as A, b as B, c as C)
       case 0: return curried
 
-      // 优化
       case 4: return fn(a as A, b as B, c as C, args[3])
       case 5: return fn(a as A, b as B, c as C, args[3], args[4])
 
-      default:
-        return fn.apply(void 0, args)
+      default: return fn.apply(void 0, args)
     }
   }
   curried[_CURRY_] = fn

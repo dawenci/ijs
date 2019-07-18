@@ -5,7 +5,8 @@ describe('equals', function() {
   it('equals', function() {
     assert.ok(I.equals(1, 1))
     assert.ok(I.equals(0, 0))
-    assert.ok(I.equals(0, -0))
+    assert.ok(I.equals(-0, -0))
+    assert.ok(!I.equals(0, -0))
     assert.ok(I.equals('0', '0'))
     assert.ok(I.equals(true, true))
     assert.ok(I.equals(false, false))

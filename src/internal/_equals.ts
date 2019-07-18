@@ -1,10 +1,15 @@
-import _sameValueZero from './_sameValueZero'
+import _sameValue from './_sameValue'
+import _isPrimitive from './_isPrimitive'
 import _type from './_type'
 import _keys from './_keys'
 
 function equals(a, b): boolean {
-  if (_sameValueZero(a, b)) return true
+  // 同值，返回
+  if (_sameValue(a, b)) return true
+  // 非同值，原始类型，返回 false
+  if (_isPrimitive(a)) return false
 
+  // 处理对象类型
   // new String(3), '3'
   if (typeof a !== typeof b) return false
 

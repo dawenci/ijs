@@ -1,4 +1,4 @@
-import _indexOf from './_indexOf'
+import _indexOf from './_sameValueIndexOf'
 
 export default (props, obj) => {
   const result = {}

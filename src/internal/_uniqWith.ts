@@ -1,4 +1,4 @@
-import _indexOf from "./_indexOf";
+import _indexOf from "./_sameValueIndexOf";
 import _forEach from './_forEach'
 import _any from './_any'
 

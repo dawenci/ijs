@@ -1,5 +1,5 @@
 import { curry2 } from './curry'
-import _indexOf from './internal/_indexOf'
+import _sameValueIndexOf from './internal/_sameValueIndexOf'
 import _keys from './internal/_keys'
 import _sameValueZero from './internal/_sameValueZero'
 
@@ -8,7 +8,7 @@ export default curry2((item: any, list: any): boolean => {
     return list.indexOf(item) !== -1
   }
   if (Array.isArray(list)) {
-    return _indexOf(0, item, list) !== -1;
+    return _sameValueIndexOf(0, item, list) !== -1;
   }
   if (typeof list === 'object' && list !== null || typeof list === 'function') {
     const keys = _keys(list)

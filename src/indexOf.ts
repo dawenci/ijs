@@ -1,4 +1,4 @@
 import { curry3 } from './curry'
-import _sameValueIndexOf from './internal/_indexOf'
+import _indexOf from './internal/_indexOf'
 
-export default curry3(_sameValueIndexOf)(0)
+export default curry3(_indexOf)(0)

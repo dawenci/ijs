@@ -1,4 +1,3 @@
-import _indexOf from "./_indexOf";
 import _forEach from './_forEach'
 import _any from './_any'
 

@@ -48,4 +48,24 @@ export default class _SameValueUniqCache {
     // 其他对象
     if (this.list.indexOf(item) === -1) this.list.push(item)
   }
+
+  remove(item) {
+    const type = typeof item
+    if (type === 'string') {
+      delete this.strings[item]
+      return
+    }
+    // -0
+    if (type === 'number' && 1 / item === -Infinity) {
+      delete this.others['-0']
+      return
+    }
+    if (type === 'number' || item == null || type === 'symbol') {
+      delete this.others[item]
+      return
+    }
+    // 其他对象
+    const index = this.list.indexOf(item)
+    this.list.splice(index, 1)
+  }
 }

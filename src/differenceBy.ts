@@ -1,10 +1,11 @@
 import { curry2 } from "./curry";
 import _map from './internal/_map'
+import _sameValueUniqCache from './internal/_sameValueUniqCache'
 
 function differenceBy(fn, array1, array2) {
   const result = []
-  const resultCache = new Set()
-  const array2Cache = new Set(_map(fn, array2))
+  const resultCache = new _sameValueUniqCache()
+  const array2Cache = new _sameValueUniqCache(_map(fn, array2))
 
   const len = array1.length
   for (let index = 0; index < len; index += 1) {

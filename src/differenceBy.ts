@@ -1,6 +1,6 @@
 import { curry2 } from "./curry";
 import _map from './internal/_map'
-import _sameValueUniqCache from './internal/_sameValueUniqCache'
+import _sameValueUniqCache from './internal/_SetCache'
 
 function differenceBy(fn, array1, array2) {
   const result = []

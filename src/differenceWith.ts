@@ -1,7 +1,7 @@
 import { curry2 } from "./curry";
 import _map from './internal/_map'
 import _uniqWith from './internal/_uniqWith'
-import _sameValueUniqCache from './internal/_sameValueUniqCache'
+import _sameValueUniqCache from './internal/_SetCache'
 
 function differenceWith(compare, array1, array2) {
   const result = []

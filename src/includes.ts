@@ -1,5 +1,5 @@
 import { curry2 } from './curry'
-import _sameValueIndexOf from './internal/_sameValueIndexOf'
+import _sameValueIndexOf from './internal/_indexOf'
 import _keys from './internal/_keys'
 import _sameValueZero from './internal/_sameValueZero'
 

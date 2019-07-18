@@ -1,5 +1,5 @@
 import _sameValue from "./_sameValue";
-import _sameValueUniqCache from './_sameValueUniqCache'
+import _sameValueUniqCache from './_SetCache'
 
 export default function uniqBy(fn, array) {
   const result = []

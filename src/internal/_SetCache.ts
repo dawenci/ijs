@@ -1,10 +1,11 @@
+const has = Object.prototype.hasOwnProperty
 export default class _SameValueUniqCache {
   _strings: any
   _primitive: any
   _set: any
   constructor(initList?) {
-    this._strings = {}
-    this._primitive = {}
+    this._strings = Object.create(null)
+    this._primitive = Object.create(null)
     this._set = new Set()
     if (initList && initList.length) {
       const len = initList.length
@@ -17,14 +18,14 @@ export default class _SameValueUniqCache {
   has(item) {
     const type = typeof item
     if (type === 'string') {
-      return !!this._strings.hasOwnProperty(item)
+      return !!has.call(this._strings, item)
     }
     // -0
     if (type === 'number' && 1 / item === -Infinity) {
-      return this._primitive.hasOwnProperty('-0')
+      return has.call(this._primitive, '-0')
     }
     if (type === 'number' || item == null || type === 'symbol') {
-      return !!this._primitive.hasOwnProperty(item)
+      return !!has.call(this._primitive, item)
     }
     // 其他对象
     return this._set.has(item)

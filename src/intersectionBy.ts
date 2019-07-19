@@ -1,6 +1,5 @@
 import { curry3 } from './curry'
 import _intersectionBy from './internal/_intersectionBy'
-import _identity from './internal/_identity'
 
 /**
  * 取两个数组交集（结果 uniq）
@@ -9,4 +8,4 @@ import _identity from './internal/_identity'
  * @param {Array} array1
  * @param {Array} array2
  */
-export default curry3(_intersectionBy)(_identity)
+export default curry3(_intersectionBy)

@@ -3,7 +3,7 @@ import BaseTransformer from './base'
 import _reduced from './reduced'
 import { curry2 } from '../../curry'
 
-class XAny extends BaseTransformer {
+class XSome extends BaseTransformer {
   private any: boolean
   constructor(private predicate, private transformer) {
     super()
@@ -27,7 +27,7 @@ class XAny extends BaseTransformer {
 }
 
 function transducer(predicate: (value: any) => boolean, transformer: Transformer): Transformer {
-  return new XAny(predicate, transformer)
+  return new XSome(predicate, transformer)
 }
 
 export default curry2(transducer)

@@ -1,4 +1,4 @@
-import { Cast, Drop, Length } from '../_typeUtils'
+import { Cast, Drop, Length } from './_typeUtils'
 
 export type Arity1<A, R> = (a: A, ...rest: any[]) => R
 export type Arity2<A, B, R> = (a: A, b: B, ...rest: any[]) => R

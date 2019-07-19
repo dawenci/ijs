@@ -1,30 +1,27 @@
-// 函数
+// Function
 export { default as curry } from './curry'
 export { default as compose } from './compose'
 export { default as pipe } from './pipe'
 export { default as flip } from './flip'
-export { default as unary } from './unary'
-export { default as binary } from './binary'
-export { default as memoize } from './memoize'
-export { default as addIndex } from './addIndex'
 export { default as apply } from './apply'
 export { default as partial } from './partial'
 export { default as __ } from './__'
-export { default as invoker } from './invoker'
-export { default as nthArg } from './nthArg'
-export { default as once } from './once'
-export { default as thunkify } from './thunkify'
-
-
-// 常用组合子
 export { default as identity } from './identity'
 export { default as tap } from './tap'
 export { default as always } from './always'
 export { default as t } from './t'
 export { default as f } from './f'
+export { default as invoker } from './invoker'
+export { default as nthArg } from './nthArg'
+export { default as once } from './once'
+export { default as thunkify } from './thunkify'
+export { default as unary } from './unary'
+export { default as binary } from './binary'
+export { default as memoize } from './memoize'
+export { default as addIndex } from './addIndex'
 
 
-// 逻辑控制
+// Logic
 export { default as and } from './and'
 export { default as or } from './or'
 export { default as not } from './not'
@@ -32,50 +29,41 @@ export { default as when } from './when'
 export { default as unless } from './unless'
 export { default as until } from './until'
 export { default as cond } from './cond'
-
-export { default as all } from './all'
-export { default as passAll } from './passAll'
-export { default as any } from './any'
-export { default as passAny } from './passAny'
-export { default as none } from './none'
+export { default as passEvery } from './passEvery'
+export { default as passSome } from './passSome'
 export { default as passNone } from './passNone'
-
 export { default as complement } from './complement'
+export { default as isEmpty } from './isEmpty'
 
 
-// tools
+// Type
 export { default as type } from './type'
 export { default as isNil } from './isNil'
 export { default as isNaN } from './isNaN'
 export { default as isPrimitive } from './isPrimitive'
 export { default as isObject } from './isObject'
 export { default as is } from './is'
-export { default as isEmpty } from './isEmpty'
 
 
-// objects
+// Object
 export { default as clone } from './clone'
+export { default as merge } from './merge'
 export { default as pick } from './pick'
 export { default as pickBy } from './pickBy'
 export { default as omit } from './omit'
 export { default as omitBy } from './omitBy'
-
 export { default as path } from './path'
 export { default as property } from './property'
-
 export { default as has } from './has'
 export { default as keys } from './keys'
 export { default as values } from './values'
 export { default as forOwn } from './forOwn'
-
 export { default as hasIn } from './hasIn'
 export { default as keysIn } from './keysIn'
 export { default as valuesIn } from './valuesIn'
 export { default as forIn } from './forIn'
-
 export { default as where } from './where'
 
-export { default as merge } from './merge'
 
 // Math
 export { default as add } from './add'
@@ -94,18 +82,21 @@ export { default as sum } from './sum'
 export { default as sumBy } from './sumBy'
 
 
-// compare
+// Relation
 export { default as gt } from './gt'
 export { default as gte } from './gte'
 export { default as lt } from './lt'
 export { default as lte } from './lte'
+export { default as identical } from './identical'
 export { default as eq } from './eq'
 export { default as eqBy } from './eqBy'
-export { default as identical } from './identical'
 export { default as equals } from './equals'
 
 
-// collection
+// List
+export { default as every } from './every'
+export { default as some } from './some'
+export { default as none } from './none'
 export { default as map } from './map'
 export { default as reduce } from './reduce'
 export { default as transduce } from './transduce'
@@ -136,7 +127,6 @@ export { default as take } from './take'
 export { default as pair } from './pair'
 export { default as fromPairs } from './fromPairs'
 export { default as concat } from './concat'
-
 export { default as uniq } from './uniq'
 export { default as uniqBy } from './uniqBy'
 export { default as uniqWith } from './uniqWith'
@@ -149,6 +139,7 @@ export { default as intersection } from './intersection'
 export { default as union } from './union'
 export { default as unionBy } from './unionBy'
 export { default as unionWith } from './unionWith'
+export { default as repeat } from './repeat'
 
 
 // String
@@ -157,7 +148,6 @@ export { default as capitalize } from './capitalize'
 export { default as camelCase } from './camelCase'
 export { default as lowerCase } from './lowerCase'
 export { default as upperCase } from './upperCase'
-export { default as repeat } from './repeat'
 export { default as endsWith } from './endsWith'
 export { default as startsWith } from './startsWith'
 export { default as replace } from './replace'

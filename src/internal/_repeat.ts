@@ -1,10 +1,9 @@
-function repeat (str: string, n: number): string {
-  let result = ''
-  if (!str) return ''
+function repeat<E> (e: E, n: number): Array<E> {
+  let result = []
   do {
-    if (n % 2) result += str
+    if (n % 2) result.push(e)
     n = Math.floor(n / 2)
-    if (n) str += str
+    if (n) result.push(e)
   } while (n)
   return result
 }

@@ -57,9 +57,9 @@ describe('transduce', function() {
     assert.deepEqual(result, [0])
   })
 
-  it('all', function() {
+  it('every', function() {
     const result = I.transduce(
-      I.all(isEven),
+      I.every(isEven),
       (acc, val) => (acc.push(val), acc),
       [],
       data
@@ -67,9 +67,9 @@ describe('transduce', function() {
     assert.deepEqual(result, [false])
   })
 
-  it('any', function() {
+  it('some', function() {
     const result = I.transduce(
-      I.any(isEven),
+      I.some(isEven),
       (acc, val) => (acc.push(val), acc),
       [],
       data

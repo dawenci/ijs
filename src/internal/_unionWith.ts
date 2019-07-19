@@ -1,4 +1,4 @@
-import _any from './_any'
+import _some from './_some'
 
 export default function unionWith(compare, array1, array2) {
   array1 = [...new Set(array1)]
@@ -8,7 +8,7 @@ export default function unionWith(compare, array1, array2) {
   const len1 = array1.length
   for (let index = 0; index < len1; index += 1) {
     const item = array1[index]
-    const isDuplicate = _any(obj => compare(item, obj), result)
+    const isDuplicate = _some(obj => compare(item, obj), result)
     if (isDuplicate) {
       continue
     }
@@ -18,7 +18,7 @@ export default function unionWith(compare, array1, array2) {
   const len2 = array2.length  
   for (let index = 0; index < len2; index += 1) {
     const item = array2[index]
-    const isDuplicate = _any(obj => compare(item, obj), result)
+    const isDuplicate = _some(obj => compare(item, obj), result)
     if (isDuplicate) {
       continue
     }

@@ -1,6 +1,6 @@
 import { curry2 } from './curry'
 
-function passAny(tests: Array<(input: any) => boolean>, input: any): boolean {
+function passSome(tests: Array<(input: any) => boolean>, input: any): boolean {
   const size = tests.length >>> 0
   if (!size) return false
   for (let index = 0; index < size; index += 1) {
@@ -9,4 +9,4 @@ function passAny(tests: Array<(input: any) => boolean>, input: any): boolean {
   return false
 }
 
-export default curry2(passAny)
+export default curry2(passSome)

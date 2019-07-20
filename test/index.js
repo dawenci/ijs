@@ -100,6 +100,8 @@ require('./findIndex')
 require('./forEach')
 require('./forOwn')
 require('./forIn')
+require('./forOwnIndexed')
+require('./forInIndexed')
 require('./times')
 
 require('./indexOf')

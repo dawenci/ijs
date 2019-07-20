@@ -2,52 +2,45 @@ import { curry2 } from './curry'
 import __ from './__'
 import _fill from './internal/_fill'
 import _arity from './internal/_arity'
+import _reduce from './internal/_reduce'
 
 const slice = Array.prototype.slice
+const count = (list) => _reduce((count, arg) => arg === __ ? count : count + 1, 0, list)
+const copyArgs = args => args.slice()
 
 // TODO, 性能
-
 function partial(fn: (...args: any[]) => any, partialArgs: any[]): any {
   const arity = fn.length
-  // 按照元数填充满占位符
-  const appliedArgs = _fill(Array(arity), __)
+  const filteredArgs = copyArgs(partialArgs)
 
-  // 使用部分应用的参数替换对应位置的占位符
-  const partialCount = partialArgs.length
-  let placeholderCount = 0
-  for (let index = 0; index < partialCount; index += 1) {
-    const arg = partialArgs[index]
-    if (arg === __) placeholderCount += 1
-    appliedArgs[index] = arg
+  // 部分应用的参数，末尾是占位符的话，没有意义，直接移除即可。
+  while (filteredArgs[filteredArgs.length - 1] === __) {
+    filteredArgs.pop()
   }
+  if (!filteredArgs.length) return fn
 
-  const partialFn = function() {
-    const args = slice.call(arguments, 0)
-    const size = args.length
-    const allArgs = appliedArgs.slice()
+  const appliedCount = count(filteredArgs)
 
+  const newFn = function() {
+    // 复制，以免修改外部变量，影响其他闭包实例
+    let args = copyArgs(filteredArgs)
+    let holderCout = args.length - appliedCount
+    const size = arguments.length
     for (let index = 0; index < size; index += 1) {
       // 使用传入的参数，逐个替换掉占位符
-      const holderIndex = allArgs.indexOf(__)
-      if (holderIndex !== -1) {
-        allArgs[holderIndex] = args[index]
+      if (holderCout--) {
+        args[args.indexOf(__)] = arguments[index]
         continue
       }
 
       // 填满占位符了，直接将传入的剩余参数，push 到末尾
-      allArgs.push.apply(allArgs, args.slice(index))
+      args = args.concat(slice.call(arguments, index))
       break
     }
-
-    return fn.apply(void 0, allArgs)
+    return fn.apply(void 0, args)
   }
-
-  // 所有参数已经预先提供，则直接返回
-  const rest = arity - (partialCount - placeholderCount)
-  if (rest <= 0) return partialFn
-
-  // 否则包装返回一个剩余参数元数的新函数
-  return _arity(rest, partialFn)
+  
+  return (arity >= appliedCount) ? _arity(arity - appliedCount, newFn) : newFn
 }
 
 export default curry2(partial)

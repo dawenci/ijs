@@ -8,14 +8,20 @@ describe('transduce', function() {
 
   it('多重变换，pipe, compose 的顺序相反', function() {
     const result1 =I.transduce(
-      I.pipe(I.map(mult10), I.filter(isEven)),
+      I.pipe([
+        I.map(mult10),
+        I.filter(isEven)
+      ]),
       (acc, val) => (acc.push(val), acc),
       [],
       data
     )
 
     const result2 =I.transduce(
-      I.compose(I.filter(isEven), I.map(mult10)),
+      I.compose([
+        I.filter(isEven),
+        I.map(mult10)
+      ]),
       (acc, val) => (acc.push(val), acc),
       [],
       data

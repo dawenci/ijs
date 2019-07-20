@@ -1,6 +1,8 @@
 require('./curry')
 require('./compose')
 require('./pipe')
+require('./composeWith')
+require('./pipeWith')
 require('./flip')
 require('./unary')
 require('./binary')

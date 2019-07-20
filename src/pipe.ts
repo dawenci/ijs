@@ -1,4 +1,4 @@
-import { _pipe, _pipeAll, _pipeWith } from './internal/_pipe'
+import { _pipe } from './internal/_pipe'
 import { curry1 } from './curry';
 
 /**
@@ -9,48 +9,10 @@ import { curry1 } from './curry';
  * @see I.compose
  */
 
-// 函数列表
-function pipe(fnList: Array<(...args: any[]) => any>)
-// 函数列表，以及衔接函数之间的函数。值传递到下一个函数之前，经过该函数加工处理（如处理 undefined 等等）
-function pipe(fnList: Array<(...args: any[]) => any>, withFn: (fn: (value: any) => any, value: any) => any)
-// 两个函数
-function pipe(fn1: (...args: any[]) => any, fn2: (arg: any) => any)
-
 // 实现
-function pipe(arg1, arg2?) {
-  // 第一个输入是函数的情况，
-  // 1. 第二个也是函数，则 pipe 返回
-  // 2. 返回等待输入第二个函数的新函数
-  if (typeof arg1 === 'function') {
-    return typeof arg2 === 'function'
-      ? _pipe(arg1, arg2)
-      : curry1(arg2 => _pipe(arg1, arg2))
-  }
-
-  if (Array.isArray(arg1)) {
-    const fnList = arg1.slice()
-    const withFn = arg2
-    const listSize = fnList.length
-
-    // 数组中的函数少于两个，则返回一个等待输入函数的新函数
-    if (listSize < 2) {
-      const waitFor = function(other) {
-        if (Array.isArray(other)) fnList.push.apply(fnList, other)
-        else if (typeof other === 'function') fnList.push(other)
-        else return waitFor
-        return pipe(fnList, withFn)
-      }
-      return waitFor
-    }
-    // pipeWith
-    if (typeof withFn === 'function') {
-      return _pipeWith(withFn, fnList)
-    }
-    // pipeAll
-    return _pipeAll(fnList)
-  }
-
-  return pipe
+function pipe(fnList: Array<(...args: any[]) => any>) {
+  if (!fnList || !fnList.length) return curry1(pipe)
+  return _pipe(fnList)
 }
 
-export default pipe
+export default curry1(pipe)

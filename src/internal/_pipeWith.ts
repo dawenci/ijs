@@ -1,16 +1,12 @@
 import { curry } from '../curry'
-import _reduce from './_reduce'
 
-// TODO, result type
-function pipeWith(
+export function _pipeWith(
   withFn: (fn: (value: any) => any, value: any) => any,
   fnList: Array<(...args: any[]) => any>
 ) {
-  const size = fnList.length
-
   // 第一个函数为入口，如果只有一个函数，直接包装返回
   const first = fnList[0]
-  if (size === 1) return curry(first)
+  if (fnList.length === 1) return curry(first)
 
   const tail = fnList.slice(1)
   const tailSize = tail.length
@@ -39,5 +35,3 @@ function pipeWith(
     }
   }, first.length)
 }
-
-export default pipeWith

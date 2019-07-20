@@ -1,7 +1,9 @@
 // Function
 export { default as curry } from './curry'
 export { default as compose } from './compose'
+export { default as composeWith } from './composeWith'
 export { default as pipe } from './pipe'
+export { default as pipeWith } from './pipeWith'
 export { default as flip } from './flip'
 export { default as apply } from './apply'
 export { default as partial } from './partial'

@@ -138,6 +138,7 @@ require('./unionBy')
 require('./unionWith')
 require('./concat')
 require('./repeat')
+require('./zip')
 
 require('./trim')
 require('./capitalize')

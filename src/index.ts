@@ -145,6 +145,7 @@ export { default as union } from './union'
 export { default as unionBy } from './unionBy'
 export { default as unionWith } from './unionWith'
 export { default as repeat } from './repeat'
+export { default as zip } from './zip'
 
 
 // String

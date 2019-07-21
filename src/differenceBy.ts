@@ -1,8 +1,11 @@
-import { curry2 } from "./curry";
+import { _curry2 } from "./internal/_curry";
 import _map from './internal/_map'
 import _sameValueUniqCache from './internal/_SetCache'
 
-function differenceBy(fn, array1, array2) {
+function differenceBy(fn: (e: any) => any, array1, array2) {
+  if (!array1 || !array1.length) array1 = []
+  if (!array2 || !array2.length) array2 = []
+
   const result = []
   const resultCache = new _sameValueUniqCache()
   const array2Cache = new _sameValueUniqCache(_map(fn, array2))
@@ -19,4 +22,4 @@ function differenceBy(fn, array1, array2) {
   return result
 }
 
-export default curry2(differenceBy)
+export default _curry2(differenceBy)

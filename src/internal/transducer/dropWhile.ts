@@ -1,6 +1,6 @@
 import { STEP, Transformer } from './protocol'
 import BaseTransformer from './base'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XDropWhile extends BaseTransformer {
   index: number
@@ -24,4 +24,4 @@ function transducer(predicate: (value: any) => boolean, transformer: Transformer
   return new XDropWhile(predicate, transformer)
 }
 
-export default curry2(transducer)
+export default _curry2(transducer)

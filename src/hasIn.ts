@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function hasIn(key, obj) {
   if (!obj) return false
@@ -10,4 +10,4 @@ function hasIn(key, obj) {
   return false
 }
 
-export default curry2(hasIn)
+export default _curry2(hasIn)

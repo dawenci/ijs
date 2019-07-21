@@ -1,2 +1,2 @@
-import { curry2 } from './curry'
-export default curry2((a, b): boolean => a >= b)
+import { _curry2 } from './internal/_curry'
+export default _curry2((a, b): boolean => a >= b)

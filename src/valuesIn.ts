@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function valuesIn(obj: any) {
   const result = []
@@ -11,4 +11,4 @@ function valuesIn(obj: any) {
   return result
 }
 
-export default curry1(valuesIn)
+export default _curry1(valuesIn)

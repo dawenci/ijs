@@ -3,7 +3,7 @@
 function _indexOf(from: number, obj: string, list: string): number
 function _indexOf<E>(from: number, obj: E, list: ArrayLike<E>): number
 function _indexOf(from, obj, list) {
-  if (!list) return -1
+  if (!list || !list.length) return -1
 
   const size = list.length
   if (!size) return -1

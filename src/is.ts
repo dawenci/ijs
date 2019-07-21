@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function is(constructor: Function, test: any) {
   // undefined, null 无法探测
@@ -6,4 +6,4 @@ function is(constructor: Function, test: any) {
     && test.constructor === constructor || test instanceof constructor
 }
 
-export default curry2(is)
+export default _curry2(is)

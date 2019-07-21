@@ -1,5 +1,6 @@
 // Function
 export { default as curry } from './curry'
+export { default as curryN } from './curryN'
 export { default as compose } from './compose'
 export { default as composeWith } from './composeWith'
 export { default as pipe } from './pipe'
@@ -117,15 +118,17 @@ export { default as lastIndexOf } from './lastIndexOf'
 export { default as reverse } from './reverse'
 export { default as range } from './range'
 export { default as contains } from './contains'
-export { default as head } from './head'
-export { default as tail } from './tail'
+
+export { default as first } from './first'
 export { default as last } from './last'
 export { default as initial } from './initial'
+export { default as rest } from './rest'
+
 export { default as nth } from './nth'
 export { default as size } from './size'
 export { default as drop } from './drop'
-export { default as dropWhile } from './dropWhile'
 export { default as dropLast } from './dropLast'
+export { default as dropWhile } from './dropWhile'
 export { default as dropLastWhile } from './dropLastWhile'
 export { default as pluck } from './pluck'
 export { default as flatten } from './flatten'
@@ -151,6 +154,8 @@ export { default as zip } from './zip'
 
 // String
 export { default as trim } from './trim'
+// tirmLeft
+// trimRight
 export { default as capitalize } from './capitalize'
 export { default as camelCase } from './camelCase'
 export { default as lowerCase } from './lowerCase'
@@ -161,3 +166,16 @@ export { default as replace } from './replace'
 export { default as split } from './split'
 export { default as splitAt } from './splitAt'
 export { default as splitWith } from './splitWith'
+// splitLines
+// str
+// format
+// subs
+// join
+// reverse
+
+
+// 数据结构
+// List
+// Set
+// Map
+// 

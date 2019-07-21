@@ -1,15 +1,15 @@
-import { curry } from '../curry'
+import { _curry } from './_curry'
 
 // pipe 多个函数
 export function _pipe(fnList: Array<(...args: any[]) => any>) {
   // 第一个函数为入口
   const first = fnList[0]
-  if (fnList.length === 1) return curry(first)
+  if (fnList.length === 1) return _curry(first)
   
   const tail = fnList.slice(1)
   const tailSize = tail.length
 
-  return curry(function() {
+  return _curry(function() {
     let value
     switch(arguments.length) {
       case 1: value = first(arguments[0]); break

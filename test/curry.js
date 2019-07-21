@@ -31,7 +31,7 @@ describe('curry', function() {
     assert.deepEqual(g(3, 6)(2), 15)
   })
 
-  it('额外传入的参数舍弃', function() {
+  it('支持额外传入的参数', function() {
     const fn = function(a, b, c) {
       return Array.prototype.slice.call(arguments)
     }
@@ -41,13 +41,5 @@ describe('curry', function() {
     assert.deepEqual(curried(1, 2)(3, 4), [ 1, 2, 3, 4 ])
     assert.deepEqual(curried(1)(2, 3, 4), [ 1, 2, 3, 4 ])
     assert.deepEqual(curried(1)(2)(3, 4), [ 1, 2, 3, 4 ])
-  })
-
-  it('指定元数以支持默认值参数和 rest 参数', function() {
-    const fn1 = I.curry((a, b = 2) => a + b, 2)
-    assert.equal(fn1(1, 1), 2)
-
-    const fn2 = I.curry((a, ...b) => a + I.sum(b), 3)
-    assert.equal(fn2(1,1,1), 3)
   })
 })

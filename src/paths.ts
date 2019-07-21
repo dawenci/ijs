@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _path from './internal/_path'
 import _map from './internal/_map'
 
@@ -16,4 +16,4 @@ function _paths(paths: Paths, obj: any) {
   return _map(path => _path(path, obj), paths)
 }
 
-export default curry2(_paths)
+export default _curry2(_paths)

@@ -1,7 +1,7 @@
-import { curry3 } from './curry'
+import { _curry3 } from './internal/_curry'
 
 function invoker(method, args, obj) {
   return obj[method].apply(obj, args)
 }
 
-export default curry3(invoker)
+export default _curry3(invoker)

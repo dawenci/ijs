@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function nthArg(index: number): any {
   return function() {
@@ -11,4 +11,4 @@ function nthArg(index: number): any {
   }
 }
 
-export default curry1(nthArg)
+export default _curry1(nthArg)

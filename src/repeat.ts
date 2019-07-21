@@ -1,4 +1,8 @@
-import { curry2 } from './curry'
-import repeat from './internal/_repeat'
+import { _curry2 } from './internal/_curry'
+import _repeat from './internal/_repeat'
 
-export default curry2(repeat)
+function repeat<E>(e: E, n: number): Array<E> {
+  return _repeat(e, n)
+}
+
+export default _curry2(repeat)

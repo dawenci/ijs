@@ -1,6 +1,8 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _range from './internal/_range'
 
-export default curry2((from: number, to: number): Array<number> => {
+function range(from: number, to: number): Array<number> {
   return _range(from, to)
-})
+}
+
+export default _curry2(range)

@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _keys from './internal/_keys'
 
 function forOwn(iteratee: (value: any) => any, obj: any) {
@@ -10,4 +10,4 @@ function forOwn(iteratee: (value: any) => any, obj: any) {
   }
 }
 
-export default curry2(forOwn)
+export default _curry2(forOwn)

@@ -1,6 +1,6 @@
 import { STEP, Transformer } from './protocol'
 import BaseTransformer from './base'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XFilter extends BaseTransformer {
   constructor(private predicate, private transformer) {
@@ -15,4 +15,4 @@ function transducer(pred: (value: any) => boolean, transformer: Transformer): Tr
   return new XFilter(pred, transformer)
 }
 
-export default curry2(transducer)
+export default _curry2(transducer)

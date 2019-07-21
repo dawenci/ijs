@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _sameValue from './internal/_sameValue'
 
-export default curry2(_sameValue)
+export default _curry2(_sameValue)

@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 const binary = f => (x, y) => f(x, y)
-export default curry1(binary)
+export default _curry1(binary)

@@ -1,5 +1,5 @@
 import { _pipe } from './internal/_pipe'
-import { curry1 } from './curry';
+import { _curry1 } from './internal/_curry'
 
 /**
  * 创建一个函数管道，参数列表中第一个函数为入口，
@@ -11,8 +11,8 @@ import { curry1 } from './curry';
 
 // 实现
 function pipe(fnList: Array<(...args: any[]) => any>) {
-  if (!fnList || !fnList.length) return curry1(pipe)
+  if (!fnList || !fnList.length) return _curry1(pipe)
   return _pipe(fnList)
 }
 
-export default curry1(pipe)
+export default _curry1(pipe)

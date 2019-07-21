@@ -1,13 +1,15 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _map from './internal/_map'
 import _xmap from './internal/transducer/map'
 import _isTransformer from './internal/_isTransformer'
+import _isSequence from './internal/_isSequence'
 
 function map(fn, list) {
   // 若 list 为 Transformer，则用作 transducer
-  return _isTransformer(list)
-    ? _xmap(fn, list)
-    : _map.apply(void 0, arguments)
+  if (_isTransformer(list)) return _xmap(fn, list)
+
+  if (!_isSequence(list)) list = []
+  return _map.apply(void 0, arguments)
 }
 
-export default curry2(map)
+export default _curry2(map)

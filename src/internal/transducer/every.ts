@@ -1,7 +1,7 @@
 import { RESULT, STEP, Transformer } from './protocol'
 import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XEvery extends BaseTransformer {
   private all: boolean
@@ -30,4 +30,4 @@ function transducer(pred: (value: any) => boolean, transformer: Transformer): Tr
   return new XEvery(pred, transformer)
 }
 
-export default curry2(transducer)
+export default _curry2(transducer)

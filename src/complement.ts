@@ -1,4 +1,4 @@
-import { curry1 } from "./curry";
+import { _curry1 } from "./internal/_curry";
 import _complement from './internal/_complement'
 
-export default curry1(_complement)
+export default _curry1(_complement)

@@ -1,3 +1,4 @@
-export default function size(list: string | ArrayLike<any>) {
-  return list.length >>> 0
+export default function size(coll: string | ArrayLike<any>) {
+  if (!coll || !coll.length) return 0
+  return coll.length >>> 0
 }

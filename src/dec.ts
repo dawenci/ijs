@@ -1,3 +1,3 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
-export default curry1((n: number) => (+n) - 1)
+export default _curry1((n: number) => (+n) - 1)

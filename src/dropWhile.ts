@@ -1,7 +1,8 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _drop from './internal/_drop'
 import _xdropWhile from './internal/transducer/dropWhile'
 import _isTransformer from './internal/_isTransformer'
+import _isSequence from './internal/_isSequence'
 
 function _dropWhile(predicate, list) {
   const size = list.length
@@ -13,9 +14,10 @@ function _dropWhile(predicate, list) {
 }
 
 function dropWhile(predicate, list) {
-  return _isTransformer(list)
-    ? _xdropWhile(predicate, list)
-    : _dropWhile(predicate, list)
+  if (_isTransformer(list)) return _xdropWhile(predicate, list)
+
+  if (!_isSequence(list)) list = []
+  return _dropWhile(predicate, list)
 }
 
-export default curry2(dropWhile)
+export default _curry2(dropWhile)

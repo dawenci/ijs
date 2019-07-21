@@ -1,4 +1,4 @@
-import { curry3 } from './curry'
+import { _curry3 } from './internal/_curry'
 import _reduce from './internal/_reduce'
 
-export default curry3(_reduce)
+export default _curry3(_reduce)

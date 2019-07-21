@@ -1,7 +1,7 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function add(a: number, b: number): number {
   return (+a) + (+b)
 }
 
-export default curry2(add)
+export default _curry2(add)

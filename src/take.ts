@@ -1,4 +1,4 @@
-import { curry2 } from "./curry";
+import { _curry2 } from "./internal/_curry";
 import _take from './internal/_take'
 import _xtake from './internal/transducer/take'
 import _isTransformer from './internal/_isTransformer'
@@ -10,4 +10,4 @@ function take(n: number, list) {
     : _take(n, list)
 }
 
-export default curry2(take)
+export default _curry2(take)

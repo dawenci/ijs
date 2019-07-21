@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 import _isPrimitive from './internal/_isPrimitive'
 
-export default curry1(_isPrimitive)
+export default _curry1(_isPrimitive)

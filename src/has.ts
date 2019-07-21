@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 const hasOwn = Object.prototype.hasOwnProperty
 function has(key, obj) {
@@ -6,4 +6,4 @@ function has(key, obj) {
   return hasOwn.call(obj, key)
 }
 
-export default curry2(has)
+export default _curry2(has)

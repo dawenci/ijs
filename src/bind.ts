@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 /**
  * 返回一个 this 指向 object 的 bound 函数
@@ -11,4 +11,4 @@ function bind<T extends any[], R>(fn: (...args: T) => R, object: any): (...args:
   return fn.bind(object)
 }
 
-export default curry2(bind)
+export default _curry2(bind)

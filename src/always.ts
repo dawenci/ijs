@@ -1,6 +1,6 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 // K 组合子
 const K = x => () => x
 
-export default curry1(K)
+export default _curry1(K)

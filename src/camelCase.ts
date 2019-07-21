@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function camelCase(str: string): string {
   str = ('' + str).trim()
@@ -8,4 +8,4 @@ function camelCase(str: string): string {
     .replace(/^([A-Z])/, (_, char) => char.toLowerCase())
 }
 
-export default curry1(camelCase)
+export default _curry1(camelCase)

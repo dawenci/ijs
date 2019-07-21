@@ -1,5 +1,5 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
-export default curry2((substr: string, str: string): boolean => {
+export default _curry2((substr: string, str: string): boolean => {
   return str.substr(-substr.length) === substr
 })

@@ -1,7 +1,7 @@
 import { RESULT, STEP, Transformer } from './protocol'
 import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XSome extends BaseTransformer {
   private any: boolean
@@ -30,4 +30,4 @@ function transducer(predicate: (value: any) => boolean, transformer: Transformer
   return new XSome(predicate, transformer)
 }
 
-export default curry2(transducer)
+export default _curry2(transducer)

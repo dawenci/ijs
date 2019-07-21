@@ -1,4 +1,4 @@
-import curry from './curry'
+import _curry from './internal/_curry'
 import _isArrayLike from './internal/_isArrayLike'
 import {
   Reducer,
@@ -18,4 +18,4 @@ function transduce(
   return _reduce(transducer(transformer), initialValue, iterable)
 }
 
-export default curry(transduce)
+export default _curry(transduce)

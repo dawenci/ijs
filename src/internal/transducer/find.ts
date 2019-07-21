@@ -1,7 +1,7 @@
 import { STEP, RESULT, Transformer } from './protocol'
 import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XFind extends BaseTransformer {
   private found: boolean
@@ -30,4 +30,4 @@ function transducer(fn: (value: any) => any, transformer: Transformer): Transfor
   return new XFind(fn, transformer)
 }
 
-export default curry2(transducer)
+export default _curry2(transducer)

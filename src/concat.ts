@@ -1,4 +1,4 @@
-import { curry2 } from './curry';
+import { _curry2 } from './internal/_curry';
 import _concat from './internal/_concat'
 
-export default curry2(_concat)
+export default _curry2(_concat)

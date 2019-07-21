@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _uniqBy from './internal/_uniqBy'
 
-export default curry2(_uniqBy)
+export default _curry2(_uniqBy)

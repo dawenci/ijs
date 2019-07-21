@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function once(fn) {
   let invoked = false
@@ -11,4 +11,4 @@ function once(fn) {
   }
 }
 
-export default curry1(once)
+export default _curry1(once)

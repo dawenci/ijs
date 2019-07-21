@@ -1,7 +1,7 @@
-import { curry3 } from './curry'
+import { _curry3 } from './internal/_curry'
 
 const replace = (regexp: RegExp, replacement: string, str: string): string => {
   return str.replace(regexp, replacement)
 }
 
-export default curry3(replace)
+export default _curry3(replace)

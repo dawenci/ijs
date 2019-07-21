@@ -1,6 +1,7 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _dropLast from './internal/_dropLast'
 import _isTransformer from './internal/_isTransformer'
+import _isSequence from './internal/_isSequence'
 
 function _dropLastWhile(predicate, list) {
   const size = list.length
@@ -12,7 +13,8 @@ function _dropLastWhile(predicate, list) {
 }
 
 function dropWhile(predicate, list) {
+  if (!_isSequence(list)) list = []
   return _dropLastWhile(predicate, list)
 }
 
-export default curry2(dropWhile)
+export default _curry2(dropWhile)

@@ -1,7 +1,7 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function and<T, U>(a: T, b: U) {
   return a && b
 }
 
-export default curry2(and)
+export default _curry2(and)

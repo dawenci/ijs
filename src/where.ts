@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _keys from './internal/_keys'
 
 function where(spec: Object, obj: Object): boolean {
@@ -13,4 +13,4 @@ function where(spec: Object, obj: Object): boolean {
   }
   return true
 }
-export default curry2(where)
+export default _curry2(where)

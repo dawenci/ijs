@@ -1,4 +1,4 @@
-import curry, { curry1, _CURRY_ } from './curry'
+import _curry, { _curry1, _CURRY_ } from './internal/_curry'
 
 const slice = Array.prototype.slice
 
@@ -52,10 +52,10 @@ function addIndex(originFn) {
 
   // 传入的函数如果是柯里化后的，则也柯里化返回
   if (originFn[_CURRY_]) {
-    newFn = curry(newFn, originFn.length)
+    newFn = _curry(newFn, originFn.length)
   }
 
   return newFn
 }
 
-export default curry1(addIndex)
+export default _curry1(addIndex)

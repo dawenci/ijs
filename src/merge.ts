@@ -1,4 +1,4 @@
-import { curry2 } from './curry';
+import { _curry2 } from './internal/_curry';
 import _merge from './internal/_merge'
 
 function merge(to, from) {
@@ -7,4 +7,4 @@ function merge(to, from) {
     : _merge({}, to, from)
 }
 
-export default curry2(merge)
+export default _curry2(merge)

@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function cond(pairs: Array<[Function, Function]> = []): any {
   const count = pairs.length
@@ -12,4 +12,4 @@ function cond(pairs: Array<[Function, Function]> = []): any {
   }
 }
 
-export default curry1(cond)
+export default _curry1(cond)

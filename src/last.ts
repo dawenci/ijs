@@ -1,9 +1,11 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function last(coll: string): string
 function last<E>(coll: ArrayLike<E>): Array<E>
 function last(coll) {
-  return coll[coll.length - 1]
+  if (!coll || !coll.length) return
+  const index = (coll.length - 1) || 0
+  return coll[index]
 }
 
-export default curry1(last)
+export default _curry1(last)

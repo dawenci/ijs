@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 import { Pair } from './pair'
 
 function fromPairs (pairs: Array<Pair>): Object {
@@ -11,4 +11,4 @@ function fromPairs (pairs: Array<Pair>): Object {
   return result
 }
 
-export default curry1(fromPairs)
+export default _curry1(fromPairs)

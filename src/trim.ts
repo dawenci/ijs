@@ -1,3 +1,3 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
-export default curry1((str: string) => str.trim())
+export default _curry1((str: string) => str.trim())

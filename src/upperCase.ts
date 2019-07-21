@@ -1,5 +1,5 @@
-import { curry1 } from "./curry";
+import { _curry1 } from "./internal/_curry";
 
 const upperCase = (str: string): string => str.toUpperCase()
 
-export default curry1(upperCase)
+export default _curry1(upperCase)

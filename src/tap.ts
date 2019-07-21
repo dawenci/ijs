@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 import _xtap from './internal/transducer/tap'
 import _isTransformer from './internal/_isTransformer'
 
@@ -9,4 +9,4 @@ function tap(fn, value) {
   return value
 }
 
-export default curry2(tap)
+export default _curry2(tap)

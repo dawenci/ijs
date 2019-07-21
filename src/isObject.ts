@@ -1,4 +1,4 @@
-import { curry1 } from "./curry";
+import { _curry1 } from "./internal/_curry";
 import _isObject from './internal/_isObject'
 
-export default curry1(_isObject)
+export default _curry1(_isObject)

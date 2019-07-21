@@ -1,4 +1,4 @@
-import { curry3 } from './curry'
+import { _curry3 } from './internal/_curry'
 import _intersectionWith from './internal/_intersectionWith'
 
 /**
@@ -8,4 +8,4 @@ import _intersectionWith from './internal/_intersectionWith'
  * @param {Array} array1
  * @param {Array} array2
  */
-export default curry3(_intersectionWith)
+export default _curry3(_intersectionWith)

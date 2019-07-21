@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function forInIndexed(iteratee: (value: any, key: string) => any, obj: any) {
   if (obj === undefined || obj === null) return
@@ -8,4 +8,4 @@ function forInIndexed(iteratee: (value: any, key: string) => any, obj: any) {
   }
 }
 
-export default curry2(forInIndexed)
+export default _curry2(forInIndexed)

@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function passEvery(tests: Array<(input: any) => boolean>, input: any): boolean {
   const size = tests.length >>> 0
@@ -9,4 +9,4 @@ function passEvery(tests: Array<(input: any) => boolean>, input: any): boolean {
   return true
 }
 
-export default curry2(passEvery)
+export default _curry2(passEvery)

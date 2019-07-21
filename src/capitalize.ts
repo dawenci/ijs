@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function capitalize(str: string): string {
   str = ('' + str).trim()
@@ -6,4 +6,4 @@ function capitalize(str: string): string {
   return str.replace(/^([a-z])/, (_, char) => char.toUpperCase())
 }
 
-export default curry1(capitalize)
+export default _curry1(capitalize)

@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 
 function isEmpty(coll: string | Array<any>): boolean
 function isEmpty(coll: Object): boolean
@@ -17,4 +17,4 @@ function isEmpty(coll) {
   return true
 }
 
-export default curry1(isEmpty)
+export default _curry1(isEmpty)

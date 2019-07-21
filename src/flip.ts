@@ -1,18 +1,6 @@
-import {
-  Curry1,
-  Curry2,
-  Curry3,
-  Curry4,
-  Curry5,
-  Curry6,
-  Curry7,
-  Curry8,
-  Curry9,
-  Curry10,
-  Curried
-} from './types'
+import { Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Curried } from './types'
 
-import curry, { _CURRY_ } from './curry'
+import _curry, { _CURRY_ } from './internal/_curry'
 import { Flip } from './_typeUtils'
 
 import _arity from './internal/_arity'
@@ -60,15 +48,15 @@ function flip<P extends any[], R>(fn?) {
 
   // 已经反转过的，使用翻转前的函数 curry 化即可
   if (fn[_FLIP_]) {
-    const flipped = curry(fn[_FLIP_])
+    const flipped = _curry(fn[_FLIP_])
     flipped[_FLIP_] = fn
     return flipped
   }
 
   if (n === 0) return fn
-  if (n === 1) return curry(fn)
+  if (n === 1) return _curry(fn)
   if (n === 2) {
-    const c2 = curry(function(a, b) {
+    const c2 = _curry(function(a, b) {
       if (arguments.length === 2) return fn(b, a)
       const args = slice.call(arguments)
       const first = args[0]
@@ -80,7 +68,7 @@ function flip<P extends any[], R>(fn?) {
     return c2
   }
   if (n === 3) {
-    const c3 = curry(function(a, b, c) {
+    const c3 = _curry(function(a, b, c) {
       if (arguments.length === 3) return fn(b, a, c)
       const args = slice.call(arguments)
       const first = args[0]
@@ -92,7 +80,7 @@ function flip<P extends any[], R>(fn?) {
     return c3
   }
 
-  const cN = curry<P, R>(function() {
+  const cN = _curry<P, R>(function() {
     const args = slice.call(arguments)
     const first = args[0]
     args[0] = args[1]

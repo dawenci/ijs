@@ -1,6 +1,6 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 const startsWith = (substr: string, str: string) =>
   str.substr(0, substr.length) === substr
 
-export default curry2(startsWith)
+export default _curry2(startsWith)

@@ -1,5 +1,5 @@
 import { _pipe } from './internal/_pipe'
-import { curry1 } from './curry';
+import { _curry1 } from './internal/_curry'
 
 /**
  * 创建一个函数组合，参数列表中最后一个函数为入口，
@@ -11,8 +11,8 @@ import { curry1 } from './curry';
 
 // 实现
 function compose(fnList: Array<(...args: any[]) => any>) {
-  if (!fnList || !fnList.length) return curry1(compose)
+  if (!fnList || !fnList.length) return _curry1(compose)
   return _pipe(fnList.slice().reverse())
 }
 
-export default curry1(compose)
+export default _curry1(compose)

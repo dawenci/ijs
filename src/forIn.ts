@@ -1,4 +1,4 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function forIn(iteratee: (value: any) => any, obj: any) {
   if (obj === undefined || obj === null) return
@@ -8,4 +8,4 @@ function forIn(iteratee: (value: any) => any, obj: any) {
   }
 }
 
-export default curry2(forIn)
+export default _curry2(forIn)

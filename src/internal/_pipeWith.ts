@@ -1,4 +1,4 @@
-import { curry } from '../curry'
+import { _curry } from './_curry'
 
 export function _pipeWith(
   withFn: (fn: (value: any) => any, value: any) => any,
@@ -6,12 +6,12 @@ export function _pipeWith(
 ) {
   // 第一个函数为入口，如果只有一个函数，直接包装返回
   const first = fnList[0]
-  if (fnList.length === 1) return curry(first)
+  if (fnList.length === 1) return _curry(first)
 
   const tail = fnList.slice(1)
   const tailSize = tail.length
 
-  return curry(function() {
+  return _curry(function() {
     let value
     switch(arguments.length) {
       case 1: value = first(arguments[0]); break

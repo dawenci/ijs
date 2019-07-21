@@ -1,7 +1,7 @@
-import { curry2 } from './curry'
+import { _curry2 } from './internal/_curry'
 
 function min(a: number, b: number): number {
   return Math.min(a, b)
 }
 
-export default curry2(min)
+export default _curry2(min)

@@ -3,7 +3,7 @@ import {
   Transformer
 } from './protocol'
 import BaseTransformer from './base'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XMap extends BaseTransformer {
   constructor(private fn, private transformer) {
@@ -14,7 +14,7 @@ class XMap extends BaseTransformer {
   }
 }
 
-export default curry2(function mappingTransducer(
+export default _curry2(function mappingTransducer(
   fn: (value: any) => any, transformer: Transformer
 ): Transformer {
   return new XMap(fn, transformer)

@@ -1,4 +1,4 @@
-import { curry3 } from './curry'
+import { _curry3 } from './internal/_curry'
 import _lastIndexOf from './internal/_lastIndexOf'
 
-export default curry3(_lastIndexOf)(undefined)
+export default _curry3(_lastIndexOf)(undefined)

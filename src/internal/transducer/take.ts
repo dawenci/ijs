@@ -4,7 +4,7 @@ import {
 } from './protocol'
 import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XTake extends BaseTransformer {
   private index: number
@@ -19,6 +19,6 @@ class XTake extends BaseTransformer {
   }
 }
 
-export default curry2(function(n, transformer): Transformer {
+export default _curry2(function(n, transformer): Transformer {
   return new XTake(n, transformer)
 })

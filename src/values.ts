@@ -1,4 +1,4 @@
-import { curry1 } from './curry'
+import { _curry1 } from './internal/_curry'
 import _map from './internal/_map'
 import _keys from './internal/_keys'
 
@@ -10,7 +10,7 @@ const values = typeof Object.values === 'function'
     return _map<string, any>(key => obj[key], keys)
   }
 
-export default curry1(function(obj: any) {
+export default _curry1(function(obj: any) {
   if (obj === undefined || obj === null) return []
   return values(obj)
 })

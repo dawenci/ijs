@@ -4,7 +4,7 @@ import {
 } from './protocol'
 import BaseTransformer from './base'
 import _reduced from './reduced'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XTap extends BaseTransformer {
   constructor(private fn, private transformer) {
@@ -16,6 +16,6 @@ class XTap extends BaseTransformer {
   }
 }
 
-export default curry2(function(fn, transformer): Transformer {
+export default _curry2(function(fn, transformer): Transformer {
   return new XTap(fn, transformer)
 })

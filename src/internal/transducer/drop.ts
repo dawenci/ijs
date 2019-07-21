@@ -1,6 +1,6 @@
 import { STEP, Transformer } from './protocol'
 import BaseTransformer from './base'
-import { curry2 } from '../../curry'
+import { _curry2 } from '../_curry'
 
 class XDrop extends BaseTransformer {
   constructor(private n: number, private transformer) {
@@ -19,4 +19,4 @@ function transducer(n: number, transformer: Transformer): Transformer {
   return new XDrop(n, transformer)
 }
 
-export default curry2(transducer)
+export default _curry2(transducer)

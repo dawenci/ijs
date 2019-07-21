@@ -1,6 +1,6 @@
 import has from './has'
 
-export interface ICache {
+interface ICache {
   clear(): void
   delete(key: any): void
   has(key: any): boolean
@@ -22,7 +22,8 @@ export default function memoize<T extends any[], R>(fn: (...args: T) => R, optio
     const cacheKey = resolver(args)
     if (cache.has(cacheKey)) {
       computedValue = cache.get(cacheKey)
-    } else {
+    }
+    else {
       computedValue = fn.apply(void 0, args)
       cache.set(cacheKey, computedValue)
     }
@@ -64,17 +65,20 @@ function defaultResolver(args) {
   const arg = args[0]
   if (isPrimitive(arg)) {
     return arg
-  } else {
+  }
+  else {
     throw new Error('不支持使用非原始类型作为缓存 key')
   }
 }
 
 function isPrimitive(value) {
   const type = typeof value
-  return type === 'string'
-    || type === 'number'
-    || type === 'boolean'
-    || type === 'symbol'
-    || value === null
-    || value === undefined
+  return (
+    type === 'string' ||
+    type === 'number' ||
+    type === 'boolean' ||
+    type === 'symbol' ||
+    value === null ||
+    value === undefined
+  )
 }

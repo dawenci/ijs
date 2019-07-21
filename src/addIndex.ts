@@ -23,18 +23,18 @@ function addIndex(originFn) {
     // 加一层包裹，额外传递 index 进去
     const newIteratee = function(a, b, c) {
       let result
-      switch(arguments.length) {
+      switch (arguments.length) {
         case 1: {
           result = orginIteratee(a, index)
-          break;
+          break
         }
         case 2: {
           result = orginIteratee(a, b, index)
-          break;
+          break
         }
         case 3: {
           result = orginIteratee(a, b, c, index)
-          break;
+          break
         }
         default: {
           const args = slice.call(arguments, 0)

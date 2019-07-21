@@ -10,7 +10,6 @@ export { default as call } from './call'
 export { default as apply } from './apply'
 export { default as partial } from './partial'
 export { default as bind } from './bind'
-export { default as __ } from './__'
 export { default as identity } from './identity'
 export { default as tap } from './tap'
 export { default as always } from './always'
@@ -24,6 +23,7 @@ export { default as unary } from './unary'
 export { default as binary } from './binary'
 export { default as memoize } from './memoize'
 export { default as addIndex } from './addIndex'
+export { default as _ } from './_'
 
 
 // Logic

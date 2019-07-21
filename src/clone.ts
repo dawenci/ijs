@@ -13,13 +13,14 @@ function cloneDeep(obj) {
 
   // 原始类型复制赋值，函数直接引用
   const type = typeof obj
-  if (type === 'string'
-    || type === 'number'
-    || type === 'boolean'
-    || type === 'undefined'
-    || type === 'symbol'
-    || obj === null
-    || type === 'function'
+  if (
+    type === 'string' ||
+    type === 'number' ||
+    type === 'boolean' ||
+    type === 'undefined' ||
+    type === 'symbol' ||
+    obj === null ||
+    type === 'function'
   ) {
     return obj
   }
@@ -37,11 +38,11 @@ function cloneDeep(obj) {
       // 循环引用
       if (item === obj) {
         arrayCopy.push(arrayCopy)
-        continue;
+        continue
       }
       arrayCopy.push(cloneDeep(item))
     }
-    return arrayCopy;
+    return arrayCopy
   }
 
   // 正则对象

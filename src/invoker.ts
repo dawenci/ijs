@@ -1,6 +1,6 @@
 import { _curry3 } from './internal/_curry'
 
-function invoker(method, args, obj) {
+function invoker(method: string | symbol, args: Array<any>, obj: any) {
   return obj[method].apply(obj, args)
 }
 

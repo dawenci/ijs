@@ -1,11 +1,15 @@
 import { _curry1 } from './internal/_curry'
 
-const reFlags = /\w*$/
-function cloneRegExp(regexp) {
-  const result = new regexp.constructor(regexp.source, reFlags.exec(regexp))
-  result.lastIndex = regexp.lastIndex
-  return result
-}
+const cloneRegExp = (() => {
+  const reFlags = /\w*$/
+  return regexp => {
+    const flags = reFlags.exec(regexp)
+    const result = new regexp.constructor(regexp.source, flags)
+    result.lastIndex = regexp.lastIndex
+    return result
+  }
+})()
+
 
 // 深拷贝
 function cloneDeep(obj) {

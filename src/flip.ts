@@ -1,4 +1,4 @@
-import { Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Curried } from './types'
+import { Curry1, Curry2, Curry3, Curry4, Curry5, Curry6, Curry7, Curry8, Curry9, Curry10, Currying } from './types'
 
 import _curry, { _CURRY_ } from './internal/_curry'
 import { Flip } from './_typeUtils'
@@ -40,7 +40,7 @@ function flip<A, B, C, D, E, F, G, H, I, R>(
 function flip<A, B, C, D, E, F, G, H, I, J, R>(
   fn: ((a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I, j: J) => R)
 ): Curry10<B, A, C, D, E, F, G, H, I, J, R>
-function flip<P extends any[], R>(fn: (...args: P) => R): Curried<Flip<P>, R>
+function flip<P extends any[], R>(fn: (...args: P) => R): Currying<Flip<P>, R>
 
 function flip<P extends any[], R>(fn?) {
   if (arguments.length == 0) return flip

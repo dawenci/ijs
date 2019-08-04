@@ -117,7 +117,7 @@ export interface Curry10<A, B, C, D, E, F, G, H, I, J, R> {
 // 
 // curry 结果函数的返回值部分，根据 Drop<Length<T>, P>，减去真实传入的 T 的长度，得到剩余部分，剩余部分根据长度，返回对应的新的 curry 类型
 // 其中，硬编码 0 - 10 个剩余参数以获得更好的类型支持和性能，之外的则动态递归处理
-export type Curried<P extends any[], R> = <T extends any[]>(...args: Cast<T, Partial<P>>) =>
+export type Currying<P extends any[], R> = <T extends any[]>(...args: Cast<T, Partial<P>>) =>
   // 没有剩余参数可消耗，则返回最终结果
   Drop<Length<T>, P> extends [] ? R
   // 剩余 1
@@ -148,4 +148,4 @@ export type Curried<P extends any[], R> = <T extends any[]>(...args: Cast<T, Par
   : Drop<Length<T>, P> extends [infer A,infer B,infer C,infer D,infer E,infer F,infer G,infer H, infer I, infer J]
     ? Curry10<A, B, C, D, E, F, G, H, I, J, R>
   // 剩余更多，走 curryN
-  : Drop<Length<T>, P> extends [any, ...any[]] ? Curried<Drop<Length<T>, P> extends infer REST ? Cast<REST, any[]> : never, R> : never
+  : Drop<Length<T>, P> extends [any, ...any[]] ? Currying<Drop<Length<T>, P> extends infer REST ? Cast<REST, any[]> : never, R> : never

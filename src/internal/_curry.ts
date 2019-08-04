@@ -12,7 +12,7 @@ import {
   Curry8,
   Curry9,
   Curry10,
-  Curried
+  Currying
 } from '../types'
 import _arity, { ArityType } from './_arity'
 
@@ -26,17 +26,17 @@ export const _WRAPPER_ = typeof Symbol === 'function' ? Symbol('_WRAPPER_') : '_
 
 export function _curry1<A, R>(fn: Arity1<A, R>) {
   // 重载
-  function curried(): Curry1<A, R>
-  function curried(a: A): R
-  function curried(a: A, ...rest: any): R
+  function currying(): Curry1<A, R>
+  function currying(a: A): R
+  function currying(a: A, ...rest: any): R
   // 实现
-  function curried(a?) {
+  function currying(a?) {
     const args = arguments
     switch (args.length) {
       case 1:
         return fn(a)
       case 0:
-        return curried
+        return currying
 
       case 2:
         return fn(a, args[1])
@@ -47,18 +47,18 @@ export function _curry1<A, R>(fn: Arity1<A, R>) {
         return fn.apply(void 0, args)
     }
   }
-  curried[_CURRY_] = fn
-  return curried
+  currying[_CURRY_] = fn
+  return currying
 }
 
 export function _curry2<A, B, R>(fn: Arity2<A, B, R>) {
   // 重载
-  function curried(): Curry2<A, B, R>
-  function curried(a: A): Curry1<B, R>
-  function curried(a: A, b: B): R
-  function curried(a: A, b: B, ...rest: any): R
+  function currying(): Curry2<A, B, R>
+  function currying(a: A): Curry1<B, R>
+  function currying(a: A, b: B): R
+  function currying(a: A, b: B, ...rest: any): R
   // 实现
-  function curried(a?, b?) {
+  function currying(a?, b?) {
     const args = arguments
     switch (args.length) {
       case 1:
@@ -75,7 +75,7 @@ export function _curry2<A, B, R>(fn: Arity2<A, B, R>) {
       case 2:
         return fn(a as A, b)
       case 0:
-        return curried
+        return currying
 
       case 3:
         return fn(a as A, b, args[2])
@@ -86,19 +86,19 @@ export function _curry2<A, B, R>(fn: Arity2<A, B, R>) {
         return fn.apply(void 0, args)
     }
   }
-  curried[_CURRY_] = fn
-  return curried
+  currying[_CURRY_] = fn
+  return currying
 }
 
 export function _curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
   // 重载
-  function curried(): Curry3<A, B, C, R>
-  function curried(a: A): Curry2<B, C, R>
-  function curried(a: A, b: B): Curry1<C, R>
-  function curried(a: A, b: B, c: C): R
-  function curried(a: A, b: B, c: C, ...rest: any): R
+  function currying(): Curry3<A, B, C, R>
+  function currying(a: A): Curry2<B, C, R>
+  function currying(a: A, b: B): Curry1<C, R>
+  function currying(a: A, b: B, c: C): R
+  function currying(a: A, b: B, c: C, ...rest: any): R
   // 实现
-  function curried(a?, b?, c?) {
+  function currying(a?, b?, c?) {
     const args = arguments
     switch (args.length) {
       case 1:
@@ -130,7 +130,7 @@ export function _curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
       case 3:
         return fn(a as A, b as B, c as C)
       case 0:
-        return curried
+        return currying
 
       case 4:
         return fn(a as A, b as B, c as C, args[3])
@@ -141,8 +141,8 @@ export function _curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
         return fn.apply(void 0, args)
     }
   }
-  curried[_CURRY_] = fn
-  return curried
+  currying[_CURRY_] = fn
+  return currying
 }
 
 /*
@@ -151,12 +151,12 @@ export function _curry3<A, B, C, R>(fn: Arity3<A, B, C, R>) {
  * @param {number} arity 元数
  * @param {(...args: P) => R} fn 需要柯里化的原函数
  */
-function _curryN<P extends any[], R>(arity: number, fn: (...args: P) => R): Curried<P, R> | ArityType<P, R> {
-  function curried() {
+function _curryN<P extends any[], R>(arity: number, fn: (...args: P) => R): Currying<P, R> | ArityType<P, R> {
+  function currying() {
     const consumed = arguments.length
 
     // 传入 0 个参数，重新返回 wrapper 自身
-    if (consumed === 0) return curried[_WRAPPER_]
+    if (consumed === 0) return currying[_WRAPPER_]
 
     const rest = arity - consumed
     if (rest <= 0) {
@@ -205,13 +205,13 @@ function _curryN<P extends any[], R>(arity: number, fn: (...args: P) => R): Curr
   }
 
   // 使用 wrapper 包裹，以确保 length 正确
-  const wrapper = _arity<P, R>(arity, curried)
-  curried[_CURRY_] = fn
+  const wrapper = _arity<P, R>(arity, currying)
+  currying[_CURRY_] = fn
   // 把 wrapper 当 curried 使用
   wrapper[_CURRY_] = fn
 
   // 反向引用，以在 wrapper 0 参数调用时，可以不用重新柯里化，直接返回 wrapper
-  curried[_WRAPPER_] = wrapper
+  currying[_WRAPPER_] = wrapper
 
   return wrapper
 }
@@ -238,9 +238,9 @@ export function _curry<A, B, C, D, E, F, G, H, I, R>(
 export function _curry<A, B, C, D, E, F, G, H, I, J, R>(
   fn: ((a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I, j: J) => R)
 ): Curry10<A, B, C, D, E, F, G, H, I, J, R>
-export function _curry<P extends any[], R>(fn: ((...args: P) => R)): Curried<P, R>
+export function _curry<P extends any[], R>(fn: ((...args: P) => R)): Currying<P, R>
 // 传入了 arity，则需要手动传入 P，不能使用 fn 的类型来推断，因为参数长度和手工指定的 arity 不一定一致
-export function _curry<P extends any[], R>(fn: ((...args) => R), arity: number): Curried<P, R>
+export function _curry<P extends any[], R>(fn: ((...args) => R), arity: number): Currying<P, R>
 
 // 可以传入 arity 指定元数，
 // 以支持默认值参数 & rest 参数（目前这么做会失去 TS 类型信息）
